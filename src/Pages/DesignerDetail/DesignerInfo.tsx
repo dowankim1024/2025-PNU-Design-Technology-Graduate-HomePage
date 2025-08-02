@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { Title } from "../DesignersPage";
 import TeamProjectWatch from "@/assets/TeamProjectWatch.png";
+import Plus from "@/assets/Icons/Plus.png";
 
-export const DesignerDetailContent = () => {
+export const DesignerInfo = () => {
   return (
     <>
       <Title>DESIGNER</Title>
@@ -15,7 +16,6 @@ export const DesignerDetailContent = () => {
               alt="Team Project Watch"
             />
           </LeftSection>
-
           <RightBlock>
             <DesignerName>박세은</DesignerName>
             <DesignerNameEnglish>Park Se Eun</DesignerNameEnglish>
@@ -26,7 +26,20 @@ export const DesignerDetailContent = () => {
               학생이며 디자인을 사랑하는 사람입니다.
             </DesignerIntro>
           </RightBlock>
+
+          <PlusButton src={Plus} alt="Plus" />
         </ContentSection>
+        <ConceptSection>
+          <Concept>CONCEPT</Concept>
+          <ConceptTitle>가까이서 보면 비극 멀리서 보면 희극</ConceptTitle>
+          <ConceptDescription>
+            안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을
+            사랑하는 사람입니다. 안녕하십니까, 박세은입니다. 저는 디자인학과
+            학생이며 디자인을 사랑하는 사람입니다. 안녕하십니까, 박세은입니다.
+            저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다. 안녕하십니까,
+            박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다.
+          </ConceptDescription>
+        </ConceptSection>
       </MainContainer>
     </>
   );
@@ -40,8 +53,8 @@ const MainContainer = styled.div`
 `;
 
 const ContentSection = styled.div`
+  position: relative;
   display: flex;
-  margin-bottom: 6.25vw; /* 120px / 1920px * 100 = 6.25% */
 `;
 
 const LeftSection = styled.div`
@@ -111,4 +124,46 @@ const TeamProjectButton = styled.img`
   bottom: -2.92vw; /* -56px / 1920px * 100 = -2.92% */
   left: -6.25vw; /* -120px / 1920px * 100 = -6.25% */
   z-index: -1;
+`;
+
+const PlusButton = styled.img`
+  width: 4.27vw; /* 82px / 1920px * 100 = 4.27% */
+  height: 4.27vw; /* 82px / 1920px * 100 = 4.27% */
+  position: absolute;
+  top: 0;
+  right: 0;
+`;
+const ConceptSection = styled.div`
+  width: 100%;
+  margin-top: 7.08vw; /* 136px / 1920px * 100 = 7.08% */
+  display: flex;
+  flex-direction: column;
+`;
+
+const Concept = styled.div`
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 1.15vw; /* 22px / 1920px * 100 = 1.15% */
+  line-height: 140%;
+  letter-spacing: 0;
+  color: #080404;
+`;
+const ConceptTitle = styled.div`
+  font-family: Pretendard;
+  font-weight: 700;
+  font-size: 1.25vw; /* 24px / 1920px * 100 = 1.25% */
+  line-height: 140%;
+  letter-spacing: 0;
+  color: #080404;
+  margin-top: 0.21vw; /* 4px / 1920px * 100 = 0.21% */
+`;
+const ConceptDescription = styled.div`
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
+  line-height: 145%;
+  letter-spacing: 0;
+  color: #080404;
+  margin-top: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
+  margin-bottom: 4.17vw; /* 80px / 1920px * 100 = 4.17% */
 `;

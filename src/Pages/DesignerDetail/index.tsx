@@ -1,12 +1,14 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { DesignerDetailContent } from "./DesignerDetailContent";
+import { DesignerInfo } from "./DesignerInfo";
+import { Poster } from "./Poster";
 
 export const DesignerDetailPage = () => {
   return (
     <>
       <Header />
-      <DesignerDetailContent />
+      <DesignerInfo />
+      <Poster />
       <Footer />
     </>
   );
