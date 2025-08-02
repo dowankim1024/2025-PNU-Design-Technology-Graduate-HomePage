@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { DesignerInfo } from "./DesignerInfo";
 import { Poster } from "./Poster";
 import { Inter } from "./Inter";
+import { ListSelectBox } from "@/components/ListSelectBox";
 
 export const DesignerDetailPage = () => {
   return (
@@ -11,6 +12,7 @@ export const DesignerDetailPage = () => {
       <DesignerInfo />
       <Poster />
       <Inter />
+      <ListSelectBox />
       <Footer />
     </>
   );
