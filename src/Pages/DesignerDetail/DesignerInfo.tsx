@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import { Title } from "../DesignersPage";
+import { Title } from "@/components/Title";
 import TeamProjectWatch from "@/assets/TeamProjectWatch.png";
 import Plus from "@/assets/Icons/Plus.png";
+import { MainContainer } from "@/components/MainContainer";
+import { Concept } from "@/components/Concept";
 
 export const DesignerInfo = () => {
   return (
@@ -29,28 +31,14 @@ export const DesignerInfo = () => {
 
           <PlusButton src={Plus} alt="Plus" />
         </ContentSection>
-        <ConceptSection>
-          <Concept>CONCEPT</Concept>
-          <ConceptTitle>가까이서 보면 비극 멀리서 보면 희극</ConceptTitle>
-          <ConceptDescription>
-            안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을
-            사랑하는 사람입니다. 안녕하십니까, 박세은입니다. 저는 디자인학과
-            학생이며 디자인을 사랑하는 사람입니다. 안녕하십니까, 박세은입니다.
-            저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다. 안녕하십니까,
-            박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다.
-          </ConceptDescription>
-        </ConceptSection>
+        <Concept
+          title="가까이서 보면 비극 멀리서 보면 희극"
+          description="안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다. 안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다. 안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다. 안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다."
+        />
       </MainContainer>
     </>
   );
 };
-
-const MainContainer = styled.div`
-  width: 100%;
-  margin-top: 4.17vw; /* 80px / 1920px * 100 = 4.17% */
-  padding: 0 18.75vw; /* 360px / 1920px * 100 = 18.75% */
-  box-sizing: border-box;
-`;
 
 const ContentSection = styled.div`
   position: relative;
@@ -132,38 +120,4 @@ const PlusButton = styled.img`
   position: absolute;
   top: 0;
   right: 0;
-`;
-const ConceptSection = styled.div`
-  width: 100%;
-  margin-top: 7.08vw; /* 136px / 1920px * 100 = 7.08% */
-  display: flex;
-  flex-direction: column;
-`;
-
-const Concept = styled.div`
-  font-family: Pretendard;
-  font-weight: 400;
-  font-size: 1.15vw; /* 22px / 1920px * 100 = 1.15% */
-  line-height: 140%;
-  letter-spacing: 0;
-  color: #080404;
-`;
-const ConceptTitle = styled.div`
-  font-family: Pretendard;
-  font-weight: 700;
-  font-size: 1.25vw; /* 24px / 1920px * 100 = 1.25% */
-  line-height: 140%;
-  letter-spacing: 0;
-  color: #080404;
-  margin-top: 0.21vw; /* 4px / 1920px * 100 = 0.21% */
-`;
-const ConceptDescription = styled.div`
-  font-family: Pretendard;
-  font-weight: 400;
-  font-size: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
-  line-height: 145%;
-  letter-spacing: 0;
-  color: #080404;
-  margin-top: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
-  margin-bottom: 4.17vw; /* 80px / 1920px * 100 = 4.17% */
 `;
