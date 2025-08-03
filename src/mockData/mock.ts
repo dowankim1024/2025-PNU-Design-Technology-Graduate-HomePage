@@ -74,6 +74,7 @@ interface TeamInfoProps {
   teamName: string;
   teammates: { [key: string]: string };
   description: string;
+  concept: string;
 }
 export const TeamInfoData: TeamInfoProps = {
   teamName: "Web Team",
@@ -85,6 +86,7 @@ export const TeamInfoData: TeamInfoProps = {
   },
   description:
     "웹 팀은 전시회 작업물을 아카이빙하고 졸업논문을 대신하는 웹 사이트를 제작합니다. 인스타그램 등 SNS 채널을 관리하며 졸업 전시의 디지털 기록과 홍보를 담당합니다. ",
+  concept: "시각, 눈",
 };
 export const ListData: string[] = ["정일후", "박세은", "김도완"];
 export const ListData2: string[] = ["DP", "WEB", "VIDEO"];
