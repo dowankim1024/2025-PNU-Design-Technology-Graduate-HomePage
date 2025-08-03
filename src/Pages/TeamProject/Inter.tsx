@@ -8,11 +8,11 @@ interface InterProps {
 
 export const Inter = ({ title, description, levelDescription }: InterProps) => {
   return (
-    <InterContainer>
+    <InterSection>
       <InterImage />
       <DescriptionContainer>
         <InterDescription>
-          <InteractionArt>INTERACTION ART</InteractionArt>
+          <Tag>TEAM INTERACTION ART</Tag>
           <Title>{title}</Title>
           <Description>{description}</Description>
         </InterDescription>
@@ -31,23 +31,20 @@ export const Inter = ({ title, description, levelDescription }: InterProps) => {
           </LevelContainer>
         </LevelSection>
       </DescriptionContainer>
-    </InterContainer>
+    </InterSection>
   );
 };
-const InterContainer = styled.div`
+const InterSection = styled.div`
   width: 100%;
-  height: 28.33vw; /* 544px / 1920px * 100 = 28.33% */
-  padding: 0 18.75vw; /* 360px / 1920px * 100 = 18.75% */
-  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 8.33vw; /* 160px / 1920px * 100 = 8.33% */
+  margin-bottom: 8.33vw; /* 200px / 1920px * 100 = 10.42% */
 `;
 const InterImage = styled.div`
-  width: 20.05vw; /* 385px / 1920px * 100 = 20.05% */
-  height: 28.33vw; /* 544px / 1920px * 100 = 28.33% */
+  width: 385px;
+  height: 544px;
   background-color: #f0f0f0;
 `;
 const DescriptionContainer = styled.div`
@@ -55,11 +52,12 @@ const DescriptionContainer = styled.div`
   flex-direction: column;
 `;
 const InterDescription = styled.div`
-  width: 40.78vw; /* 783px / 1920px * 100 = 40.78% */
-  height: 8.02vw; /* 154px / 1920px * 100 = 8.02% */
-  margin-bottom: 1.67vw; /* 32px / 1920px * 100 = 1.67% */
+  width: 783px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px; /* 80px / 1920px * 100 = 4.17% */
 `;
-const InteractionArt = styled.div`
+const Tag = styled.div`
   font-family: Pretendard;
   font-weight: 400;
   font-size: 1.15vw; /* 22px / 1920px * 100 = 1.15% */
@@ -75,7 +73,7 @@ const Title = styled.div`
   line-height: 140%;
   letter-spacing: 0;
   color: #080404;
-  margin-bottom: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
+  margin-bottom: 0.83vw; /* 4px / 1920px * 100 = 0.21% */
 `;
 const Description = styled.div`
   font-family: Pretendard;

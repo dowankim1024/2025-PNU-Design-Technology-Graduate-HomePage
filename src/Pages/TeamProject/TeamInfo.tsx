@@ -2,7 +2,17 @@ import styled from "styled-components";
 import WebTeam from "@/assets/TeamImage/WebTeam.png";
 import Plus from "@/assets/Icons/Plus.png";
 
-export const TeamInfo = () => {
+interface TeamInfoProps {
+  teamName: string;
+  teammates: { [key: string]: string };
+  description: string;
+}
+
+export const TeamInfo = ({
+  teamName,
+  teammates,
+  description,
+}: TeamInfoProps) => {
   return (
     <TeamProjectMain>
       <LeftSection>
@@ -11,18 +21,13 @@ export const TeamInfo = () => {
         <PlusButton src={Plus} alt="Plus Button" />
       </LeftSection>
       <TeamInfoDescription>
-        <TeamName>Web Team</TeamName>
+        <TeamName>{teamName}</TeamName>
         <Teammates>
-          <Teammate>김도완</Teammate>
-          <Teammate>김가빈</Teammate>
-          <Teammate>박세은</Teammate>
-          <Teammate>정일후</Teammate>
+          {Object.entries(teammates).map(([key, value]) => (
+            <Teammate key={key}>{value}</Teammate>
+          ))}
         </Teammates>
-        <Description>
-          웹 팀은 전시회 작업물을 아카이빙하고 졸업논문을 대신하는 웹 사이트를
-          제작합니다. 인스타그램 등 SNS 채널을 관리하며 졸업 전시의 디지털
-          기록과 홍보를 담당합니다.
-        </Description>
+        <Description>{description}</Description>
       </TeamInfoDescription>
     </TeamProjectMain>
   );

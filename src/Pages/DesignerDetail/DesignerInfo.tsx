@@ -5,7 +5,23 @@ import Plus from "@/assets/Icons/Plus.png";
 import { MainContainer } from "@/components/MainContainer";
 import { Concept } from "@/components/Concept";
 
-export const DesignerInfo = () => {
+interface DesignerInfoProps {
+  name: string;
+  nameEnglish: string;
+  email: string;
+  intro: string;
+  conceptTitle: string;
+  conceptDescription: string;
+}
+
+export const DesignerInfo = ({
+  name,
+  nameEnglish,
+  email,
+  intro,
+  conceptTitle,
+  conceptDescription,
+}: DesignerInfoProps) => {
   return (
     <>
       <Title>DESIGNER</Title>
@@ -19,22 +35,15 @@ export const DesignerInfo = () => {
             />
           </LeftSection>
           <RightBlock>
-            <DesignerName>박세은</DesignerName>
-            <DesignerNameEnglish>Park Se Eun</DesignerNameEnglish>
-            <DesignerEmail>03eungreen@naver.com</DesignerEmail>
-            <DesignerIntro>
-              안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을
-              사랑하는 사람입니다. 안녕하십니까, 박세은입니다. 저는 디자인학과
-              학생이며 디자인을 사랑하는 사람입니다.
-            </DesignerIntro>
+            <DesignerName>{name}</DesignerName>
+            <DesignerNameEnglish>{nameEnglish}</DesignerNameEnglish>
+            <DesignerEmail>{email}</DesignerEmail>
+            <DesignerIntro>{intro}</DesignerIntro>
           </RightBlock>
 
           <PlusButton src={Plus} alt="Plus" />
         </ContentSection>
-        <Concept
-          title="가까이서 보면 비극 멀리서 보면 희극"
-          description="안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다. 안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다. 안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다. 안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다."
-        />
+        <Concept title={conceptTitle} description={conceptDescription} />
       </MainContainer>
     </>
   );

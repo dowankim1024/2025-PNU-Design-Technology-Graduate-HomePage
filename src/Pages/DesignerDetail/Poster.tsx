@@ -1,18 +1,17 @@
 import styled from "styled-components";
 
-export const Poster = () => {
+interface PosterProps {
+  title: string;
+  description: string;
+}
+
+export const Poster = ({ title, description }: PosterProps) => {
   return (
     <PostContainer>
       <PosterDescription>
         <Title>POSTER</Title>
-        <PosterDescriptionTitle>우리의 괴물</PosterDescriptionTitle>
-        <Description>
-          안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는
-          사람입니다. 안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며
-          디자인을 사랑하는 사람입니다. 안녕하십니까, 박세은입니다. 저는
-          디자인학과 학생이며 디자인을 사랑하는 사람입니다. 안녕하십니까,
-          박세은입니다.{" "}
-        </Description>
+        <PosterDescriptionTitle>{title}</PosterDescriptionTitle>
+        <Description>{description}</Description>
       </PosterDescription>
       <PosterImage />
     </PostContainer>

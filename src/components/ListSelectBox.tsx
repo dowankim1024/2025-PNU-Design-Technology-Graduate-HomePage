@@ -1,18 +1,23 @@
 import styled from "styled-components";
 import Left from "@/assets/Icons/left.png";
 import Right from "@/assets/Icons/right.png";
-export const ListSelectBox = () => {
+
+interface ListSelectBoxProps {
+  list: string[];
+}
+
+export const ListSelectBox = ({ list }: ListSelectBoxProps) => {
   return (
     <ListSelectBoxContainer>
       <ListSelectBoxBorder>
         <ListSelectBoxContent>
           <Button>
             <Icon src={Left} />
-            <Name>정일후</Name>
+            <Name>{list[0]}</Name>
           </Button>
           <ListName>목록</ListName>
           <Button>
-            <Name>김도완</Name>
+            <Name>{list[list.length - 1]}</Name>
             <Icon src={Right} />
           </Button>
         </ListSelectBoxContent>

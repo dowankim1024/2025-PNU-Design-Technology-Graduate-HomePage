@@ -6,6 +6,14 @@ import { Title } from "@/components/Title";
 import { TeamInfo } from "./TeamInfo";
 import { Concept } from "@/components/Concept";
 import { Film } from "./Film";
+import { Inter } from "./Inter";
+import {
+  TeamInterData,
+  TeamConceptData,
+  TeamFilmData,
+  TeamInfoData,
+  ListData2,
+} from "@/mockData/mock";
 
 export const TeamProject = () => {
   return (
@@ -14,17 +22,26 @@ export const TeamProject = () => {
 
       <Title>TEAM PROJECT</Title>
       <MainContainer>
-        <TeamInfo />
+        <TeamInfo
+          teamName={TeamInfoData.teamName}
+          teammates={TeamInfoData.teammates}
+          description={TeamInfoData.description}
+        />
         <Concept
-          title="시각, 눈"
-          description="안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다. 안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다. 안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다. 안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다."
+          title={TeamConceptData.title}
+          description={TeamConceptData.description}
         />
         <Film
-          title="같은 곳 다른 시각"
-          description="안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다. 안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다. 안녕하십니까, 박세은입니다. 저는 디자인학과 학생이며 디자인을 사랑하는 사람입니다. 안녕하십니까, 박세은입니다."
+          title={TeamFilmData.title}
+          description={TeamFilmData.description}
+        />
+        <Inter
+          title={TeamInterData.title}
+          description={TeamInterData.description}
+          levelDescription={TeamInterData.levelDescription}
         />
       </MainContainer>
-      <ListSelectBox />
+      <ListSelectBox list={ListData2} />
       <Footer />
     </>
   );
