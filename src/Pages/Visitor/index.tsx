@@ -33,5 +33,5 @@ const Tag = styled.div`
   line-height: 140%;
   letter-spacing: 0;
   margin-left: 18.75vw; /* 360px / 1920px * 100 = 18.75% */
-  margin-top: 4px; /* 20px / 1920px * 100 = 1.04% */
+  margin-top: 0.21vw; /* 4px / 1920px * 100 = 0.21% */
 `;

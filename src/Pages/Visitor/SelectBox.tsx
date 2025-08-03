@@ -136,7 +136,7 @@ const SelectSection = styled.div`
   display: flex;
   align-items: center;
   gap: 1.04vw; /* 20px / 1920px * 100 = 1.04% */
-  padding: 16px 0; /* 16px / 1920px * 100 = 0.83% */
+  padding: 0.83vw 0; /* 16px / 1920px * 100 = 0.83% */
   position: relative;
 
   &.to-section::after {
@@ -182,7 +182,7 @@ const SelectValue = styled.div`
   width: 100%;
   padding: 0.42vw 0.83vw; /* 8px 16px / 1920px * 100 = 0.42% 0.83% */
   font-family: Pretendard;
-  font-size: 20px; /* 16px / 1920px * 100 = 0.83% */
+  font-size: 1.04vw; /* 20px / 1920px * 100 = 1.04% */
   font-weight: 400;
   color: #080808;
   cursor: pointer;
@@ -245,7 +245,7 @@ const FromInput = styled.input`
 
 const MessageSection = styled.div`
   position: relative;
-  margin-top: 24px; /* 32px / 1920px * 100 = 1.67% */
+  margin-top: 1.25vw; /* 24px / 1920px * 100 = 1.25% */
 `;
 
 const MessageFrame = styled.img`
@@ -263,7 +263,7 @@ const MessageTextarea = styled.textarea`
   outline: none;
   background: transparent;
   font-family: Pretendard;
-  font-size: 20px; /* 16px / 1920px * 100 = 0.83% */
+  font-size: 1.04vw; /* 20px / 1920px * 100 = 1.04% */
   font-weight: 400;
   line-height: 140%;
   letter-spacing: 0;
@@ -276,8 +276,8 @@ const MessageTextarea = styled.textarea`
 `;
 
 const SendButton = styled.button`
-  width: 154px;
-  height: 54px;
+  width: 8.02vw; /* 154px / 1920px * 100 = 8.02% */
+  height: 2.81vw; /* 54px / 1920px * 100 = 2.81% */
   align-self: flex-end;
   padding: 0.83vw 1.67vw; /* 16px 32px / 1920px * 100 = 0.83% 1.67% */
   margin-top: 1.04vw; /* 20px / 1920px * 100 = 1.04% */

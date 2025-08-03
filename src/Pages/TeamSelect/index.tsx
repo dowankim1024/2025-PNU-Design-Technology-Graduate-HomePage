@@ -4,7 +4,16 @@ import { Title } from "@/components/Title";
 import styled from "styled-components";
 import TeamButton from "@/assets/Icons/TeamButton.png";
 
-export const TeamSelect = () => {
+interface TeamSelectProps {
+  teamName: string;
+  teammates: string[];
+  concept: string;
+}
+export const TeamSelect = ({
+  teamName,
+  teammates,
+  concept,
+}: TeamSelectProps) => {
   return (
     <>
       <Header />
@@ -13,16 +22,15 @@ export const TeamSelect = () => {
         <TeamSelectContainer>
           <TeamImage />
           <TeamInfo>
-            <TeamName>Web Team</TeamName>
+            <TeamName>{teamName}</TeamName>
             <TeammateContainer>
-              <Teammate>박세은</Teammate>
-              <Teammate>정일후</Teammate>
-              <Teammate>김도완</Teammate>
-              <Teammate>김가빈</Teammate>
+              {teammates.map(teammate => (
+                <Teammate key={teammate}>{teammate}</Teammate>
+              ))}
             </TeammateContainer>
           </TeamInfo>
 
-          <TeamConcept>시각, 눈</TeamConcept>
+          <TeamConcept>{concept}</TeamConcept>
           <TeamSelectButtonContainer>
             <TeamSelectButton>
               <ButtonImage src={TeamButton} alt="Button" />
@@ -84,18 +92,18 @@ const TeamName = styled.div`
   color: #080808;
   white-space: nowrap;
   position: absolute;
-  top: 410px;
-  left: 1306px;
+  top: 21.35vw; /* 410px / 1920px * 100 = 21.35% */
+  left: 68.02vw; /* 1306px / 1920px * 100 = 68.02% */
 `;
 const TeammateContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-start;
-  gap: 24px; /* 8px / 1920px * 100 = 0.42% */
+  gap: 1.25vw; /* 24px / 1920px * 100 = 1.25% */
   position: absolute;
-  top: 510px;
-  left: 1342px;
+  top: 26.56vw; /* 510px / 1920px * 100 = 26.56% */
+  left: 69.9vw; /* 1342px / 1920px * 100 = 69.90% */
 `;
 const Teammate = styled.div`
   rotate: 90deg;
@@ -120,13 +128,13 @@ const TeamSelectButtonContainer = styled.div`
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-start;
-  gap: 24px;
+  gap: 1.25vw; /* 24px / 1920px * 100 = 1.25% */
   margin-left: auto;
   margin-bottom: auto; /* 32px / 1920px * 100 = 1.67% */
 `;
 const TeamSelectButton = styled.div`
-  width: 48px; /* 100px / 1920px * 100 = 5.21% */
-  height: 48px; /* 100px / 1920px * 100 = 5.21% */
+  width: 2.5vw; /* 48px / 1920px * 100 = 2.5% */
+  height: 2.5vw; /* 48px / 1920px * 100 = 2.5% */
   position: relative;
   display: flex;
   align-items: center;
@@ -146,7 +154,7 @@ const ButtonText = styled.div`
   position: relative;
   z-index: 2;
   font-family: Pretendard;
-  font-size: 24px; /* 20px / 1920px * 100 = 1.04% */
+  font-size: 1.25vw; /* 24px / 1920px * 100 = 1.25% */
   font-weight: 400;
   line-height: 140%;
   letter-spacing: 0;
