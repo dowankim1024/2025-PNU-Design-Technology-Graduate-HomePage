@@ -6,12 +6,18 @@ interface SelectBoxProps {
   toOptions: string[];
   onToChange?: (value: string) => void;
   onFromChange?: (value: string) => void;
+  onSendMessage?: (
+    toValue: string,
+    fromValue: string,
+    messageValue: string
+  ) => void;
 }
 
 export const SelectBox = ({
   toOptions,
   onToChange,
   onFromChange,
+  onSendMessage,
 }: SelectBoxProps) => {
   const [toValue, setToValue] = useState(toOptions[0] || "");
   const [fromValue, setFromValue] = useState("");
@@ -30,12 +36,13 @@ export const SelectBox = ({
   };
 
   const handleSend = () => {
-    // 보내기 로직 구현
-    console.log("메시지 전송:", {
-      to: toValue,
-      from: fromValue,
-      message: messageValue,
-    });
+    if (toValue && fromValue && messageValue) {
+      onSendMessage?.(toValue, fromValue, messageValue);
+      // 폼 초기화
+      setToValue(toOptions[0] || "");
+      setFromValue("");
+      setMessageValue("");
+    }
   };
 
   return (
@@ -94,7 +101,7 @@ const Container = styled.div`
 `;
 const SelectBoxContainer = styled.div`
   align-self: flex-end;
-  width: 320px;
+  width: 16.67vw; /* 320px / 1920px * 100 = 16.67% */
   display: flex;
   flex-direction: column;
   position: relative;
@@ -105,13 +112,14 @@ const SelectBoxContainer = styled.div`
     top: 0;
     left: 0;
     right: 0;
-    height: 1px;
+    height: 0.052vw; /* 1px / 1920px * 100 = 0.052% */
     background: repeating-linear-gradient(
       to right,
       #080808 0,
-      #080808 8px,
-      transparent 8px,
-      transparent 16px
+      #080808 0.42vw,
+      /* 8px / 1920px * 100 = 0.42% */ transparent 0.42vw,
+      /* 8px / 1920px * 100 = 0.42% */ transparent 0.83vw
+        /* 16px / 1920px * 100 = 0.83% */
     );
   }
 
@@ -121,13 +129,14 @@ const SelectBoxContainer = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
-    height: 1px;
+    height: 0.052vw; /* 1px / 1920px * 100 = 0.052% */
     background: repeating-linear-gradient(
       to right,
       #080808 0,
-      #080808 8px,
-      transparent 8px,
-      transparent 16px
+      #080808 0.42vw,
+      /* 8px / 1920px * 100 = 0.42% */ transparent 0.42vw,
+      /* 8px / 1920px * 100 = 0.42% */ transparent 0.83vw
+        /* 16px / 1920px * 100 = 0.83% */
     );
   }
 `;
@@ -145,13 +154,14 @@ const SelectSection = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
-    height: 1px;
+    height: 0.052vw; /* 1px / 1920px * 100 = 0.052% */
     background: repeating-linear-gradient(
       to right,
       #080808 0,
-      #080808 8px,
-      transparent 8px,
-      transparent 16px
+      #080808 0.42vw,
+      /* 8px / 1920px * 100 = 0.42% */ transparent 0.42vw,
+      /* 8px / 1920px * 100 = 0.42% */ transparent 0.83vw
+        /* 16px / 1920px * 100 = 0.83% */
     );
   }
 `;
@@ -203,7 +213,7 @@ const DropdownList = styled.div`
   top: 100%;
   left: 0;
   right: 0;
-  border: 1px solid #e0e0e0;
+  border: 0.052vw solid #e0e0e0; /* 1px / 1920px * 100 = 0.052% */
   border-radius: 0.21vw; /* 4px / 1920px * 100 = 0.21% */
   box-shadow: 0 0.21vw 0.42vw rgba(0, 0, 0, 0.1); /* 4px 8px / 1920px * 100 */
   z-index: 1000;
@@ -230,7 +240,7 @@ const FromInput = styled.input`
   width: 100%;
   padding: 0.42vw 0.83vw; /* 8px 16px / 1920px * 100 = 0.42% 0.83% */
   font-family: Pretendard;
-  font-size: 20px; /* 16px / 1920px * 100 = 0.83% */
+  font-size: 1.04vw; /* 20px / 1920px * 100 = 1.04% */
   font-weight: 400;
   color: #080808;
   border: none;
