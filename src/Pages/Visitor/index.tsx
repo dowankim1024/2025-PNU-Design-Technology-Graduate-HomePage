@@ -4,28 +4,35 @@ import { MainContainer } from "@/components/MainContainer";
 import styled from "styled-components";
 import { SelectBox } from "./SelectBox";
 import { ResultSection } from "./ResultSection";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  sendGuestbookMessage,
+  subscribeGuestbook,
+  type GuestbookMessage,
+} from "@/services/guestbook";
 
-interface Message {
-  sender: string;
-  message: string;
-  receiver: string;
-}
+type Message = GuestbookMessage;
 
 export const Visitor = () => {
   const [messages, setMessages] = useState<Message[]>([]);
 
-  const handleSendMessage = (
+  useEffect(() => {
+    // 실시간으로 방명록 목록 구독
+    const unsubscribe = subscribeGuestbook(setMessages);
+    return unsubscribe;
+  }, []);
+
+  const handleSendMessage = async (
     toValue: string,
     fromValue: string,
     messageValue: string
   ) => {
-    const newMessage: Message = {
+    await sendGuestbookMessage({
       sender: fromValue,
       message: messageValue,
       receiver: toValue,
-    };
-    setMessages(prev => [...prev, newMessage]);
+    });
+    // 구독 콜백이 목록을 갱신합니다 (낙관적 업데이트 불필요)
   };
 
   return (
