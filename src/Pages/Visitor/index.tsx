@@ -4,30 +4,27 @@ import { MainContainer } from "@/components/MainContainer";
 import styled from "styled-components";
 import { SelectBox } from "./SelectBox";
 import { ResultSection } from "./ResultSection";
-import { useEffect, useState } from "react";
+//
 import {
-  sendGuestbookMessage,
-  subscribeGuestbook,
-  type GuestbookMessage,
-} from "@/services/guestbook";
+  usePostGuestbookMessage,
+  useGuestbookStream,
+} from "@/queries/guestbook";
+import ErrorBoundary from "@/components/common/ErrorBoundary";
+import SuspenseFallback from "@/components/common/SuspenseFallback";
+import { Suspense } from "react";
 
-type Message = GuestbookMessage;
+// type alias removed; use GuestbookMessage directly in props if needed
 
 export const Visitor = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
-
-  useEffect(() => {
-    // 실시간으로 방명록 목록 구독
-    const unsubscribe = subscribeGuestbook(setMessages);
-    return unsubscribe;
-  }, []);
+  const { mutateAsync: postMessage } = usePostGuestbookMessage();
+  const messages = useGuestbookStream();
 
   const handleSendMessage = async (
     toValue: string,
     fromValue: string,
     messageValue: string
   ) => {
-    await sendGuestbookMessage({
+    await postMessage({
       sender: fromValue,
       message: messageValue,
       receiver: toValue,
@@ -48,7 +45,11 @@ export const Visitor = () => {
             onSendMessage={handleSendMessage}
           />
         </VisitorContainer>
-        <ResultSection messages={messages} />
+        <ErrorBoundary>
+          <Suspense fallback={<SuspenseFallback />}>
+            <ResultSection messages={messages} />
+          </Suspense>
+        </ErrorBoundary>
       </MainContainer>
       <Footer />
     </>

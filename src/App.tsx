@@ -1,16 +1,14 @@
-import { DesignerCard } from "./components/DesignerCard";
-import { Header } from "./components/Header";
-import { DesignersPage } from "./Pages/DesignersPage";
-import { DesignerDetailPage } from "./Pages/DesignerDetail";
-import { TeamProject } from "./Pages/TeamProject";
-import { TeamSelect } from "./Pages/TeamSelect";
-import { TeamInfoData } from "./mockData/mock";
-import { Visitor } from "./Pages/Visitor";
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "./routes/AppRoutes";
+import ScrollToTop from "@/components/common/ScrollToTop";
 
 function App() {
   return (
     <>
-      <DesignersPage />
+      <BrowserRouter>
+        <ScrollToTop />
+        <AppRoutes />
+      </BrowserRouter>
     </>
   );
 }

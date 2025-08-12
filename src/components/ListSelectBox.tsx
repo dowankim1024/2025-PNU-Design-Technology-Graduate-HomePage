@@ -1,23 +1,38 @@
 import styled from "styled-components";
-import Left from "@/assets/Icons/left.png";
-import Right from "@/assets/Icons/right.png";
+import Left from "@/assets/Icons/Left.png";
+import Right from "@/assets/Icons/Right.png";
+import { useNavigate } from "react-router-dom";
 
 interface ListSelectBoxProps {
   list: string[];
+  currentName: string;
 }
 
-export const ListSelectBox = ({ list }: ListSelectBoxProps) => {
+export const ListSelectBox = ({ list, currentName }: ListSelectBoxProps) => {
+  const navigate = useNavigate();
+  const total = list?.length ?? 0;
+  const currentIndex = total > 0 ? list.indexOf(currentName) : -1;
+  const prevIndex = currentIndex >= 0 ? (currentIndex - 1 + total) % total : -1;
+  const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % total : -1;
+  const prevName = prevIndex >= 0 ? list[prevIndex] : undefined;
+  const nextName = nextIndex >= 0 ? list[nextIndex] : undefined;
+
+  const goTo = (name?: string) => {
+    if (!name) return;
+    const params = new URLSearchParams({ name });
+    navigate(`/designer?${params.toString()}`);
+  };
   return (
     <ListSelectBoxContainer>
       <ListSelectBoxBorder>
         <ListSelectBoxContent>
-          <Button>
+          <Button onClick={() => goTo(prevName)}>
             <Icon src={Left} />
-            <Name>{list[0]}</Name>
+            <Name>{prevName ?? ""}</Name>
           </Button>
           <ListName>목록</ListName>
-          <Button>
-            <Name>{list[list.length - 1]}</Name>
+          <Button onClick={() => goTo(nextName)}>
+            <Name>{nextName ?? ""}</Name>
             <Icon src={Right} />
           </Button>
         </ListSelectBoxContent>

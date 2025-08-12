@@ -20,7 +20,11 @@ type RawDesignerNode = {
     title?: string;
     description?: string;
   };
-  Inter?: unknown;
+  Inter?: {
+    title?: string;
+    description?: string;
+    levelDescription?: string[];
+  };
 };
 
 export async function fetchDesignerCards(): Promise<DesignerCardData[]> {
@@ -40,3 +44,70 @@ export async function fetchDesignerCards(): Promise<DesignerCardData[]> {
 
   return list;
 }
+
+export interface DesignerDetailData {
+  info: {
+    name: string;
+    nameEnglish: string;
+    email: string;
+    intro: string;
+    conceptTitle: string;
+    conceptDescription: string;
+  };
+  poster: {
+    title: string;
+    description: string;
+  };
+  inter: {
+    title: string;
+    description: string;
+    levelDescription: string[];
+  };
+}
+
+export async function fetchDesignerDetailByName(
+  name: string
+): Promise<DesignerDetailData | null> {
+  const db = getDatabase(app);
+  const nodeRef = ref(db, `designerInfo/${name}`);
+  const snapshot = await get(nodeRef);
+  const node = snapshot.val() as RawDesignerNode | null;
+  if (!node || !node.designerInfo) return null;
+
+  return {
+    info: {
+      name: node.designerInfo.name ?? name,
+      nameEnglish: node.designerInfo.nameEnglish ?? "",
+      email: node.designerInfo.email ?? "",
+      intro: node.designerInfo.intro ?? "",
+      conceptTitle: node.designerInfo.conceptTitle ?? "",
+      conceptDescription: node.designerInfo.conceptDescription ?? "",
+    },
+    poster: {
+      title: node.Poster?.title ?? "",
+      description: node.Poster?.description ?? "",
+    },
+    inter: {
+      title: node.Inter?.title ?? "",
+      description: node.Inter?.description ?? "",
+      levelDescription: Array.isArray(node.Inter?.levelDescription)
+        ? node.Inter!.levelDescription!
+        : [],
+    },
+  };
+}
+
+export async function fetchDesignerNamesSorted(): Promise<string[]> {
+  const db = getDatabase(app);
+  const root = ref(db, "designerInfo");
+  const snapshot = await get(root);
+  const value = snapshot.val() as Record<string, RawDesignerNode> | null;
+  if (!value) return [];
+  const names = Object.values(value)
+    .map(node => node.designerInfo?.name)
+    .filter((n): n is string => !!n)
+    .sort((a, b) => a.localeCompare(b, "ko"));
+  return names;
+}
+
+// React Query 훅은 src/queries/designers.ts로 분리되었습니다.
