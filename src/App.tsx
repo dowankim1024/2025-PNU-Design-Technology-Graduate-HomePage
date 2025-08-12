@@ -10,7 +10,7 @@ import { Visitor } from "./Pages/Visitor";
 function App() {
   return (
     <>
-      <Visitor />
+      <DesignersPage />
     </>
   );
 }

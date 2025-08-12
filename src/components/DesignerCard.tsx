@@ -1,13 +1,16 @@
 import styled from "styled-components";
 import Designer from "@/assets/Designer.jpg";
-
-export const DesignerCard = () => {
+interface DesignerCardProps {
+  name: string;
+  projectName: string;
+}
+export const DesignerCard = ({ name, projectName }: DesignerCardProps) => {
   return (
     <CardContainer>
       <DesignerImg src={Designer} alt="designerImg" />
       <DesignerInfo>
-        <DesignerName>김도완</DesignerName>
-        <ProjectName>우리의 괴물</ProjectName>
+        <DesignerName>{name}</DesignerName>
+        <ProjectName>{projectName}</ProjectName>
       </DesignerInfo>
     </CardContainer>
   );

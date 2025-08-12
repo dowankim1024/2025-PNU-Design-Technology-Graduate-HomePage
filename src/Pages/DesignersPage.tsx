@@ -3,28 +3,31 @@ import { DesignerCard } from "@/components/DesignerCard";
 import styled from "styled-components";
 import { Footer } from "@/components/Footer";
 import { Title } from "@/components/Title";
+import { useEffect, useState } from "react";
+import {
+  fetchDesignerCards,
+  type DesignerCardData,
+} from "@/services/designers";
 
 export const DesignersPage = () => {
+  const [designers, setDesigners] = useState<DesignerCardData[]>([]);
+
+  useEffect(() => {
+    fetchDesignerCards().then(setDesigners).catch(console.error);
+  }, []);
+
   return (
     <>
       <Header />
       <Title>DESIGNERS</Title>
       <DesignerGrid>
-        <DesignerCard />
-        <DesignerCard />
-        <DesignerCard />
-        <DesignerCard />
-        <DesignerCard />
-        <DesignerCard />
-        <DesignerCard />
-        <DesignerCard />
-        <DesignerCard />
-        <DesignerCard />
-        <DesignerCard />
-        <DesignerCard />
-        <DesignerCard />
-        <DesignerCard />
-        <DesignerCard />
+        {designers.map(d => (
+          <DesignerCard
+            key={`${d.name}-${d.projectName}`}
+            name={d.name}
+            projectName={d.projectName}
+          />
+        ))}
       </DesignerGrid>
       <div style={{ height: "8.33vw" }}></div>
       <Footer />
