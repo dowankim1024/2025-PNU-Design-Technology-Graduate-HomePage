@@ -7,41 +7,67 @@ import { TeamInfo } from "./TeamInfo";
 import { Concept } from "@/components/Concept";
 import { Film } from "./Film";
 import { Inter } from "./Inter";
-import {
-  TeamInterData,
-  TeamConceptData,
-  TeamFilmData,
-  TeamInfoData,
-  ListData2,
-} from "@/mockData/mock";
+import { Suspense } from "react";
+import ErrorBoundary from "@/components/common/ErrorBoundary";
+import SuspenseFallback from "@/components/common/SuspenseFallback";
+import { useTeamInfo } from "@/queries/designers";
+import { useSearchParams } from "react-router-dom";
+
+const TeamContent = ({ teamKey }: { teamKey: string }) => {
+  const { data } = useTeamInfo();
+  const team = data?.[teamKey];
+  const list = data ? Object.keys(data) : [];
+  if (!team) return null;
+  return (
+    <>
+      <MainContainer>
+        <TeamInfo
+          teamName={team.TeamName}
+          teammates={team.TeamMates}
+          description={team.Description}
+        />
+        <Concept title={team.Concept} description={team.Description} />
+        <Film
+          title={team.TeamFilm?.Title ?? team.TeamVideo?.Title ?? team.TeamName}
+          description={
+            team.TeamFilm?.Description ??
+            team.TeamVideo?.Description ??
+            team.Description
+          }
+        />
+        <Inter
+          title={team.TeamInter?.Title ?? team.TeamName}
+          description={team.TeamInter?.Description ?? team.Description}
+          levelDescription={(team.TeamInter?.LevelDescription ?? []).filter(
+            (v): v is string => !!v
+          )}
+        />
+      </MainContainer>
+      <ListSelectBox
+        list={list}
+        currentName={teamKey}
+        onNavigate={nextKey => {
+          const qs = new URLSearchParams({ team: nextKey });
+          window.history.pushState(null, "", `/team?${qs.toString()}`);
+          window.dispatchEvent(new PopStateEvent("popstate"));
+        }}
+      />
+    </>
+  );
+};
 
 export const TeamProject = () => {
+  const [params] = useSearchParams();
+  const teamKey = params.get("team") ?? "Web";
   return (
     <>
       <Header />
-
       <Title>TEAM PROJECT</Title>
-      <MainContainer>
-        <TeamInfo
-          teamName={TeamInfoData.teamName}
-          teammates={TeamInfoData.teammates}
-          description={TeamInfoData.description}
-        />
-        <Concept
-          title={TeamConceptData.title}
-          description={TeamConceptData.description}
-        />
-        <Film
-          title={TeamFilmData.title}
-          description={TeamFilmData.description}
-        />
-        <Inter
-          title={TeamInterData.title}
-          description={TeamInterData.description}
-          levelDescription={TeamInterData.levelDescription}
-        />
-      </MainContainer>
-      <ListSelectBox list={ListData2} />
+      <ErrorBoundary>
+        <Suspense fallback={<SuspenseFallback />}>
+          <TeamContent teamKey={teamKey} />
+        </Suspense>
+      </ErrorBoundary>
       <Footer />
     </>
   );

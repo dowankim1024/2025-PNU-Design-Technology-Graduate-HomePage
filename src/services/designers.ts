@@ -97,6 +97,28 @@ export async function fetchDesignerDetailByName(
   };
 }
 
+export interface TeamInfoRecord {
+  TeamName: string;
+  Description: string;
+  Concept: string;
+  TeamMates: Record<string, string>;
+  TeamFilm?: { Title?: string; Description?: string };
+  TeamVideo?: { Title?: string; Description?: string };
+  TeamInter?: {
+    Title?: string;
+    Description?: string;
+    LevelDescription?: Array<string | null | undefined>;
+  };
+}
+
+export async function fetchTeamInfo(): Promise<Record<string, TeamInfoRecord>> {
+  const db = getDatabase(app);
+  const refNode = ref(db, `TeamInfo`);
+  const snapshot = await get(refNode);
+  const value = snapshot.val() as Record<string, TeamInfoRecord> | null;
+  return value ?? {};
+}
+
 export async function fetchDesignerNamesSorted(): Promise<string[]> {
   const db = getDatabase(app);
   const root = ref(db, "designerInfo");

@@ -6,9 +6,14 @@ import { useNavigate } from "react-router-dom";
 interface ListSelectBoxProps {
   list: string[];
   currentName: string;
+  onNavigate?: (name: string) => void;
 }
 
-export const ListSelectBox = ({ list, currentName }: ListSelectBoxProps) => {
+export const ListSelectBox = ({
+  list,
+  currentName,
+  onNavigate,
+}: ListSelectBoxProps) => {
   const navigate = useNavigate();
   const total = list?.length ?? 0;
   const currentIndex = total > 0 ? list.indexOf(currentName) : -1;
@@ -19,6 +24,7 @@ export const ListSelectBox = ({ list, currentName }: ListSelectBoxProps) => {
 
   const goTo = (name?: string) => {
     if (!name) return;
+    if (onNavigate) return onNavigate(name);
     const params = new URLSearchParams({ name });
     navigate(`/designer?${params.toString()}`);
   };

@@ -3,6 +3,7 @@ import {
   fetchDesignerCards,
   fetchDesignerDetailByName,
   fetchDesignerNamesSorted,
+  fetchTeamInfo,
   type DesignerDetailData,
   type DesignerCardData,
 } from "@/services/designers";
@@ -31,6 +32,14 @@ export function useDesignerNames() {
   return useSuspenseQuery<string[], Error, string[]>({
     queryKey: ["designer-names"],
     queryFn: fetchDesignerNamesSorted,
+    staleTime: 5 * 60 * 1000,
+  });
+}
+
+export function useTeamInfo() {
+  return useSuspenseQuery({
+    queryKey: ["team-info"],
+    queryFn: fetchTeamInfo,
     staleTime: 5 * 60 * 1000,
   });
 }
