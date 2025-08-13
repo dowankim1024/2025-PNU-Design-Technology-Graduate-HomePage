@@ -1,5 +1,3 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
 import { ListSelectBox } from "@/components/ListSelectBox";
 import { MainContainer } from "@/components/MainContainer";
 import { Title } from "@/components/Title";
@@ -61,14 +59,12 @@ export const TeamProject = () => {
   const teamKey = params.get("team") ?? "Web";
   return (
     <>
-      <Header />
       <Title>TEAM PROJECT</Title>
       <ErrorBoundary>
         <Suspense fallback={<SuspenseFallback />}>
           <TeamContent teamKey={teamKey} />
         </Suspense>
       </ErrorBoundary>
-      <Footer />
     </>
   );
 };

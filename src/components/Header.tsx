@@ -7,19 +7,32 @@ export const Header: React.FC = () => {
   const { pathname } = useLocation();
   const isDesigners =
     pathname.startsWith("/designers") || pathname.startsWith("/designer");
+  const isTeam = pathname.startsWith("/team");
   const isVisitors = pathname.startsWith("/visitor");
   return (
     <HeaderContainer>
       <Logo src={logo} alt="logo" onClick={() => navigate("/designers")} />
       <ContentWrapper>
-        <Content onClick={() => navigate("/")}>ABOUT</Content>
-        <Content $active={isDesigners} onClick={() => navigate("/designers")}>
-          DESIGNERS
-        </Content>
-        <Content onClick={() => navigate("/team")}>TEAM PROJECT</Content>
-        <Content $active={isVisitors} onClick={() => navigate("/visitor")}>
-          VISITOR'S BOOK
-        </Content>
+        <HeaderItem
+          label="ABOUT"
+          active={false}
+          onClick={() => navigate("/")}
+        />
+        <HeaderItem
+          label="DESIGNERS"
+          active={isDesigners}
+          onClick={() => navigate("/designers")}
+        />
+        <HeaderItem
+          label="TEAM PROJECT"
+          active={isTeam}
+          onClick={() => navigate("/team")}
+        />
+        <HeaderItem
+          label={"VISITOR'S BOOK"}
+          active={isVisitors}
+          onClick={() => navigate("/visitor")}
+        />
       </ContentWrapper>
       <MobileMenu>
         <span></span>
@@ -71,22 +84,66 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const Content = styled.div<{ $active?: boolean }>`
-  color: #080404;
+const NavItem = styled.div<{ $active?: boolean }>`
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
   opacity: ${({ $active }) => ($active ? 1 : 0.5)};
-  font-size: 1.04vw; /* 20px / 1920px * 100 = 1.04% */
+  transition: opacity 200ms ease;
+`;
+
+const WidthGhost = styled.span`
+  visibility: hidden;
   font-family: Pretendard;
-  font-weight: ${({ $active }) => ($active ? 700 : 400)};
+  font-size: 1.04vw;
   line-height: 100%;
   letter-spacing: 0;
   font-style: Regular;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+  font-weight: 700; /* 볼드 폭 기준으로 폭 고정 */
   @media (max-width: 768px) {
     font-size: 14px;
   }
 `;
+
+const Layer = styled.span<{ $bold?: boolean; $active?: boolean }>`
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: Pretendard;
+  font-size: 1.04vw;
+  line-height: 100%;
+  letter-spacing: 0;
+  font-style: Regular;
+  color: #080404;
+  font-weight: ${({ $bold }) => ($bold ? 700 : 400)};
+  opacity: ${({ $bold, $active }) =>
+    $active ? ($bold ? 1 : 0) : $bold ? 0 : 1};
+  transition: opacity 200ms ease;
+  pointer-events: none;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+`;
+
+function HeaderItem({
+  label,
+  active,
+  onClick,
+}: {
+  label: string;
+  active?: boolean;
+  onClick?: () => void;
+}) {
+  return (
+    <NavItem $active={active} onClick={onClick}>
+      <WidthGhost>{label}</WidthGhost>
+      <Layer $active={active}>{label}</Layer>
+      <Layer $bold $active={active}>
+        {label}
+      </Layer>
+    </NavItem>
+  );
+}
 
 const MobileMenu = styled.div`
   display: none;

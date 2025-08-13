@@ -1,7 +1,5 @@
-import { Header } from "@/components/Header";
 import { DesignerCard } from "@/components/DesignerCard";
 import styled from "styled-components";
-import { Footer } from "@/components/Footer";
 import { Title } from "@/components/Title";
 import { Suspense, useMemo } from "react";
 import { useDesignerCards } from "@/queries/designers";
@@ -27,7 +25,6 @@ const DesignersGridContent = () => {
 export const DesignersPage = () => {
   return (
     <>
-      <Header />
       <Title>DESIGNERS</Title>
       <ErrorBoundary>
         <Suspense fallback={<SuspenseFallback />}>
@@ -35,7 +32,6 @@ export const DesignersPage = () => {
         </Suspense>
       </ErrorBoundary>
       <div style={{ height: "8.33vw" }}></div>
-      <Footer />
     </>
   );
 };

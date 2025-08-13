@@ -1,5 +1,3 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
 import { MainContainer } from "@/components/MainContainer";
 import styled from "styled-components";
 import { SelectBox } from "./SelectBox";
@@ -34,7 +32,6 @@ export const Visitor = () => {
 
   return (
     <>
-      <Header />
       <Title>VISITOR'S BOOK</Title>
       <Tag>응원의 한마디를 남겨보세요.</Tag>
       <MainContainer>
@@ -66,7 +63,6 @@ export const Visitor = () => {
           </Suspense>
         </ErrorBoundary>
       </MainContainer>
-      <Footer />
     </>
   );
 };

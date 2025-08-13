@@ -1,5 +1,3 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
 import { DesignerInfo } from "./DesignerInfo";
 import { Poster } from "./Poster";
 import { Inter } from "./Inter";
@@ -46,14 +44,12 @@ export const DesignerDetailPage = () => {
   const { data: names } = useDesignerNames();
   return (
     <>
-      <Header />
       <ErrorBoundary>
         <Suspense fallback={<SuspenseFallback />}>
           <DesignerDetailContent name={targetName} />
           <ListSelectBox list={names ?? []} currentName={targetName} />
         </Suspense>
       </ErrorBoundary>
-      <Footer />
     </>
   );
 };
