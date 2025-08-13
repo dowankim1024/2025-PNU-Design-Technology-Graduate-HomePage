@@ -1,17 +1,25 @@
 import styled from "styled-components";
 import logo from "@/assets/logo.jpg";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const Header: React.FC = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const isDesigners =
+    pathname.startsWith("/designers") || pathname.startsWith("/designer");
+  const isVisitors = pathname.startsWith("/visitor");
   return (
     <HeaderContainer>
       <Logo src={logo} alt="logo" onClick={() => navigate("/designers")} />
       <ContentWrapper>
         <Content onClick={() => navigate("/")}>ABOUT</Content>
-        <Content onClick={() => navigate("/designers")}>DESIGNERS</Content>
+        <Content $active={isDesigners} onClick={() => navigate("/designers")}>
+          DESIGNERS
+        </Content>
         <Content onClick={() => navigate("/team")}>TEAM PROJECT</Content>
-        <Content onClick={() => navigate("/visitor")}>VISITOR'S BOOK</Content>
+        <Content $active={isVisitors} onClick={() => navigate("/visitor")}>
+          VISITOR'S BOOK
+        </Content>
       </ContentWrapper>
       <MobileMenu>
         <span></span>
@@ -63,19 +71,18 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const Content = styled.div`
+const Content = styled.div<{ $active?: boolean }>`
   color: #080404;
-  opacity: 0.5;
+  opacity: ${({ $active }) => ($active ? 1 : 0.5)};
   font-size: 1.04vw; /* 20px / 1920px * 100 = 1.04% */
   font-family: Pretendard;
-  font-weight: 400;
+  font-weight: ${({ $active }) => ($active ? 700 : 400)};
   line-height: 100%;
   letter-spacing: 0;
   font-style: Regular;
   display: flex;
   align-items: center;
   cursor: pointer;
-
   @media (max-width: 768px) {
     font-size: 14px;
   }
