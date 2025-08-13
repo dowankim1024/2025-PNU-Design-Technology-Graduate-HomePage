@@ -22,12 +22,24 @@ export const Footer = () => {
         </FooterExplain>
         <FooterIconsContainer>
           <FooterIcons>
-            <FooterIcon src={Instagram} alt="footerIcon" />
-            <FooterIcon src={Youtube} alt="footerIcon" />
+            <a
+              href="https://www.instagram.com/pnu.dt.15/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <FooterIcon src={Instagram} alt="footerIcon" />
+            </a>
+            <a
+              href="https://www.youtube.com/channel/UCdO-y2s4UzmojPig9CnMbdg"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <FooterIcon src={Youtube} alt="footerIcon" />
+            </a>
           </FooterIcons>
           <FooterLink>
             <FooterIcon src={PNU} alt="footerIcon" />
-            <PNULink href="https://www.pusan.ac.kr" target="_blank">
+            <PNULink href="https://design.pusan.ac.kr/" target="_blank">
               부산대학교 디자인학과 공식 홈페이지
             </PNULink>
           </FooterLink>

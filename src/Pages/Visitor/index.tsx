@@ -41,7 +41,22 @@ export const Visitor = () => {
         <VisitorContainer>
           <VisitorContent></VisitorContent>
           <SelectBox
-            toOptions={["김도완", "박세은", "정일후", "김가빈"]}
+            toOptions={[
+              "고영은",
+              "공태우",
+              "김가빈",
+              "김관욱",
+              "김도완",
+              "김민채",
+              "김예솔",
+              "김진혁",
+              "남현서",
+              "박세은",
+              "박정훈",
+              "정일후",
+              "천후민",
+              "최보윤",
+            ]}
             onSendMessage={handleSendMessage}
           />
         </VisitorContainer>
