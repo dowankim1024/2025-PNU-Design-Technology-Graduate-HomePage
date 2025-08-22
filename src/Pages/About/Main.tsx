@@ -72,13 +72,14 @@ const DPImg = styled.img`
   width: 18.44vw; /* 354px */
   height: 13.85vw; /* 266px */
   margin-left: -2.29vw; /* -44px */
+  margin-top: -0.05vw; /* -26px */
   object-fit: cover;
 `;
 const WebImg = styled.img`
   width: 16.15vw; /* 310px */
   height: 13.85vw; /* 266px */
   margin-top: 24.9vw; /* 478px */
-  margin-left: -2.29vw; /* -44px */
+  margin-left: -2.3vw; /* -44px */
   object-fit: cover;
 `;
 const LogoImg = styled.img`
