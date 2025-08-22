@@ -4,12 +4,14 @@ import { DesignerDetailPage } from "@/Pages/DesignerDetail";
 import { Visitor } from "@/Pages/Visitor";
 import { TeamProject } from "@/Pages/TeamProject";
 import Layout from "@/components/Layout";
+import AboutPage from "@/Pages/About";
 
 export const AppRoutes = () => {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={<Navigate to="/designers" replace />} />
+        <Route path="/" element={<Navigate to="/about" replace />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/designers" element={<DesignersPage />} />
         <Route path="/designer" element={<DesignerDetailPage />} />
         <Route path="/team" element={<TeamProject />} />

@@ -5,18 +5,19 @@ import { useLocation, useNavigate } from "react-router-dom";
 export const Header: React.FC = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const isAbout = pathname === "/about";
   const isDesigners =
     pathname.startsWith("/designers") || pathname.startsWith("/designer");
   const isTeam = pathname.startsWith("/team");
   const isVisitors = pathname.startsWith("/visitor");
   return (
     <HeaderContainer>
-      <Logo src={logo} alt="logo" onClick={() => navigate("/designers")} />
+      <Logo src={logo} alt="logo" onClick={() => navigate("/about")} />
       <ContentWrapper>
         <HeaderItem
           label="ABOUT"
-          active={false}
-          onClick={() => navigate("/")}
+          active={isAbout}
+          onClick={() => navigate("/about")}
         />
         <HeaderItem
           label="DESIGNERS"
