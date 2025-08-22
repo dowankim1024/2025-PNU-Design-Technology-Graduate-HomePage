@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+:html {
+  /* 루트 스크롤 컨테이너의 스크롤바 공간을 항상 예약하여 레이아웃 흔들림 방지 */
+  scrollbar-gutter: stable both-edges;
+}
+
 :root {
   /* 기본 폰트 크기 설정 */
   font-size: 16px;
@@ -12,6 +17,13 @@ body {
   padding: 0;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+/* 구형 브라우저용 폴백: 스크롤바 항상 표시해 공간 예약 */
+@supports not (scrollbar-gutter: stable) {
+  body {
+    overflow-y: scroll;
+  }
 }
 
 #root {
