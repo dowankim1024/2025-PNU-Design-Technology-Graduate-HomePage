@@ -2,18 +2,17 @@ import { initializeApp, getApp, getApps, type FirebaseApp } from "firebase/app";
 import { getAnalytics, isSupported, type Analytics } from "firebase/analytics";
 
 // Firebase configuration
-// Note: In client-side apps, this configuration is not a secret. For cleaner setup,
-// you can move these values to Vite env vars (VITE_*) later.
+// Note: In client-side apps, this configuration is not a secret.
+// Prefer configuring via Vite env vars (VITE_*) with fallbacks for local dev.
 const firebaseConfig = {
-  apiKey: "AIzaSyBulslAgkya5SJBxFrJbv383AWXfCy-M8U",
-  authDomain: "graduate-3088f.firebaseapp.com",
-  projectId: "graduate-3088f",
-  storageBucket: "graduate-3088f.firebasestorage.app",
-  messagingSenderId: "801256212101",
-  appId: "1:801256212101:web:59f8b82582d2bba4ab4bec",
-  measurementId: "G-J06KCBC5CM",
-  databaseURL:
-    "https://graduate-3088f-default-rtdb.asia-southeast1.firebasedatabase.app",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
 };
 
 // Initialize (and reuse on HMR) the Firebase app
