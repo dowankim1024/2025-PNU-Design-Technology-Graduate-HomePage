@@ -1,11 +1,16 @@
 import styled, { keyframes } from "styled-components";
 
 interface SpinnerProps {
-  size?: number; // px
-  thickness?: number; // px
+  // number는 px로 처리, string은 CSS 길이 단위(vw 등) 그대로 사용
+  size?: number | string;
+  thickness?: number | string;
 }
 
-export const Spinner = ({ size = 40, thickness = 4 }: SpinnerProps) => {
+// 1920 기준: 40px -> 2.08vw, 4px -> 0.21vw
+export const Spinner = ({
+  size = "2.08vw",
+  thickness = "0.21vw",
+}: SpinnerProps) => {
   return (
     <Wrapper>
       <Loader $size={size} $thickness={thickness} />
@@ -26,10 +31,15 @@ const Wrapper = styled.div`
   padding: 2rem 0;
 `;
 
-const Loader = styled.div<{ $size: number; $thickness: number }>`
-  width: ${({ $size }) => $size}px;
-  height: ${({ $size }) => $size}px;
-  border: ${({ $thickness }) => $thickness}px solid #e5e7eb;
+const Loader = styled.div<{
+  $size: number | string;
+  $thickness: number | string;
+}>`
+  width: ${({ $size }) => (typeof $size === "number" ? `${$size}px` : $size)};
+  height: ${({ $size }) => (typeof $size === "number" ? `${$size}px` : $size)};
+  border: ${({ $thickness }) =>
+      typeof $thickness === "number" ? `${$thickness}px` : $thickness}
+    solid #e5e7eb;
   border-top-color: #111827;
   border-radius: 50%;
   animation: ${spin} 0.9s linear infinite;
