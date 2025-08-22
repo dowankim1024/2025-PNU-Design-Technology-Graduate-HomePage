@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Brand from "@/assets/Home/brand.png";
+import Brand from "@/assets/Home/Brand.png";
 import All from "@/assets/Home/All.png";
 import Video from "@/assets/Home/Video.png";
 import DP from "@/assets/Home/DP.png";
