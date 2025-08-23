@@ -46,7 +46,7 @@ const TeamContent = ({ teamKey }: { teamKey: string }) => {
         currentName={teamKey}
         onNavigate={nextKey => {
           const qs = new URLSearchParams({ team: nextKey });
-          window.history.pushState(null, "", `/team?${qs.toString()}`);
+          window.history.pushState(null, "", `/team-detail?${qs.toString()}`);
           window.dispatchEvent(new PopStateEvent("popstate"));
         }}
       />
