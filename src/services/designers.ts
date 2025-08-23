@@ -102,6 +102,7 @@ export interface TeamInfoRecord {
   Description: string;
   Concept: string;
   TeamMates: Record<string, string>;
+  Initial?: string;
   TeamFilm?: { Title?: string; Description?: string };
   TeamVideo?: { Title?: string; Description?: string };
   TeamInter?: {

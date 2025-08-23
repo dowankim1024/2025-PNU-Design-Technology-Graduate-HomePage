@@ -3,6 +3,7 @@ import { DesignersPage } from "@/Pages/DesignersPage";
 import { DesignerDetailPage } from "@/Pages/DesignerDetail";
 import { Visitor } from "@/Pages/Visitor";
 import { TeamProject } from "@/Pages/TeamProject";
+import { TeamSelect } from "@/Pages/TeamSelect";
 import Layout from "@/components/Layout";
 import AboutPage from "@/Pages/About";
 
@@ -14,7 +15,8 @@ export const AppRoutes = () => {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/designers" element={<DesignersPage />} />
         <Route path="/designer" element={<DesignerDetailPage />} />
-        <Route path="/team" element={<TeamProject />} />
+        <Route path="/team" element={<TeamSelect />} />
+        <Route path="/team-detail" element={<TeamProject />} />
         <Route path="/visitor" element={<Visitor />} />
       </Route>
     </Routes>
