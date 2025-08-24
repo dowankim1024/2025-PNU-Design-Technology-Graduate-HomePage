@@ -39,6 +39,7 @@ export const Visitor = () => {
           <VisitorContent></VisitorContent>
           <SelectBox
             toOptions={[
+              "ALL",
               "고영은",
               "공태우",
               "김가빈",
