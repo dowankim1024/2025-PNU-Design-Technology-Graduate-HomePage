@@ -19,6 +19,17 @@ body {
   overflow-x: hidden;
 }
 
+/* 이미지 드래그/텍스트 선택 비활성화로 드래그 고스트 방지 */
+img,
+a img,
+svg {
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
 /* 구형 브라우저용 폴백: 스크롤바 항상 표시해 공간 예약 */
 @supports not (scrollbar-gutter: stable) {
   body {

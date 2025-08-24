@@ -68,6 +68,7 @@ const TeamSelectContent = () => {
                 $active={key === selectedKey}
                 src={TeamButton}
                 alt="Button"
+                draggable={false}
               />
               <ButtonText $active={key === selectedKey}>
                 {data?.[key]?.Initial ?? key.charAt(0)}
