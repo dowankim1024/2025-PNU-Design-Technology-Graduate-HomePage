@@ -127,7 +127,7 @@ const OpeningText2 = styled.div`
 `;
 const Place = styled.div`
   position: absolute;
-  margin-top: 50.5vmin; /* 870px */
+  margin-top: 50.56vmin; /* 870px */
   margin-left: 79.79vmin; /* 1311px */
   font-family: "Pretendard";
   font-size: 1.48vmin; /* 16px */
