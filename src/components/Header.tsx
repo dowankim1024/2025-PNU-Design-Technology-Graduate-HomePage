@@ -45,7 +45,7 @@ export const Header: React.FC = () => {
 };
 
 const HeaderContainer = styled.header`
-  width: 100%;
+  width: 100vw;
   height: 6.25vw; /* 120px / 1920px * 100 = 6.25% */
   display: flex;
   justify-content: space-between;
