@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import logo from "@/assets/Logo.jpg";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useRef } from "react";
 
 export const Header: React.FC = () => {
   const navigate = useNavigate();
@@ -10,8 +11,29 @@ export const Header: React.FC = () => {
     pathname.startsWith("/designers") || pathname.startsWith("/designer");
   const isTeam = pathname.startsWith("/team");
   const isVisitors = pathname.startsWith("/visitor");
+  const headerRef = useRef<HTMLDivElement | null>(null);
+
+  // 헤더 영역 위에서의 스크롤(휠/터치)을 차단하여 페이지 스크롤이 움직이지 않도록 처리
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    el.addEventListener("touchmove", onTouchMove, { passive: false });
+    return () => {
+      el.removeEventListener("wheel", onWheel as EventListener);
+      el.removeEventListener("touchmove", onTouchMove as EventListener);
+    };
+  }, []);
   return (
-    <HeaderContainer>
+    <HeaderContainer ref={headerRef}>
       <Logo src={logo} alt="logo" onClick={() => navigate("/about")} />
       <ContentWrapper>
         <HeaderItem
@@ -45,7 +67,7 @@ export const Header: React.FC = () => {
 };
 
 const HeaderContainer = styled.header`
-  width: 100vw;
+  width: 100%;
   height: 6.25vw; /* 120px / 1920px * 100 = 6.25% */
   display: flex;
   justify-content: space-between;
@@ -54,6 +76,8 @@ const HeaderContainer = styled.header`
   z-index: 1000;
   border-bottom: 1px solid #c5c5c5;
   box-sizing: border-box;
+  overscroll-behavior: contain; /* 헤더 위에서의 스크롤 체인 방지 */
+  touch-action: none; /* 모바일에서 기본 스크롤 제스처 비활성화 */
 
   @media (max-width: 768px) {
     height: 60px;

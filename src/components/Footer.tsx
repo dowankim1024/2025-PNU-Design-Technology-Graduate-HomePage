@@ -50,7 +50,7 @@ export const Footer = () => {
 };
 
 const FooterContainer = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 20.83vw; /* 400px / 1920px * 100 = 20.83% */
   background-color: #080404;
   display: flex;

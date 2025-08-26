@@ -15,22 +15,22 @@ export const OpeningFilm = () => {
   );
 };
 const Container = styled.div`
-  /* 16:9 기준 100vh ≒ 56.25vw → 콘텐츠는 헤더(6.25vw) 제외로 50vw */
-  height: calc(100vh - 6.25vw);
+  /* 헤더(120px ≒ 11.11vmin) 제외한 영역 높이 */
+  height: calc(100vmin - 11.11vmin);
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 const Title = styled.div`
   font-family: "Pretendard";
-  font-size: 2.5vw; /* 48px @1920 */
+  font-size: 4.44vmin; /* 48px */
   font-weight: 700;
   line-height: 1.4;
   letter-spacing: 0;
-  margin-top: 8.06vh; /* 87px @1080 */
+  margin-top: 8.06vmin; /* 87px */
 `;
 const VideoContainer = styled.div`
-  width: 58.05vw; /* 1114.55px @1920 */
+  width: 103.19vmin; /* 1114.55px */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -38,15 +38,15 @@ const VideoContainer = styled.div`
 `;
 const Video = styled.div`
   background-color: #dcdcdc;
-  width: 58.05vw; /* 1114.55px @1920 */
-  height: 54.44vh; /* 588px @1080 */
-  margin-top: 3.13vw; /* 60px @1920 */
+  width: 103.19vmin; /* 1114.55px */
+  height: 54.44vmin; /* 588px */
+  margin-top: 5.56vmin; /* 60px */
 `;
 const VideoInfo = styled.div`
   font-family: "Pretendard";
-  font-size: 1.04vw; /* 20px @1920 */
+  font-size: 1.85vmin; /* 20px */
   font-weight: 700;
   line-height: 1.4;
   letter-spacing: 0;
-  margin-top: 1.48vh; /* 16px @1080 */
+  margin-top: 1.48vmin; /* 16px */
 `;

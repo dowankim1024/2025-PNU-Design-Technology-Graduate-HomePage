@@ -1,9 +1,11 @@
 import { OpeningFilm } from "./OpeningFilm"; // OpeningFilm 섹션 컴포넌트 임포트
 import { Main } from "./Main"; // 메인 섹션 컴포넌트 임포트
+import { Intro } from "./Intro"; // 인트로 섹션 컴포넌트 임포트
 import styled from "styled-components"; // styled-components 사용을 위한 임포트
 import { Footer } from "@/components/Footer"; // 푸터 컴포넌트 임포트
 import { useEffect, useRef, useState } from "react"; // React 훅들 임포트
-
+import { MadeBy } from "./MadeBy"; // MadeBy 섹션 컴포넌트 임포트
+import Location from "./Location"; // Location 섹션 컴포넌트 임포트
 const AboutPage = () => {
   // About 페이지 최상위 컴포넌트 정의
   const containerRef = useRef<HTMLDivElement | null>(null); // 스크롤 컨테이너 DOM 참조
@@ -15,7 +17,9 @@ const AboutPage = () => {
   }, [animating]);
   const lastScrollAtRef = useRef(0); // 마지막 스크롤 처리 시각 저장
   const COOLDOWN_MS = 1000; // 스크롤 입력 쿨다운 시간(ms)
-  useEffect(() => {
+
+  /*
+    useEffect(() => {
     // About에 진입 시 바디 스크롤 잠시 비활성화
     const prevBody = document.body.style.overflow; // 복구를 위한 기존 값 보관
     const prevHtml = document.documentElement.style.overflow; // 루트 엘리먼트 기존 값 보관
@@ -27,6 +31,7 @@ const AboutPage = () => {
       document.documentElement.style.overflow = prevHtml; // 루트 overflow 복구
     };
   }, []); // 마운트/언마운트 시 한 번만 실행
+  */
 
   useEffect(() => {
     // 커스텀 휠 스냅 스크롤 로직
@@ -81,12 +86,17 @@ const AboutPage = () => {
       <Section>
         {" "}
         {/* 섹션 3: 오프닝 필름(샘플) */}
-        <OpeningFilm /> {/* 동일 섹션 반복 배치 */}
+        <Intro /> {/* 동일 섹션 반복 배치 */}
       </Section>
       <Section>
         {" "}
         {/* 섹션 4: 오프닝 필름(샘플) */}
-        <OpeningFilm /> {/* 동일 섹션 반복 배치 */}
+        <MadeBy /> {/* 동일 섹션 반복 배치 */}
+      </Section>
+      <Section>
+        {" "}
+        {/* 섹션 5: 오프닝 필름(샘플) */}
+        <Location /> {/* 동일 섹션 반복 배치 */}
       </Section>
       <FooterSection>
         {" "}
@@ -116,6 +126,10 @@ const Section = styled.div`
   position: relative; /* 절대배치 자식의 기준 박스 */
   overflow: hidden; /* 섹션 밖으로 넘치는 요소 클리핑 */
   isolation: isolate; /* 레이어 격리로 z-index 간섭 최소화 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 /* 마지막 푸터 구간은 전 화면을 차지하지 않고 끝선에 붙도록 처리 */
