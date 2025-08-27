@@ -4,8 +4,10 @@ import TeamProjectWatch from "@/assets/TeamProjectWatch.png";
 import Plus from "@/assets/Icons/Plus.png";
 import { MainContainer } from "@/components/MainContainer";
 import { Concept } from "@/components/Concept";
+import { useNavigate } from "react-router-dom";
 
 interface DesignerInfoProps {
+  team: string;
   name: string;
   nameEnglish: string;
   email: string;
@@ -15,6 +17,7 @@ interface DesignerInfoProps {
 }
 
 export const DesignerInfo = ({
+  team,
   name,
   nameEnglish,
   email,
@@ -22,6 +25,10 @@ export const DesignerInfo = ({
   conceptTitle,
   conceptDescription,
 }: DesignerInfoProps) => {
+  const navigate = useNavigate();
+  const goTo = (team: string) => {
+    navigate(`/team-detail?team=${team}`);
+  };
   return (
     <DesignerInfoContainer>
       <Title>DESIGNER</Title>
@@ -32,6 +39,9 @@ export const DesignerInfo = ({
             <TeamProjectButton
               src={TeamProjectWatch}
               alt="Team Project Watch"
+              onClick={() => {
+                goTo(team);
+              }}
             />
           </LeftSection>
           <RightBlock>
@@ -74,6 +84,7 @@ const ImagePlaceholder = styled.div`
   width: 18.75vw; /* 360px / 1920px * 100 = 18.75% */
   height: 23.44vw; /* 450px / 1920px * 100 = 23.44% */
   background-color: #f5f5f5;
+  z-index: 2;
   @media (max-width: 768px) {
     width: 180px;
     height: 225px;
@@ -151,7 +162,8 @@ const TeamProjectButton = styled.img`
   position: absolute;
   bottom: -2.92vw; /* -56px / 1920px * 100 = -2.92% */
   left: -6.25vw; /* -120px / 1920px * 100 = -6.25% */
-  z-index: -1;
+  z-index: 1;
+  cursor: pointer;
   @media (max-width: 768px) {
     width: 180px;
     height: auto;

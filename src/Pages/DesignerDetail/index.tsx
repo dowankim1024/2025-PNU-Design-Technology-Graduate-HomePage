@@ -11,11 +11,13 @@ import { useSearchParams } from "react-router-dom";
 
 const DesignerDetailContent = ({ name }: { name: string }) => {
   const { data } = useDesignerDetail(name);
+  console.log(data);
   return (
     <>
       {!data ? null : (
         <>
           <DesignerInfo
+            team={data.info.team}
             name={data.info.name}
             nameEnglish={data.info.nameEnglish}
             email={data.info.email}
