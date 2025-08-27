@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer"; // 푸터 컴포넌트 임포트
 import { useEffect, useRef, useState } from "react"; // React 훅들 임포트
 import { MadeBy } from "./MadeBy"; // MadeBy 섹션 컴포넌트 임포트
 import Location from "./Location"; // Location 섹션 컴포넌트 임포트
+import Professor from "./Professor";
 const AboutPage = () => {
   // About 페이지 최상위 컴포넌트 정의
   const containerRef = useRef<HTMLDivElement | null>(null); // 스크롤 컨테이너 DOM 참조
@@ -97,6 +98,11 @@ const AboutPage = () => {
         {" "}
         {/* 섹션 5: 오프닝 필름(샘플) */}
         <Location /> {/* 동일 섹션 반복 배치 */}
+      </Section>
+      <Section>
+        {" "}
+        {/* 섹션 6: 교수님 */}
+        <Professor /> {/* 동일 섹션 반복 배치 */}
       </Section>
       <FooterSection>
         {" "}

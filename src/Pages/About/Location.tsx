@@ -97,16 +97,16 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 1114px;
+  width: 103.19vmin; /* 1114px */
 `;
 const Title = styled.div`
   font-family: "Pretendard";
   font-style: normal;
-  font-size: 48px;
+  font-size: 4.44vmin; /* 48px */
   font-weight: 700;
   line-height: 1.4;
   letter-spacing: 0;
-  margin-bottom: 60px;
+  margin-bottom: 5.56vmin; /* 60px */
 `;
 const ContentsContainer = styled.div`
   display: flex;
@@ -123,7 +123,7 @@ const DescriptionContainer = styled.div`
 const MainLocation = styled.div`
   font-family: "Pretendard";
   font-style: normal;
-  font-size: 20px;
+  font-size: 1.85vmin; /* 20px */
   font-weight: 700;
   line-height: 1.4;
   letter-spacing: 0;
@@ -131,14 +131,14 @@ const MainLocation = styled.div`
 const SubLocation = styled.div`
   font-family: "Pretendard";
   font-style: normal;
-  font-size: 20px;
+  font-size: 1.85vmin; /* 20px */
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: 0;
 `;
 const Map = styled.div`
-  width: 640px;
-  height: 400px;
+  width: 59.26vmin; /* 640px */
+  height: 37.04vmin; /* 400px */
   background-color: #080404;
   overscroll-behavior: contain; /* 스크롤 체인 방지 */
   touch-action: none; /* 터치 스크롤 제스처 비활성화(지도 제스처 우선) */
@@ -147,11 +147,11 @@ const Line = styled.div`
   width: 100%;
   height: 1px;
   background-color: #080404;
-  margin: 12px 0;
+  margin: 1.11vmin 0; /* 12px */
 `;
 const FinalLine = styled.div`
   width: 100%;
   height: 1px;
   background-color: #080404;
-  margin-top: 12px;
+  margin-top: 1.11vmin; /* 12px */
 `;
