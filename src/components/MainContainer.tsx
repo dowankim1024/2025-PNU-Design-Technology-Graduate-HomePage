@@ -5,4 +5,10 @@ export const MainContainer = styled.div`
   margin-top: 4.17vw; /* 80px / 1920px * 100 = 4.17% */
   padding: 0 18.75vw; /* 360px / 1920px * 100 = 18.75% */
   box-sizing: border-box;
+  @media (max-width: 768px) {
+    padding: 0 12px;
+    margin-top: 40px;
+    flex-direction: column;
+    align-items: center;
+  }
 `;

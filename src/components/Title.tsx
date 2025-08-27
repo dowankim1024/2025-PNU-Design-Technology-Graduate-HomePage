@@ -8,4 +8,10 @@ export const Title = styled.div`
   letter-spacing: 0;
   margin-top: 5.21vw; /* 100px / 1920px * 100 = 5.21% */
   margin-left: 18.75vw; /* 360px / 1920px * 100 = 18.75% */
+  @media (max-width: 768px) {
+    font-size: 20px;
+    align-self: center;
+    margin-top: 40px;
+    margin-left: 0;
+  }
 `;

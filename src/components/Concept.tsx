@@ -20,6 +20,9 @@ const ConceptSection = styled.div`
   margin-top: 7.08vw; /* 136px / 1920px * 100 = 7.08% */
   display: flex;
   flex-direction: column;
+  @media (max-width: 768px) {
+    margin-top: 60px;
+  }
 `;
 
 const ConceptTag = styled.div`
@@ -29,6 +32,9 @@ const ConceptTag = styled.div`
   line-height: 140%;
   letter-spacing: 0;
   color: #080404;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 const ConceptTitle = styled.div`
   font-family: Pretendard;
@@ -38,6 +44,9 @@ const ConceptTitle = styled.div`
   letter-spacing: 0;
   color: #080404;
   margin-top: 0.21vw; /* 4px / 1920px * 100 = 0.21% */
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 const ConceptDescription = styled.div`
   font-family: Pretendard;
@@ -48,4 +57,8 @@ const ConceptDescription = styled.div`
   color: #080404;
   margin-top: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
   margin-bottom: 4.17vw; /* 80px / 1920px * 100 = 4.17% */
+  @media (max-width: 768px) {
+    font-size: 8px;
+    margin-bottom: 60px;
+  }
 `;

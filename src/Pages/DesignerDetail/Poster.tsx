@@ -27,16 +27,30 @@ const PostContainer = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 4.17vw; /* 80px / 1920px * 100 = 4.17% */
+  @media (max-width: 768px) {
+    padding: 0 24px;
+    gap: 12px;
+    margin-bottom: 60px;
+  }
 `;
 
 const PosterImage = styled.div`
   width: 18.75vw; /* 360px / 1920px * 100 = 18.75% */
   height: 33.33vw; /* 640px / 1920px * 100 = 33.33% */
   background-color: #f0f0f0;
+  @media (max-width: 768px) {
+    flex-shrink: 0;
+    width: 180px;
+    height: 320px;
+  }
 `;
 const PosterDescription = styled.div`
   width: 42.08vw; /* 808px / 1920px * 100 = 42.08% */
   height: 8.02vw; /* 154px / 1920px * 100 = 8.02% */
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 const Title = styled.div`
   font-family: Pretendard;
@@ -46,6 +60,9 @@ const Title = styled.div`
   letter-spacing: 0;
   color: #080404;
   margin-bottom: 0.21vw; /* 4px / 1920px * 100 = 0.21% */
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 const PosterDescriptionTitle = styled.div`
   font-family: Pretendard;
@@ -55,6 +72,9 @@ const PosterDescriptionTitle = styled.div`
   letter-spacing: 0;
   color: #080404;
   margin-bottom: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 const Description = styled.div`
   font-family: Pretendard;
@@ -63,4 +83,7 @@ const Description = styled.div`
   line-height: 145%;
   letter-spacing: 0;
   color: #080404;
+  @media (max-width: 768px) {
+    font-size: 8px;
+  }
 `;

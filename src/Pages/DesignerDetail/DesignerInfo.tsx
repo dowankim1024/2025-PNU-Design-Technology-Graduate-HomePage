@@ -23,7 +23,7 @@ export const DesignerInfo = ({
   conceptDescription,
 }: DesignerInfoProps) => {
   return (
-    <>
+    <DesignerInfoContainer>
       <Title>DESIGNER</Title>
       <MainContainer>
         <ContentSection>
@@ -45,13 +45,23 @@ export const DesignerInfo = ({
         </ContentSection>
         <Concept title={conceptTitle} description={conceptDescription} />
       </MainContainer>
-    </>
+    </DesignerInfoContainer>
   );
 };
-
+const DesignerInfoContainer = styled.div`
+  @media (max-width: 768px) {
+    padding: 0 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
 const ContentSection = styled.div`
   position: relative;
   display: flex;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const LeftSection = styled.div`
@@ -64,6 +74,10 @@ const ImagePlaceholder = styled.div`
   width: 18.75vw; /* 360px / 1920px * 100 = 18.75% */
   height: 23.44vw; /* 450px / 1920px * 100 = 23.44% */
   background-color: #f5f5f5;
+  @media (max-width: 768px) {
+    width: 180px;
+    height: 225px;
+  }
 `;
 
 const RightBlock = styled.div`
@@ -72,6 +86,10 @@ const RightBlock = styled.div`
   flex-direction: column;
   margin-left: 1.67vw; /* 32px / 1920px * 100 = 1.67% */
   align-self: flex-end;
+  @media (max-width: 768px) {
+    margin-left: 12px;
+    height: 100%;
+  }
 `;
 
 const DesignerName = styled.div`
@@ -81,6 +99,9 @@ const DesignerName = styled.div`
   color: #080404;
   line-height: 140%;
   letter-spacing: 0;
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const DesignerNameEnglish = styled.div`
@@ -90,6 +111,9 @@ const DesignerNameEnglish = styled.div`
   color: #080404;
   letter-spacing: 0;
   line-height: 140%;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 const DesignerEmail = styled.div`
@@ -101,6 +125,9 @@ const DesignerEmail = styled.div`
   color: #080404;
   opacity: 40%;
   margin: 0;
+  @media (max-width: 768px) {
+    font-size: 8px;
+  }
 `;
 
 const DesignerIntro = styled.div`
@@ -112,6 +139,10 @@ const DesignerIntro = styled.div`
   line-height: 145%;
   margin-top: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
   letter-spacing: 0;
+  @media (max-width: 768px) {
+    font-size: 8px;
+    max-width: 100%;
+  }
 `;
 
 const TeamProjectButton = styled.img`
@@ -121,6 +152,12 @@ const TeamProjectButton = styled.img`
   bottom: -2.92vw; /* -56px / 1920px * 100 = -2.92% */
   left: -6.25vw; /* -120px / 1920px * 100 = -6.25% */
   z-index: -1;
+  @media (max-width: 768px) {
+    width: 180px;
+    height: auto;
+    bottom: 1px;
+    left: -27.5px;
+  }
 `;
 
 const PlusButton = styled.img`
@@ -129,4 +166,9 @@ const PlusButton = styled.img`
   position: absolute;
   top: 0;
   right: 0;
+  @media (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+    right: 0px;
+  }
 `;

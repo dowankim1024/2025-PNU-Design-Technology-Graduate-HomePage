@@ -54,6 +54,10 @@ const ListSelectBoxContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8.33vw; /* 160px / 1920px * 100 = 8.33% */
+  @media (max-width: 768px) {
+    padding: 0 24px;
+    margin-bottom: 30px;
+  }
 `;
 const ListSelectBoxBorder = styled.div`
   width: 100%;
@@ -97,6 +101,9 @@ const ListSelectBoxBorder = styled.div`
       transparent 16px
     );
   }
+  @media (max-width: 768px) {
+    height: 24px;
+  }
 `;
 const ListSelectBoxContent = styled.div`
   display: flex;
@@ -106,6 +113,9 @@ const ListSelectBoxContent = styled.div`
   width: 100%;
   height: 100%;
   padding: 0 1.67vw; /* 32px / 1920px * 100 = 1.67% */
+  @media (max-width: 768px) {
+    padding: 0 12px;
+  }
 `;
 const ListName = styled.div`
   font-family: Pretendard;
@@ -114,6 +124,9 @@ const ListName = styled.div`
   line-height: 140%;
   letter-spacing: 0;
   color: #080404;
+  @media (max-width: 768px) {
+    font-size: 8px;
+  }
 `;
 const Button = styled.div`
   cursor: pointer;
@@ -121,6 +134,9 @@ const Button = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  @media (max-width: 768px) {
+    gap: 6px;
+  }
 `;
 const Name = styled.div`
   font-family: Pretendard;
@@ -129,8 +145,15 @@ const Name = styled.div`
   line-height: 140%;
   letter-spacing: 0;
   color: #080404;
+  @media (max-width: 768px) {
+    font-size: 8px;
+  }
 `;
 const Icon = styled.img`
   width: 0.47vw; /* 9px / 1920px * 100 = 0.47% */
   height: 0.94vw; /* 18px / 1920px * 100 = 0.94% */
+  @media (max-width: 768px) {
+    width: 4.5px;
+    height: 9px;
+  }
 `;

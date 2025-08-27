@@ -56,6 +56,9 @@ const FooterContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 768px) {
+    height: 150px;
+  }
 `;
 
 const FooterContent = styled.div`
@@ -67,6 +70,9 @@ const FooterContent = styled.div`
   justify-content: space-between;
   padding: 0 5.21vw; /* 100px / 1920px * 100 = 5.21% */
   box-sizing: border-box;
+  @media (max-width: 768px) {
+    padding: 0 12px;
+  }
 `;
 
 const FooterExplain = styled.div`
@@ -80,6 +86,9 @@ const FooterExplain = styled.div`
 const FooterLogo = styled.img`
   width: 7.29vw; /* 140px / 1920px * 100 = 7.29% */
   height: auto;
+  @media (max-width: 768px) {
+    width: 100px;
+  }
 `;
 
 const FooterText = styled.div`
@@ -92,6 +101,10 @@ const FooterText = styled.div`
   color: #fff;
   margin-top: 2.11vw; /* 40.5px / 1920px * 100 = 2.11% */
   opacity: 0.5;
+  @media (max-width: 768px) {
+    font-size: 6px;
+    margin-top: 10px;
+  }
 `;
 
 const FooterTextBold = styled.div`
@@ -104,6 +117,10 @@ const FooterTextBold = styled.div`
   color: #fff;
   margin-top: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
   opacity: 0.5;
+  @media (max-width: 768px) {
+    font-size: 6px;
+    margin-top: 5px;
+  }
 `;
 const FooterIconsContainer = styled.div`
   height: 100%;
@@ -117,10 +134,17 @@ const FooterIcons = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 1.25vw; /* 24px / 1920px * 100 = 1.25% */
+  @media (max-width: 768px) {
+    gap: 10px;
+  }
 `;
 const FooterIcon = styled.img`
   width: 1.25vw; /* 24px / 1920px * 100 = 1.25% */
   height: 1.25vw; /* 24px / 1920px * 100 = 1.25% */
+  @media (max-width: 768px) {
+    width: 20px;
+    height: 20px;
+  }
 `;
 const FooterLink = styled.div`
   display: flex;
@@ -128,6 +152,9 @@ const FooterLink = styled.div`
   align-items: center;
   gap: 0.42vw; /* 8px / 1920px * 100 = 0.42% */
   margin-top: 6.46vw; /* 124px / 1920px * 100 = 6.46% */
+  @media (max-width: 768px) {
+    margin-top: 24px;
+  }
 `;
 const PNULink = styled.a`
   font-family: Pretendard;
@@ -137,4 +164,7 @@ const PNULink = styled.a`
   letter-spacing: 0;
   font-style: Regular;
   color: #fff;
+  @media (max-width: 768px) {
+    font-size: 6px;
+  }
 `;
