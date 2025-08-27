@@ -121,6 +121,9 @@ const SelectBoxContainer = styled.div`
       /* 8px / 1920px * 100 = 0.42% */ transparent 0.83vw
         /* 16px / 1920px * 100 = 0.83% */
     );
+    @media (max-width: 768px) {
+      height: 1px;
+    }
   }
 
   &::after {
@@ -138,6 +141,12 @@ const SelectBoxContainer = styled.div`
       /* 8px / 1920px * 100 = 0.42% */ transparent 0.83vw
         /* 16px / 1920px * 100 = 0.83% */
     );
+    @media (max-width: 768px) {
+      height: 1px;
+    }
+  }
+  @media (max-width: 768px) {
+    width: 140px;
   }
 `;
 
@@ -163,6 +172,13 @@ const SelectSection = styled.div`
       /* 8px / 1920px * 100 = 0.42% */ transparent 0.83vw
         /* 16px / 1920px * 100 = 0.83% */
     );
+    @media (max-width: 768px) {
+      height: 1px;
+    }
+  }
+  @media (max-width: 768px) {
+    width: 140px;
+    justify-content: space-between;
   }
 `;
 
@@ -172,6 +188,9 @@ const SelectLabel = styled.div`
   font-weight: 700;
   color: #080808;
   white-space: nowrap;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 const SelectContent = styled.div`
@@ -183,6 +202,9 @@ const SelectContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 768px) {
+    width: 140px;
+  }
 `;
 
 const SelectValue = styled.div`
@@ -198,6 +220,10 @@ const SelectValue = styled.div`
   cursor: pointer;
   border-radius: 0.21vw; /* 4px / 1920px * 100 = 0.21% */
   position: relative;
+  @media (max-width: 768px) {
+    font-size: 12px;
+    align-self: center;
+  }
 `;
 
 const DropdownArrow = styled.span`
@@ -206,6 +232,9 @@ const DropdownArrow = styled.span`
   transition: transform 0.2s;
   position: absolute;
   right: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
 `;
 
 const DropdownList = styled.div`
@@ -216,10 +245,20 @@ const DropdownList = styled.div`
   border: 0.052vw solid #e0e0e0; /* 1px / 1920px * 100 = 0.052% */
   border-radius: 0.21vw; /* 4px / 1920px * 100 = 0.21% */
   box-shadow: 0 0.21vw 0.42vw rgba(0, 0, 0, 0.1); /* 4px 8px / 1920px * 100 */
-  z-index: 1000;
+  z-index: 10000;
   max-height: 8.33vw; /* 160px / 1920px * 100 = 8.33% */
   overflow-y: auto;
   background-color: white;
+  @media (max-width: 768px) {
+    width: 140px;
+    height: 160px;
+    overflow-y: scroll;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10000;
+    max-height: 160px;
+    overflow-y: auto;
+    background-color: white;
+  }
 `;
 
 const DropdownItem = styled.div`
@@ -233,6 +272,10 @@ const DropdownItem = styled.div`
 
   &:hover {
     background-color: #f5f5f5;
+  }
+  @media (max-width: 768px) {
+    font-size: 12px;
+    padding: 6px 8px;
   }
 `;
 
@@ -251,16 +294,26 @@ const FromInput = styled.input`
   &::placeholder {
     color: #666666;
   }
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 const MessageSection = styled.div`
   position: relative;
   margin-top: 1.25vw; /* 24px / 1920px * 100 = 1.25% */
+  @media (max-width: 768px) {
+    margin-top: 12px;
+  }
 `;
 
 const MessageFrame = styled.img`
   width: 100%;
   height: auto;
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 120px;
+  }
 `;
 
 const MessageTextarea = styled.textarea`
@@ -283,6 +336,9 @@ const MessageTextarea = styled.textarea`
   &::placeholder {
     color: #666666;
   }
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 const SendButton = styled.button`
@@ -303,5 +359,11 @@ const SendButton = styled.button`
 
   &:hover {
     background-color: #333333;
+  }
+  @media (max-width: 768px) {
+    width: 78px;
+    height: 27px;
+    margin-top: 4px;
+    font-size: 12px;
   }
 `;

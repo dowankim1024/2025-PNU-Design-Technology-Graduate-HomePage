@@ -36,6 +36,11 @@ const Container = styled.div`
   flex-direction: column;
   gap: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
   box-sizing: border-box;
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 12px;
+    gap: 4px;
+  }
 `;
 const Sender = styled.div`
   font-size: 1.04vw; /* 20px / 1920px * 100 = 1.04% */
@@ -44,6 +49,9 @@ const Sender = styled.div`
   letter-spacing: 0;
   color: #080808;
   align-self: flex-end;
+  @media (max-width: 768px) {
+    font-size: 6px;
+  }
 `;
 const Message = styled.div`
   font-size: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
@@ -54,6 +62,9 @@ const Message = styled.div`
   flex: 1;
   word-wrap: break-word;
   white-space: pre-wrap;
+  @media (max-width: 768px) {
+    font-size: 6px;
+  }
 `;
 const Receiver = styled.div`
   font-size: 1.04vw; /* 20px / 1920px * 100 = 1.04% */
@@ -61,6 +72,9 @@ const Receiver = styled.div`
   line-height: 140%;
   letter-spacing: 0;
   color: #080808;
+  @media (max-width: 768px) {
+    font-size: 6px;
+  }
 `;
 
 const EmptyMessage = styled.div`
@@ -70,4 +84,7 @@ const EmptyMessage = styled.div`
   letter-spacing: 0;
   text-align: center;
   margin: auto;
+  @media (max-width: 768px) {
+    font-size: 6px;
+  }
 `;

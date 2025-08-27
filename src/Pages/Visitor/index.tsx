@@ -31,12 +31,11 @@ export const Visitor = () => {
   };
 
   return (
-    <>
+    <Container>
       <Title>VISITOR'S BOOK</Title>
       <Tag>응원의 한마디를 남겨보세요.</Tag>
       <MainContainer>
         <VisitorContainer>
-          <VisitorContent></VisitorContent>
           <SelectBox
             toOptions={[
               "ALL",
@@ -64,9 +63,16 @@ export const Visitor = () => {
           </Suspense>
         </ErrorBoundary>
       </MainContainer>
-    </>
+    </Container>
   );
 };
+const Container = styled.div`
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
 const Title = styled.div`
   font-family: Pretendard;
   font-size: 2.5vw; /* 48px / 1920px * 100 = 2.5% */
@@ -75,6 +81,11 @@ const Title = styled.div`
   letter-spacing: 0;
   margin-left: 18.75vw; /* 360px / 1920px * 100 = 18.75% */
   margin-top: 5.21vw; /* 100px / 1920px * 100 = 5.21% */
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin-left: 0px;
+    margin-top: 40px;
+  }
 `;
 const Tag = styled.div`
   font-family: Pretendard;
@@ -84,15 +95,11 @@ const Tag = styled.div`
   letter-spacing: 0;
   margin-left: 18.75vw; /* 360px / 1920px * 100 = 18.75% */
   margin-top: 0.21vw; /* 4px / 1920px * 100 = 0.21% */
+  @media (max-width: 768px) {
+    font-size: 10px;
+    margin-left: 0px;
+    margin-top: 4px;
+  }
 `;
 
-const VisitorContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-`;
-
-const VisitorContent = styled.div`
-  flex: 1;
-`;
+const VisitorContainer = styled.div``;

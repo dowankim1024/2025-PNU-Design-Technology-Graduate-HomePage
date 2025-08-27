@@ -99,10 +99,20 @@ const Container = styled.div`
   justify-content: space-between;
   margin-top: 4.17vw; /* 80px / 1920px * 100 = 4.17% */
   margin-bottom: 8.33vw; /* 160px / 1920px * 100 = 8.33% */
+  @media (max-width: 768px) {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 100%;
+    gap: 4px;
+  }
 `;
 const ResultColumn = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
   width: 20vw; /* ResultBox와 같은 너비 */
+  @media (max-width: 768px) {
+    width: 100%;
+    gap: 4px;
+  }
 `;
