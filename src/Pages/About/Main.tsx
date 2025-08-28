@@ -114,13 +114,6 @@ const Container = styled.div`
   align-items: center;
   position: relative;
 `;
-
-const BrandImg = styled.img`
-  width: 24.63vmin; /* 266px */
-  height: 32.78vmin; /* 354px */
-  object-fit: cover;
-  cursor: pointer;
-`;
 const BrandImgWrapper = styled.div`
   position: relative;
   width: 24.63vmin; /* 266px */
