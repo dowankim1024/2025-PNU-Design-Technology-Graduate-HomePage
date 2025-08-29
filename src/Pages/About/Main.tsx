@@ -130,11 +130,11 @@ const BrandImgBase = styled.img`
 
 const BrandImgOverlay = styled.img<{ $active?: boolean }>`
   position: absolute;
-  top: 46.5%;
-  left: 46.5%;
+  top: 50%;
+  left: 44%;
   transform: translate(-50%, -50%);
-  width: 32.59vmin; /* 352px */
-  height: 32.04vmin; /* 346px */
+  width: 31.67vmin; /* 342px */
+  height: 37.41vmin; /* 404px */
   object-fit: cover;
   opacity: ${({ $active }) => ($active ? 1 : 0)};
   transition: opacity 400ms ease-in-out;
@@ -204,11 +204,11 @@ const VideoImgBase = styled.img`
 
 const VideoImgOverlay = styled.img<{ $active?: boolean }>`
   position: absolute;
-  top: 46.5%;
-  left: 46.5%;
+  top: 51%;
+  left: 52%;
   transform: translate(-50%, -50%);
-  width: 32.59vmin; /* 352px */
-  height: 32.04vmin; /* 346px */
+  width: 33.52vmin; /* 362px */
+  height: 33.52vmin; /* 362px */
   object-fit: cover;
   opacity: ${({ $active }) => ($active ? 1 : 0)};
   transition: opacity 400ms ease-in-out;
@@ -235,11 +235,11 @@ const DPImgBase = styled.img`
 `;
 const DPImgOverlay = styled.img<{ $active?: boolean }>`
   position: absolute;
-  top: 46.5%;
-  left: 46.5%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  width: 32.59vmin; /* 352px */
-  height: 32.04vmin; /* 346px */
+  width: 32.69vmin; /* 353px */
+  height: 30.74vmin; /* 332px */
   object-fit: cover;
   opacity: ${({ $active }) => ($active ? 1 : 0)};
   transition: opacity 400ms ease-in-out;
