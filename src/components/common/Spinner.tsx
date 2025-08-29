@@ -7,10 +7,7 @@ interface SpinnerProps {
 }
 
 // 1920 기준: 40px -> 2.08vw, 4px -> 0.21vw
-export const Spinner = ({
-  size = "2.08vw",
-  thickness = "0.21vw",
-}: SpinnerProps) => {
+export const Spinner = ({ size = "40px", thickness = "4px" }: SpinnerProps) => {
   return (
     <Wrapper>
       <Loader $size={size} $thickness={thickness} />
