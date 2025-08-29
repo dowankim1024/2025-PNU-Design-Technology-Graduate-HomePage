@@ -9,14 +9,14 @@ import { Suspense, useEffect, useMemo, useState } from "react";
 
 export const TeamSelect = () => {
   return (
-    <>
+    <Container>
       <Title>TEAM PROJECT</Title>
       <ErrorBoundary>
         <Suspense fallback={<SuspenseFallback />}>
           <TeamSelectContent />
         </Suspense>
       </ErrorBoundary>
-    </>
+    </Container>
   );
 };
 
@@ -80,6 +80,16 @@ const TeamSelectContent = () => {
     </MainContainer>
   );
 };
+const Container = styled.div`
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+`;
 const MainContainer = styled.div`
   width: 100%;
   margin-top: 4.17vw; /* 80px / 1920px * 100 = 4.17% */
@@ -88,18 +98,31 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media (max-width: 768px) {
+    width: 325.3px;
+    margin-top: 20px;
+    padding: 0;
+  }
 `;
 const TeamSelectContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-end;
   margin-bottom: 8.33vw; /* 160px / 1920px * 100 = 8.33% */
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 const TeamImage = styled.div`
   width: 50.83vw; /* 976px / 1920px * 100 = 50.83% */
   height: 31.35vw; /* 602px / 1920px * 100 = 31.35% */
   background-color: #f0f0f0;
   cursor: pointer;
+  @media (max-width: 768px) {
+    width: 325.3px;
+    height: 201.2px;
+  }
 `;
 const TeamInfo = styled.div`
   display: flex;
@@ -108,12 +131,26 @@ const TeamInfo = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   margin-left: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
+  @media (max-width: 768px) {
+    height: 100%;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 0;
+  }
 `;
 const TeamNameMateContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  @media (max-width: 768px) {
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    gap: 2px;
+  }
 `;
 const TeamName = styled.div`
   writing-mode: vertical-rl;
@@ -124,6 +161,10 @@ const TeamName = styled.div`
   letter-spacing: 0;
   color: #080808;
   white-space: nowrap;
+  @media (max-width: 768px) {
+    writing-mode: horizontal-tb;
+    font-size: 16px;
+  }
 `;
 const TeammateContainer = styled.div`
   display: flex;
@@ -131,6 +172,11 @@ const TeammateContainer = styled.div`
   gap: 0.3vw;
   margin-left: 0.16vw; /* 3px @1920 */
   margin-top: 0.83vw; /* 16px @1920 */
+  @media (max-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+  }
 `;
 const Teammate = styled.div`
   writing-mode: vertical-rl;
@@ -142,6 +188,10 @@ const Teammate = styled.div`
   letter-spacing: 0;
   color: #080808;
   white-space: nowrap;
+  @media (max-width: 768px) {
+    writing-mode: horizontal-tb;
+    font-size: 12px;
+  }
 `;
 const TeamConcept = styled.div`
   font-family: Pretendard;
@@ -150,6 +200,11 @@ const TeamConcept = styled.div`
   line-height: 140%;
   letter-spacing: 0;
   color: #080808;
+  @media (max-width: 768px) {
+    font-size: 12px;
+    width: 100%;
+    text-align: right;
+  }
 `;
 const TeamSelectButtonContainer = styled.div`
   display: flex;
@@ -159,6 +214,15 @@ const TeamSelectButtonContainer = styled.div`
   gap: 1.25vw; /* 24px / 1920px * 100 = 1.25% */
   margin-left: auto;
   margin-bottom: auto; /* 32px / 1920px * 100 = 1.67% */
+  @media (max-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 0;
+    margin-bottom: 0;
+    margin-top: 24px;
+    width: 325.3px;
+  }
 `;
 const TeamSelectButton = styled.div<{ $active?: boolean }>`
   width: 2.5vw; /* 48px / 1920px * 100 = 2.5% */
@@ -172,6 +236,10 @@ const TeamSelectButton = styled.div<{ $active?: boolean }>`
     background-color 200ms ease,
     color 200ms ease;
   background-color: ${({ $active }) => ($active ? "#080808" : "transparent")};
+  @media (max-width: 768px) {
+    width: 48px;
+    height: 48px;
+  }
 `;
 
 const ButtonImage = styled.img<{ $active?: boolean }>`
@@ -182,6 +250,10 @@ const ButtonImage = styled.img<{ $active?: boolean }>`
   left: 0;
   z-index: 1;
   mix-blend-mode: ${({ $active }) => ($active ? "luminosity" : "normal")};
+  @media (max-width: 768px) {
+    width: 48px;
+    height: 48px;
+  }
 `;
 
 const ButtonText = styled.div<{ $active?: boolean }>`
@@ -193,4 +265,7 @@ const ButtonText = styled.div<{ $active?: boolean }>`
   line-height: 140%;
   letter-spacing: 0;
   color: ${({ $active }) => ($active ? "#ffffff" : "#080808")};
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
