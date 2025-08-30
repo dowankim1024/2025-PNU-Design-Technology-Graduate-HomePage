@@ -50,7 +50,7 @@ const Sender = styled.div`
   color: #080808;
   align-self: flex-end;
   @media (max-width: 768px) {
-    font-size: 6px;
+    font-size: 8px;
   }
 `;
 const Message = styled.div`
@@ -63,7 +63,7 @@ const Message = styled.div`
   word-wrap: break-word;
   white-space: pre-wrap;
   @media (max-width: 768px) {
-    font-size: 6px;
+    font-size: 9px;
   }
 `;
 const Receiver = styled.div`
@@ -73,7 +73,7 @@ const Receiver = styled.div`
   letter-spacing: 0;
   color: #080808;
   @media (max-width: 768px) {
-    font-size: 6px;
+    font-size: 8px;
   }
 `;
 

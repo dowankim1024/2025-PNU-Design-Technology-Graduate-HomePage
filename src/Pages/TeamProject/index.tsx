@@ -10,6 +10,7 @@ import ErrorBoundary from "@/components/common/ErrorBoundary";
 import SuspenseFallback from "@/components/common/SuspenseFallback";
 import { useTeamInfo } from "@/queries/designers";
 import { useSearchParams } from "react-router-dom";
+import styled from "styled-components";
 
 const TeamContent = ({ teamKey }: { teamKey: string }) => {
   const { data } = useTeamInfo();
@@ -58,13 +59,23 @@ export const TeamProject = () => {
   const [params] = useSearchParams();
   const teamKey = params.get("team") ?? "Web";
   return (
-    <>
+    <Container>
       <Title>TEAM PROJECT</Title>
       <ErrorBoundary>
         <Suspense fallback={<SuspenseFallback />}>
           <TeamContent teamKey={teamKey} />
         </Suspense>
       </ErrorBoundary>
-    </>
+    </Container>
   );
 };
+const Container = styled.div`
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+`;

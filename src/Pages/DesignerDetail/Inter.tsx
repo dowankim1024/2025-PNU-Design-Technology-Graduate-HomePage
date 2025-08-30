@@ -135,7 +135,7 @@ const Description = styled.div`
   letter-spacing: 0;
   color: #080404;
   @media (max-width: 768px) {
-    font-size: 6px;
+    font-size: 8px;
   }
 `;
 const LevelSection = styled.div`

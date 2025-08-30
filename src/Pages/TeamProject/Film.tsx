@@ -24,17 +24,33 @@ const FilmSection = styled.div`
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 4.17vw; /* 80px / 1920px * 100 = 4.17% */
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 60px;
+  }
 `;
 const FilmImage = styled.div`
   width: 33.23vw; /* 638px / 1920px * 100 = 33.23% */
   height: 20.73vw; /* 398px / 1920px * 100 = 20.73% */
+  aspect-ratio: 638 / 398; /* 가로:세로 비율 고정 */
   background-color: #f0f0f0;
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto; /* aspect-ratio가 높이를 계산 */
+    margin-top: 12px;
+    flex-shrink: 0;
+  }
 `;
 const FilmDescription = styled.div`
   width: 27.6vw; /* 530px / 1920px * 100 = 27.60% */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 const Tag = styled.div`
   font-family: Pretendard;
@@ -44,6 +60,9 @@ const Tag = styled.div`
   letter-spacing: 0;
   color: #080404;
   margin-bottom: 0.21vw; /* 4px / 1920px * 100 = 0.21% */
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 const Title = styled.div`
   font-family: Pretendard;
@@ -53,6 +72,9 @@ const Title = styled.div`
   letter-spacing: 0;
   color: #080404;
   margin-bottom: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 const Description = styled.div`
   font-family: Pretendard;
@@ -61,4 +83,7 @@ const Description = styled.div`
   line-height: 145%;
   letter-spacing: 0;
   color: #080404;
+  @media (max-width: 768px) {
+    font-size: 8px;
+  }
 `;
