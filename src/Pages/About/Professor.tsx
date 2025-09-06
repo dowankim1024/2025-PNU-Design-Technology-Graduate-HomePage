@@ -1,27 +1,30 @@
 import styled from "styled-components";
-
+import HwaseLee from "@/assets/ProfessorImage/HwaseLee.webp";
+import CheolKi from "@/assets/ProfessorImage/ChulgiKim.webp";
+import TaeWan from "@/assets/ProfessorImage/TonyKim.webp";
+import DongJin from "@/assets/ProfessorImage/DongjinHong.webp";
 export default function Professor() {
   return (
     <Container>
       <Title>PROFESSORS</Title>
       <ProfessorsContainer>
         <ProfessorContainer>
-          <ProfessorImage />
+          <ProfessorImage src={HwaseLee} />
           <ProfessorName>이화세</ProfessorName>
           <ProfessorDescription>HCI</ProfessorDescription>
         </ProfessorContainer>
         <ProfessorContainer>
-          <ProfessorImage />
+          <ProfessorImage src={CheolKi} />
           <ProfessorName>김철기</ProfessorName>
           <ProfessorDescription>UX / AI / 감성공학</ProfessorDescription>
         </ProfessorContainer>
         <ProfessorContainer>
-          <ProfessorImage />
+          <ProfessorImage src={TaeWan} />
           <ProfessorName>김태완</ProfessorName>
           <ProfessorDescription>DIGITAL CONTENT DESIGN</ProfessorDescription>
         </ProfessorContainer>
         <ProfessorContainer>
-          <ProfessorImage />
+          <ProfessorImage src={DongJin} />
           <ProfessorName>홍동진</ProfessorName>
           <ProfessorDescription>IMAGE PROCESSING / ML</ProfessorDescription>
         </ProfessorContainer>
@@ -57,10 +60,12 @@ const ProfessorContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
 `;
-const ProfessorImage = styled.div`
+const ProfessorImage = styled.img`
   width: 26.11vmin; /* 282px */
   height: 31.85vmin; /* 344px */
   background-color: #080404;
+  object-fit: cover;
+  object-position: top;
 `;
 const ProfessorName = styled.div`
   font-family: "Pretendard";
