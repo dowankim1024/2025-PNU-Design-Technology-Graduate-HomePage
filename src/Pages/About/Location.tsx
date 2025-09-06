@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useRef } from "react";
+import { Reveal } from "@/components/common/Reveal";
 
 const Location = () => {
   const mapRef = useRef<HTMLDivElement | null>(null);
@@ -73,19 +74,23 @@ const Location = () => {
     <Container>
       <Title>OFFLINE LOCATION</Title>
       <ContentsContainer>
-        <DescriptionContainer>
-          <MainLocation>부산디자인진흥원</MainLocation>
-          <SubLocation>
-            부산광역시 해운대구 센텀동로 57 부산디자인진흥원 1층
-          </SubLocation>
-          <Line />
-          <MainLocation>DESIGN CENTER BUSAN 1F Exhibition Hall</MainLocation>
-          <SubLocation>57, Centum dong-ro, Haeundae-gu, Busan</SubLocation>
-          <Line />
-          <MainLocation>2025/11/14 - 2025/11/17</MainLocation>
-          <FinalLine />
-        </DescriptionContainer>
-        <Map ref={mapRef} />
+        <Reveal delayMs={600}>
+          <DescriptionContainer>
+            <MainLocation>부산디자인진흥원</MainLocation>
+            <SubLocation>
+              부산광역시 해운대구 센텀동로 57 부산디자인진흥원 1층
+            </SubLocation>
+            <Line />
+            <MainLocation>DESIGN CENTER BUSAN 1F Exhibition Hall</MainLocation>
+            <SubLocation>57, Centum dong-ro, Haeundae-gu, Busan</SubLocation>
+            <Line />
+            <MainLocation>2025/11/14 - 2025/11/17</MainLocation>
+            <FinalLine />
+          </DescriptionContainer>
+        </Reveal>
+        <Reveal delayMs={300}>
+          <Map ref={mapRef} />
+        </Reveal>
       </ContentsContainer>
     </Container>
   );

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Reveal } from "@/components/common/Reveal";
 import HwaseLee from "@/assets/ProfessorImage/HwaseLee.webp";
 import CheolKi from "@/assets/ProfessorImage/ChulgiKim.webp";
 import TaeWan from "@/assets/ProfessorImage/TonyKim.webp";
@@ -6,28 +7,38 @@ import DongJin from "@/assets/ProfessorImage/DongjinHong.webp";
 export default function Professor() {
   return (
     <Container>
-      <Title>PROFESSORS</Title>
+      <Reveal>
+        <Title>PROFESSORS</Title>
+      </Reveal>
       <ProfessorsContainer>
-        <ProfessorContainer>
-          <ProfessorImage src={HwaseLee} />
-          <ProfessorName>이화세</ProfessorName>
-          <ProfessorDescription>HCI</ProfessorDescription>
-        </ProfessorContainer>
-        <ProfessorContainer>
-          <ProfessorImage src={CheolKi} />
-          <ProfessorName>김철기</ProfessorName>
-          <ProfessorDescription>UX / AI / 감성공학</ProfessorDescription>
-        </ProfessorContainer>
-        <ProfessorContainer>
-          <ProfessorImage src={TaeWan} />
-          <ProfessorName>김태완</ProfessorName>
-          <ProfessorDescription>DIGITAL CONTENT DESIGN</ProfessorDescription>
-        </ProfessorContainer>
-        <ProfessorContainer>
-          <ProfessorImage src={DongJin} />
-          <ProfessorName>홍동진</ProfessorName>
-          <ProfessorDescription>IMAGE PROCESSING / ML</ProfessorDescription>
-        </ProfessorContainer>
+        <Reveal delayMs={300}>
+          <ProfessorContainer>
+            <ProfessorImage src={HwaseLee} />
+            <ProfessorName>이화세</ProfessorName>
+            <ProfessorDescription>HCI</ProfessorDescription>
+          </ProfessorContainer>
+        </Reveal>
+        <Reveal delayMs={400}>
+          <ProfessorContainer>
+            <ProfessorImage src={CheolKi} />
+            <ProfessorName>김철기</ProfessorName>
+            <ProfessorDescription>UX / AI / 감성공학</ProfessorDescription>
+          </ProfessorContainer>
+        </Reveal>
+        <Reveal delayMs={500}>
+          <ProfessorContainer>
+            <ProfessorImage src={TaeWan} />
+            <ProfessorName>김태완</ProfessorName>
+            <ProfessorDescription>DIGITAL CONTENT DESIGN</ProfessorDescription>
+          </ProfessorContainer>
+        </Reveal>
+        <Reveal delayMs={600}>
+          <ProfessorContainer>
+            <ProfessorImage src={DongJin} />
+            <ProfessorName>홍동진</ProfessorName>
+            <ProfessorDescription>IMAGE PROCESSING / ML</ProfessorDescription>
+          </ProfessorContainer>
+        </Reveal>
       </ProfessorsContainer>
     </Container>
   );

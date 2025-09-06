@@ -13,6 +13,7 @@ import Logo from "@/assets/Home/CloseUp.png";
 import Other from "@/assets/Home/Other.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Reveal } from "@/components/common/Reveal";
 export const Main = () => {
   const [isWebTextHover, setIsWebTextHover] = useState(false);
   const [isVideoTextHover, setIsVideoTextHover] = useState(false);
@@ -86,21 +87,29 @@ export const Main = () => {
           $active={isWebTextHover}
         />
       </WebImgWrapper>
-      <LogoImg src={Logo} alt="logo" />
-      <Major>
-        Design & <br /> Technology
-      </Major>
-      <Opening>
-        <OpeningText>Opening_오프닝</OpeningText>
-        <OpeningText2>
-          2025/11/14 & <br /> 6pm
-        </OpeningText2>
-      </Opening>
-      <Place>
-        Design Center Busan
-        <br />
-        1F Exhibition hall
-      </Place>
+      <Reveal asChild delayMs={200}>
+        <LogoImg src={Logo} alt="logo" />
+      </Reveal>
+      <Reveal asChild delayMs={500}>
+        <Major>
+          Design & <br /> Technology
+        </Major>
+      </Reveal>
+      <Reveal asChild delayMs={300}>
+        <Opening>
+          <OpeningText>Opening_오프닝</OpeningText>
+          <OpeningText2>
+            2025/11/14 & <br /> 6pm
+          </OpeningText2>
+        </Opening>
+      </Reveal>
+      <Reveal asChild delayMs={600}>
+        <Place>
+          Design Center Busan
+          <br />
+          1F Exhibition hall
+        </Place>
+      </Reveal>
     </Container>
   );
 };

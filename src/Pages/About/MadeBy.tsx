@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/common/Reveal";
 import styled from "styled-components";
 
 export const MadeBy = () => {
@@ -5,56 +6,60 @@ export const MadeBy = () => {
     <Container>
       <Title>MADE BY</Title>
       <ContentsContainer>
-        <Image />
-        <DescriptionContainer>
-          <NameContainer>
-            <Position>위원장</Position>
-            <Name>김예솔</Name>
-          </NameContainer>
-          <Line />
-          <NameContainer>
-            <Position>부위원장</Position>
-            <Name>고영은</Name>
-          </NameContainer>
-          <Line />
-          <NameContainer>
-            <Position>Branding</Position>
-            <Names>
-              <Name>김관욱</Name>
+        <Reveal delayMs={300}>
+          <Image />
+        </Reveal>
+        <Reveal delayMs={600}>
+          <DescriptionContainer>
+            <NameContainer>
+              <Position>위원장</Position>
               <Name>김예솔</Name>
-              <Name>최보윤</Name>
-            </Names>
-          </NameContainer>
-          <Line />
-          <NameContainer>
-            <Position>DP</Position>
-            <Names>
-              <Name>박정훈</Name>
-              <Name>남현서</Name>
-              <Name>천후민</Name>
-            </Names>
-          </NameContainer>
-          <Line />
-          <NameContainer>
-            <Position>Video</Position>
-            <Names>
-              <Name>공태우</Name>
+            </NameContainer>
+            <Line />
+            <NameContainer>
+              <Position>부위원장</Position>
               <Name>고영은</Name>
-              <Name>김진혁</Name>
-            </Names>
-          </NameContainer>
-          <Line />
-          <NameContainer>
-            <Position>Web</Position>
-            <Names>
-              <Name>김도완</Name>
-              <Name>김가빈</Name>
-              <Name>박세은</Name>
-              <Name>정일후</Name>
-            </Names>
-          </NameContainer>
-          <FinalLine />
-        </DescriptionContainer>
+            </NameContainer>
+            <Line />
+            <NameContainer>
+              <Position>Branding</Position>
+              <Names>
+                <Name>김관욱</Name>
+                <Name>김예솔</Name>
+                <Name>최보윤</Name>
+              </Names>
+            </NameContainer>
+            <Line />
+            <NameContainer>
+              <Position>DP</Position>
+              <Names>
+                <Name>박정훈</Name>
+                <Name>남현서</Name>
+                <Name>천후민</Name>
+              </Names>
+            </NameContainer>
+            <Line />
+            <NameContainer>
+              <Position>Video</Position>
+              <Names>
+                <Name>공태우</Name>
+                <Name>고영은</Name>
+                <Name>김진혁</Name>
+              </Names>
+            </NameContainer>
+            <Line />
+            <NameContainer>
+              <Position>Web</Position>
+              <Names>
+                <Name>김도완</Name>
+                <Name>김가빈</Name>
+                <Name>박세은</Name>
+                <Name>정일후</Name>
+              </Names>
+            </NameContainer>
+            <FinalLine />
+          </DescriptionContainer>
+        </Reveal>
       </ContentsContainer>
     </Container>
   );
@@ -78,7 +83,7 @@ const Title = styled.div`
 const ContentsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   margin-top: 5.56vmin; /* 60px */
   width: 100%;

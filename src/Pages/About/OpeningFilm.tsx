@@ -1,15 +1,21 @@
 import styled from "styled-components";
+import { Reveal } from "@/components/common/Reveal";
 
 export const OpeningFilm = () => {
   return (
     <Container>
       <Title>OPENING FILM</Title>
+
       <VideoContainer>
-        <Video />
-        <VideoInfo>
-          Dept. if Design, Design and Technology <br />
-          16th Graduation Exhibition
-        </VideoInfo>
+        <Reveal delayMs={300}>
+          <Video />
+        </Reveal>
+        <Reveal delayMs={300}>
+          <VideoInfo>
+            Dept. if Design, Design and Technology <br />
+            16th Graduation Exhibition
+          </VideoInfo>
+        </Reveal>
       </VideoContainer>
     </Container>
   );
