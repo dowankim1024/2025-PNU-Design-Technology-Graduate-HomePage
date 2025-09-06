@@ -317,7 +317,7 @@ const OtheImage = styled.img`
   position: absolute;
   width: 64.91vmin; /* 701px */
   height: 72.96vmin; /* 788px */
-  margin-top: 3.56vmin; /* 38.5px */
+  margin-top: 3.41vmin; /* 38.5px */
   margin-left: -1.2vmin; /* -13px */
   object-fit: cover;
 `;

@@ -3,11 +3,13 @@ import { Main } from "./Main"; // 메인 섹션 컴포넌트 임포트
 import { Intro } from "./Intro"; // 인트로 섹션 컴포넌트 임포트
 import styled from "styled-components"; // styled-components 사용을 위한 임포트
 import { Footer } from "@/components/Footer"; // 푸터 컴포넌트 임포트
-import { useEffect, useRef, useState } from "react"; // React 훅들 임포트
+import { Suspense, useEffect, useRef, useState } from "react"; // React 훅들 임포트
 import { MadeBy } from "./MadeBy"; // MadeBy 섹션 컴포넌트 임포트
 import Location from "./Location"; // Location 섹션 컴포넌트 임포트
 import Professor from "./Professor";
 import { Reveal } from "@/components/common/Reveal";
+import SuspenseFallback from "@/components/common/SuspenseFallback";
+import ErrorBoundary from "@/components/common/ErrorBoundary";
 const AboutPage = () => {
   // About 페이지 최상위 컴포넌트 정의
   const containerRef = useRef<HTMLDivElement | null>(null); // 스크롤 컨테이너 DOM 참조
@@ -72,57 +74,61 @@ const AboutPage = () => {
   }, [COOLDOWN_MS]); // 쿨다운 시간이 바뀌면 로직 재등록
   return (
     // JSX 렌더링 영역
-    <SnapWrapper ref={containerRef}>
-      {" "}
-      {/* 스크롤 컨테이너(헤더 제외 높이 영역) */}
-      <Section>
-        {" "}
-        {/* 섹션 1: 메인 */}
-        <Reveal>
-          <Main />
-        </Reveal>
-      </Section>
-      <Section>
-        {" "}
-        {/* 섹션 2: 오프닝 필름 */}
-        <Reveal>
-          <OpeningFilm />
-        </Reveal>
-      </Section>
-      <Section>
-        {" "}
-        {/* 섹션 3: 오프닝 필름(샘플) */}
-        <Reveal>
-          <Intro />
-        </Reveal>
-      </Section>
-      <Section>
-        {" "}
-        {/* 섹션 4: 오프닝 필름(샘플) */}
-        <Reveal>
-          <MadeBy />
-        </Reveal>
-      </Section>
-      <Section>
-        {" "}
-        {/* 섹션 5: 오프닝 필름(샘플) */}
-        <Reveal>
-          <Location />
-        </Reveal>
-      </Section>
-      <Section>
-        {" "}
-        {/* 섹션 6: 교수님 */}
-        <Reveal>
-          <Professor />
-        </Reveal>
-      </Section>
-      <FooterSection>
-        {" "}
-        {/* 마지막: 푸터 영역(고정 높이) */}
-        <Footer /> {/* 전역 푸터 컴포넌트 */}
-      </FooterSection>
-    </SnapWrapper>
+    <ErrorBoundary>
+      <Suspense fallback={<SuspenseFallback />}>
+        <SnapWrapper ref={containerRef}>
+          {" "}
+          {/* 스크롤 컨테이너(헤더 제외 높이 영역) */}
+          <Section>
+            {" "}
+            {/* 섹션 1: 메인 */}
+            <Reveal>
+              <Main />
+            </Reveal>
+          </Section>
+          <Section>
+            {" "}
+            {/* 섹션 2: 오프닝 필름 */}
+            <Reveal>
+              <OpeningFilm />
+            </Reveal>
+          </Section>
+          <Section>
+            {" "}
+            {/* 섹션 3: 오프닝 필름(샘플) */}
+            <Reveal>
+              <Intro />
+            </Reveal>
+          </Section>
+          <Section>
+            {" "}
+            {/* 섹션 4: 오프닝 필름(샘플) */}
+            <Reveal>
+              <MadeBy />
+            </Reveal>
+          </Section>
+          <Section>
+            {" "}
+            {/* 섹션 5: 오프닝 필름(샘플) */}
+            <Reveal>
+              <Location />
+            </Reveal>
+          </Section>
+          <Section>
+            {" "}
+            {/* 섹션 6: 교수님 */}
+            <Reveal>
+              <Professor />
+            </Reveal>
+          </Section>
+          <FooterSection>
+            {" "}
+            {/* 마지막: 푸터 영역(고정 높이) */}
+            <Footer /> {/* 전역 푸터 컴포넌트 */}
+          </FooterSection>
+        </SnapWrapper>
+      </Suspense>
+    </ErrorBoundary>
   ); // 컴포넌트 종료
 };
 
