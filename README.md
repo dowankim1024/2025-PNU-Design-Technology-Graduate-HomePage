@@ -4,6 +4,8 @@
 
 ## Engineer : Kim Do Wan (kimdowan1004@naver.com)
 
+![main](https://github.com/user-attachments/assets/679947ec-86b1-4652-8a5a-59b370bf5287)
+
 ### 배포 링크 : https://2025-pnu-design-technology-graduate.vercel.app
 
 ### 부산대학교 디자인학과 디자인앤테크놀로지 전공 16회 졸업전시 Dept. of Design, Design and Technology 16th Graduation Show
