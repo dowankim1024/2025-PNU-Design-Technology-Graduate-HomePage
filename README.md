@@ -1,5 +1,11 @@
 # 2025 부산대학교 디자인앤테크놀로지전공 졸업전시 홈페이지
 
+## Designer : Park Se Eun (03eungreen@naver.com)
+
+## Engineer : Kim Do Wan (kimdowan1004@naver.com)
+
+### 배포 링크 : https://2025-pnu-design-technology-graduate.vercel.app
+
 ### 부산대학교 디자인학과 디자인앤테크놀로지 전공 16회 졸업전시 Dept. of Design, Design and Technology 16th Graduation Show
 
 ### 본 사이트는 2025 졸업논문을 대체합니다. ©2025 Pusan National University Design&Technology all rights reserved.
