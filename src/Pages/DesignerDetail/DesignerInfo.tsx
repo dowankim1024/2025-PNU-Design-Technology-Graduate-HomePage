@@ -14,6 +14,7 @@ interface DesignerInfoProps {
   intro: string;
   conceptTitle: string;
   conceptDescription: string;
+  image: string;
 }
 
 export const DesignerInfo = ({
@@ -24,6 +25,7 @@ export const DesignerInfo = ({
   intro,
   conceptTitle,
   conceptDescription,
+  image,
 }: DesignerInfoProps) => {
   const navigate = useNavigate();
   const goTo = (team: string) => {
@@ -35,7 +37,7 @@ export const DesignerInfo = ({
       <MainContainer>
         <ContentSection>
           <LeftSection>
-            <ImagePlaceholder />
+            <DesignerImg src={image} alt="designerImg" />
             <TeamProjectButton
               src={TeamProjectWatch}
               alt="Team Project Watch"
@@ -80,11 +82,13 @@ const LeftSection = styled.div`
   flex-direction: column;
 `;
 
-const ImagePlaceholder = styled.div`
+const DesignerImg = styled.img`
   width: 18.75vw; /* 360px / 1920px * 100 = 18.75% */
   height: 23.44vw; /* 450px / 1920px * 100 = 23.44% */
   background-color: #f5f5f5;
   z-index: 2;
+  object-fit: cover;
+  object-position: top;
   @media (max-width: 768px) {
     width: 180px;
     height: 225px;

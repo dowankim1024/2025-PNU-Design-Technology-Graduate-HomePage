@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import Designer from "@/assets/Designer.jpg";
 import { useNavigate } from "react-router-dom";
 interface DesignerCardProps {
   name: string;
   projectName: string;
+  img: string;
 }
-export const DesignerCard = ({ name, projectName }: DesignerCardProps) => {
+export const DesignerCard = ({ name, projectName, img }: DesignerCardProps) => {
   const navigate = useNavigate();
   const handleClick = () => {
     const params = new URLSearchParams({ name });
@@ -13,7 +13,7 @@ export const DesignerCard = ({ name, projectName }: DesignerCardProps) => {
   };
   return (
     <CardContainer onClick={handleClick} role="button" tabIndex={0}>
-      <DesignerImg src={Designer} alt="designerImg" />
+      <DesignerImg src={img} alt="designerImg" />
       <DesignerInfo>
         <DesignerName>{name}</DesignerName>
         <ProjectName>{projectName}</ProjectName>
@@ -33,6 +33,8 @@ const CardContainer = styled.div`
 const DesignerImg = styled.img`
   width: 14.69vw; /* 282px / 1920px * 100 = 14.69% */
   height: 18.33vw; /* 352px / 1920px * 100 = 18.33% */
+  object-fit: cover;
+  object-position: top;
   @media (max-width: 768px) {
     width: 100%;
     height: 100%;
