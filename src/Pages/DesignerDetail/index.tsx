@@ -24,6 +24,7 @@ const DesignerDetailContent = ({ name }: { name: string }) => {
             intro={data.info.intro}
             conceptTitle={data.info.conceptTitle}
             conceptDescription={data.info.conceptDescription}
+            image={data.info.image}
           />
           <Poster
             title={data.poster.title}

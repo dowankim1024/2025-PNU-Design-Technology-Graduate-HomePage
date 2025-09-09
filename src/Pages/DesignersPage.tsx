@@ -16,6 +16,7 @@ const DesignersGridContent = () => {
           key={`${d.name}-${d.projectName}`}
           name={d.name}
           projectName={d.projectName}
+          img={d.image}
         />
       ))}
     </DesignerGrid>
