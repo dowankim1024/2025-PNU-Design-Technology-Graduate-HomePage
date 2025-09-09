@@ -5,6 +5,7 @@ import Plus from "@/assets/Icons/Plus.png";
 import { MainContainer } from "@/components/MainContainer";
 import { Concept } from "@/components/Concept";
 import { useNavigate } from "react-router-dom";
+import { getPersonImageByName } from "@/utils/personImages";
 
 interface DesignerInfoProps {
   team: string;
@@ -14,7 +15,6 @@ interface DesignerInfoProps {
   intro: string;
   conceptTitle: string;
   conceptDescription: string;
-  image: string;
 }
 
 export const DesignerInfo = ({
@@ -25,7 +25,6 @@ export const DesignerInfo = ({
   intro,
   conceptTitle,
   conceptDescription,
-  image,
 }: DesignerInfoProps) => {
   const navigate = useNavigate();
   const goTo = (team: string) => {
@@ -37,7 +36,7 @@ export const DesignerInfo = ({
       <MainContainer>
         <ContentSection>
           <LeftSection>
-            <DesignerImg src={image} alt="designerImg" />
+            <DesignerImg src={getPersonImageByName(name)} alt="designerImg" />
             <TeamProjectButton
               src={TeamProjectWatch}
               alt="Team Project Watch"
