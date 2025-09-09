@@ -57,7 +57,6 @@ export interface DesignerDetailData {
     conceptTitle: string;
     conceptDescription: string;
     team: string;
-    image: string;
   };
   poster: {
     title: string;
@@ -88,7 +87,6 @@ export async function fetchDesignerDetailByName(
       conceptTitle: node.designerInfo.conceptTitle ?? "",
       conceptDescription: node.designerInfo.conceptDescription ?? "",
       team: node.designerInfo.team ?? "",
-      image: node.designerInfo.image ?? "",
     },
     poster: {
       title: node.Poster?.title ?? "",
