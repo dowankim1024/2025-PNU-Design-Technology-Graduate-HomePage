@@ -1,19 +1,20 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { getPersonImageByName } from "@/utils/personImages";
 interface DesignerCardProps {
   name: string;
   projectName: string;
-  img: string;
 }
-export const DesignerCard = ({ name, projectName, img }: DesignerCardProps) => {
+export const DesignerCard = ({ name, projectName }: DesignerCardProps) => {
   const navigate = useNavigate();
   const handleClick = () => {
     const params = new URLSearchParams({ name });
     navigate(`/designer?${params.toString()}`);
   };
+  const profileSrc = getPersonImageByName(name);
   return (
     <CardContainer onClick={handleClick} role="button" tabIndex={0}>
-      <DesignerImg src={img} alt="designerImg" />
+      <DesignerImg src={profileSrc} alt="designerImg" />
       <DesignerInfo>
         <DesignerName>{name}</DesignerName>
         <ProjectName>{projectName}</ProjectName>
