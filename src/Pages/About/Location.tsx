@@ -74,7 +74,7 @@ const Location = () => {
     <Container>
       <Title>OFFLINE LOCATION</Title>
       <ContentsContainer>
-        <Reveal delayMs={600}>
+        <Reveal delayMs={window.innerWidth > 768 ? 600 : 300}>
           <DescriptionContainer>
             <MainLocation>부산디자인진흥원</MainLocation>
             <SubLocation>
@@ -88,7 +88,7 @@ const Location = () => {
             <FinalLine />
           </DescriptionContainer>
         </Reveal>
-        <Reveal delayMs={300}>
+        <Reveal delayMs={window.innerWidth > 768 ? 300 : 600}>
           <Map ref={mapRef} />
         </Reveal>
       </ContentsContainer>
@@ -112,6 +112,9 @@ const Title = styled.div`
   line-height: 1.4;
   letter-spacing: 0;
   margin-bottom: 5.56vmin; /* 60px */
+  @media (max-width: 768px) {
+    margin-top: -24vmin;
+  }
 `;
 const ContentsContainer = styled.div`
   display: flex;
@@ -119,11 +122,19 @@ const ContentsContainer = styled.div`
   align-items: flex-end;
   justify-content: space-between;
   width: 100%;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 const DescriptionContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  @media (max-width: 768px) {
+    width: 59.26vmin;
+    margin-top: 8vmin;
+  }
 `;
 const MainLocation = styled.div`
   font-family: "Pretendard";
@@ -147,6 +158,9 @@ const Map = styled.div`
   background-color: #080404;
   overscroll-behavior: contain; /* 스크롤 체인 방지 */
   touch-action: none; /* 터치 스크롤 제스처 비활성화(지도 제스처 우선) */
+  @media (max-width: 768px) {
+    margin-top: 8vmin;
+  }
 `;
 const Line = styled.div`
   width: 100%;

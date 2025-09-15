@@ -231,4 +231,8 @@ const FooterSection = styled.div`
   position: relative; /* 내부 절대배치 기준 */
   overflow: hidden; /* 넘침 숨김 */
   isolation: isolate; /* 레이어 격리 */
+
+  @media (max-width: 768px) {
+    height: 190px; /* 모바일에서 충분한 높이 확보 */
+  }
 `;

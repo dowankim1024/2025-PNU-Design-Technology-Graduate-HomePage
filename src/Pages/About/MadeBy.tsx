@@ -79,6 +79,9 @@ const Title = styled.div`
   font-weight: 700;
   line-height: 1.4;
   letter-spacing: 0;
+  @media (max-width: 768px) {
+    margin-top: -24vmin;
+  }
 `;
 const ContentsContainer = styled.div`
   display: flex;
@@ -87,17 +90,28 @@ const ContentsContainer = styled.div`
   justify-content: space-between;
   margin-top: 5.56vmin; /* 60px */
   width: 100%;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 const Image = styled.div`
   width: 59.26vmin; /* 640px */
   height: 37.04vmin; /* 400px */
   background-color: #080404;
+  @media (max-width: 768px) {
+    margin-top: 8vmin;
+  }
 `;
 const DescriptionContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 40.96vmin; /* 442.35px */
   align-self: flex-end;
+  @media (max-width: 768px) {
+    margin-top: 8vmin;
+    width: 59.26vmin;
+  }
 `;
 const NameContainer = styled.div`
   width: 100%;

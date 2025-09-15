@@ -44,6 +44,9 @@ const Title = styled.div`
   line-height: 1.4;
   letter-spacing: 0;
   text-align: center;
+  @media (max-width: 768px) {
+    margin-top: -32vmin;
+  }
 `;
 const Description1 = styled.div`
   font-family: "Pretendard";
@@ -55,6 +58,9 @@ const Description1 = styled.div`
   letter-spacing: 0;
   text-align: center;
   margin-top: 5.56vmin; /* 60px */
+  @media (max-width: 768px) {
+    margin-top: 8vmin;
+  }
 `;
 const Description2 = styled.div`
   font-family: "Pretendard";
@@ -66,4 +72,7 @@ const Description2 = styled.div`
   letter-spacing: 0;
   text-align: center;
   margin-top: 2.96vmin; /* 32px */
+  @media (max-width: 768px) {
+    margin-top: 6vmin;
+  }
 `;
