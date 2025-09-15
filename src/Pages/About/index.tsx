@@ -41,6 +41,8 @@ const AboutPage = () => {
     // 커스텀 휠 스냅 스크롤 로직
     const el = containerRef.current; // 스크롤 컨테이너 DOM
     if (!el) return; // DOM이 아직 없으면 종료
+
+    // 휠 이벤트 핸들러
     const onWheel = (e: WheelEvent) => {
       // 휠 이벤트 핸들러(캡처)
       e.preventDefault(); // 기본 스크롤 동작 차단
@@ -67,9 +69,73 @@ const AboutPage = () => {
         animatingRef.current = false; // ref 종료
       }, COOLDOWN_MS);
     };
-    el.addEventListener("wheel", onWheel, { passive: false }); // passive:false로 등록
+
+    // 터치 이벤트 핸들러 (모바일 스와이프 지원)
+    let touchStartY = 0;
+    let touchStartTime = 0;
+    let isScrolling = false;
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+      touchStartTime = Date.now();
+      isScrolling = false;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      // 터치 이동 중에는 기본 스크롤 동작을 차단
+      e.preventDefault();
+      isScrolling = true;
+    };
+
+    const onTouchEnd = (e: TouchEvent) => {
+      const touchEndY = e.changedTouches[0].clientY;
+      const touchEndTime = Date.now();
+      const deltaY = touchStartY - touchEndY;
+      const deltaTime = touchEndTime - touchStartTime;
+
+      // 스와이프 거리와 시간 체크 (최소 50px, 최대 500ms)
+      if (Math.abs(deltaY) < 50 || deltaTime > 500) return;
+
+      // 이미 스크롤이 시작된 경우 기본 동작 차단 시도하지 않음
+      if (!isScrolling) {
+        e.preventDefault();
+      }
+
+      const now = Date.now();
+      if (animatingRef.current || now - lastScrollAtRef.current < COOLDOWN_MS)
+        return; // 애니메이션 중이거나 쿨다운 중이면 무시
+
+      const sectionHeight = el.clientHeight;
+      const current = el.scrollTop;
+      const direction = deltaY > 0 ? 1 : -1; // 위로 스와이프(+1), 아래로 스와이프(-1)
+      const currentIndex = Math.round(current / sectionHeight);
+      const maxIndex = Math.ceil(el.scrollHeight / sectionHeight) - 1;
+      const targetIndex = Math.min(
+        Math.max(currentIndex + direction, 0),
+        maxIndex
+      );
+      const target = targetIndex * sectionHeight;
+
+      setAnimating(true);
+      animatingRef.current = true;
+      lastScrollAtRef.current = now;
+      el.scrollTo({ top: target, behavior: "smooth" });
+      window.setTimeout(() => {
+        setAnimating(false);
+        animatingRef.current = false;
+      }, COOLDOWN_MS);
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchmove", onTouchMove, { passive: false });
+    el.addEventListener("touchend", onTouchEnd, { passive: false });
+
     return () => {
-      el.removeEventListener("wheel", onWheel as EventListener); // 클린업
+      el.removeEventListener("wheel", onWheel as EventListener);
+      el.removeEventListener("touchstart", onTouchStart as EventListener);
+      el.removeEventListener("touchmove", onTouchMove as EventListener);
+      el.removeEventListener("touchend", onTouchEnd as EventListener);
     };
   }, [COOLDOWN_MS]); // 쿨다운 시간이 바뀌면 로직 재등록
   return (
