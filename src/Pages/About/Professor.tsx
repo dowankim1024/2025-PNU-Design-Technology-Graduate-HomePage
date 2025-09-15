@@ -57,6 +57,9 @@ const Title = styled.div`
   line-height: 1.4;
   letter-spacing: 0;
   margin-bottom: 7.41vmin; /* 80px */
+  @media (max-width: 768px) {
+    margin-top: -24vmin;
+  }
 `;
 
 const ProfessorsContainer = styled.div`
@@ -65,11 +68,22 @@ const ProfessorsContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12vmin;
+    row-gap: 8vmin;
+    width: fit-content;
+    max-width: 80vmin;
+  }
 `;
 const ProfessorContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  @media (max-width: 768px) {
+    align-items: center;
+  }
 `;
 const ProfessorImage = styled.img`
   width: 26.11vmin; /* 282px */
@@ -77,6 +91,10 @@ const ProfessorImage = styled.img`
   background-color: #080404;
   object-fit: cover;
   object-position: top;
+  @media (max-width: 768px) {
+    width: 32vmin;
+    height: 39.04vmin;
+  }
 `;
 const ProfessorName = styled.div`
   font-family: "Pretendard";
@@ -86,6 +104,9 @@ const ProfessorName = styled.div`
   line-height: 1.4;
   color: #080404;
   margin-top: 0.74vmin; /* 8px */
+  @media (max-width: 768px) {
+    font-size: 4vmin;
+  }
 `;
 const ProfessorDescription = styled.div`
   font-family: "Pretendard";
@@ -94,4 +115,8 @@ const ProfessorDescription = styled.div`
   font-weight: 400;
   line-height: 1.4;
   color: #080404;
+  @media (max-width: 768px) {
+    font-size: 3vmin;
+    text-align: center;
+  }
 `;
