@@ -122,6 +122,14 @@ const Container = styled.div`
   justify-content: center; /* 가로 중앙 정렬 */
   align-items: center;
   position: relative;
+
+  @media (max-width: 768px) {
+    transform: rotate(90deg);
+    transform-origin: center;
+    width: 100vh;
+    height: 100vw;
+    margin-top: -20vmin;
+  }
 `;
 const BrandImgWrapper = styled.div`
   position: relative;
@@ -135,6 +143,8 @@ const BrandImgBase = styled.img`
   height: 100%;
   object-fit: cover;
   display: block;
+  @media (max-width: 768px) {
+  }
 `;
 
 const BrandImgOverlay = styled.img<{ $active?: boolean }>`
@@ -265,6 +275,10 @@ const LogoImg = styled.img`
   margin-left: -62.8vmin; /* 403px */
   margin-top: 54.1vmin; /* 98px */
   object-fit: cover;
+  @media (max-width: 768px) {
+    margin-left: 62.8vmin;
+    margin-top: -54.1vmin;
+  }
 `;
 const Major = styled.div`
   position: absolute;
@@ -282,6 +296,11 @@ const Opening = styled.div`
   position: absolute;
   margin-top: -48.78vmin; /* 192px */
   margin-left: 70.52vmin; /* 1280px */
+  @media (max-width: 768px) {
+    rotate: -90deg;
+    margin-left: -80.52vmin;
+    margin-top: 50.78vmin;
+  }
 `;
 const OpeningText = styled.div`
   font-family: "Pretendard";
@@ -291,6 +310,9 @@ const OpeningText = styled.div`
   letter-spacing: 0%;
   text-align: right;
   color: #080404;
+  @media (max-width: 768px) {
+    text-align: left;
+  }
 `;
 const OpeningText2 = styled.div`
   font-family: "Pretendard";
@@ -300,6 +322,9 @@ const OpeningText2 = styled.div`
   letter-spacing: 0%;
   text-align: right;
   color: #080404;
+  @media (max-width: 768px) {
+    text-align: left;
+  }
 `;
 const Place = styled.div`
   position: absolute;
@@ -311,6 +336,9 @@ const Place = styled.div`
   letter-spacing: 0%;
   text-align: right;
   color: #080404;
+  @media (max-width: 768px) {
+    rotate: -90deg;
+  }
 `;
 
 const OtheImage = styled.img`
@@ -328,6 +356,11 @@ const TeamNameContainer = styled.div`
   gap: 0.37vmin; /* 4px */
   margin-top: 11.67vmin; /* 126px */
   margin-left: -45.5vmin; /* -490px */
+  @media (max-width: 768px) {
+    rotate: -90deg;
+    margin-left: -42vmin;
+    margin-top: 15.67vmin;
+  }
 `;
 const TeamName = styled.div`
   color: #fff;
