@@ -2,7 +2,6 @@ import { OpeningFilm } from "./OpeningFilm"; // OpeningFilm 섹션 컴포넌트 
 import { Main } from "./Main"; // 메인 섹션 컴포넌트 임포트
 import { Intro } from "./Intro"; // 인트로 섹션 컴포넌트 임포트
 import styled from "styled-components"; // styled-components 사용을 위한 임포트
-import { Footer } from "@/components/Footer"; // 푸터 컴포넌트 임포트
 import { Suspense, useEffect, useRef, useState } from "react"; // React 훅들 임포트
 import { MadeBy } from "./MadeBy"; // MadeBy 섹션 컴포넌트 임포트
 import Location from "./Location"; // Location 섹션 컴포넌트 임포트
@@ -10,6 +9,8 @@ import Professor from "./Professor";
 import { Reveal } from "@/components/common/Reveal";
 import SuspenseFallback from "@/components/common/SuspenseFallback";
 import ErrorBoundary from "@/components/common/ErrorBoundary";
+import { PageNumber } from "./PageNumber";
+import Scroll from "@/assets/Icons/ScrollIcon.webp";
 const AboutPage = () => {
   // About 페이지 최상위 컴포넌트 정의
   const containerRef = useRef<HTMLDivElement | null>(null); // 스크롤 컨테이너 DOM 참조
@@ -142,6 +143,10 @@ const AboutPage = () => {
     // JSX 렌더링 영역
     <ErrorBoundary>
       <Suspense fallback={<SuspenseFallback />}>
+        <PageNumberWrapper>
+          <PageNumber containerRef={containerRef} />
+        </PageNumberWrapper>
+        <ScrollWrapper src={Scroll} />
         <SnapWrapper ref={containerRef}>
           {" "}
           {/* 스크롤 컨테이너(헤더 제외 높이 영역) */}
@@ -187,11 +192,6 @@ const AboutPage = () => {
               <Professor />
             </Reveal>
           </Section>
-          <FooterSection>
-            {" "}
-            {/* 마지막: 푸터 영역(고정 높이) */}
-            <Footer /> {/* 전역 푸터 컴포넌트 */}
-          </FooterSection>
         </SnapWrapper>
       </Suspense>
     </ErrorBoundary>
@@ -223,16 +223,19 @@ const Section = styled.div`
   justify-content: center;
 `;
 
-/* 마지막 푸터 구간은 전 화면을 차지하지 않고 끝선에 붙도록 처리 */
-const FooterSection = styled.div`
-  /* 마지막 푸터 섹션 스타일 */
-  height: 20.83vw; /* 푸터 고정 높이(1920 기준 400px) */
-  scroll-snap-align: end; /* 컨테이너 하단에 스냅 */
-  position: relative; /* 내부 절대배치 기준 */
-  overflow: hidden; /* 넘침 숨김 */
-  isolation: isolate; /* 레이어 격리 */
+const PageNumberWrapper = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+const ScrollWrapper = styled.img`
+  width: 5.83vw; /* 112px */
+  height: 8.52vh; /* 92px */
+  position: fixed;
+  bottom: 3vw; /* 52px */
+  right: 7.65vw;
 
   @media (max-width: 768px) {
-    height: 190px; /* 모바일에서 충분한 높이 확보 */
+    display: none;
   }
 `;
