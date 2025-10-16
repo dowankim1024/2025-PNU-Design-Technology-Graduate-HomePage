@@ -4,7 +4,11 @@ import { getDatabase, ref, get } from "firebase/database";
 export interface DesignerCardData {
   name: string;
   projectName: string;
-  image: string;
+  image: {
+    after: string;
+    before: string;
+    sub: string;
+  };
 }
 
 type RawDesignerNode = {
@@ -16,7 +20,11 @@ type RawDesignerNode = {
     intro?: string;
     conceptTitle?: string;
     conceptDescription?: string;
-    image?: string;
+  };
+  Image?: {
+    after?: string;
+    before?: string;
+    sub?: string;
   };
   Poster?: {
     title?: string;
@@ -41,7 +49,11 @@ export async function fetchDesignerCards(): Promise<DesignerCardData[]> {
     const name = node?.designerInfo?.name ?? key;
     const projectName =
       node?.Poster?.title ?? node?.designerInfo?.conceptTitle ?? "";
-    const image = node?.designerInfo?.image ?? "";
+    const image = {
+      after: node?.Image?.after ?? "",
+      before: node?.Image?.before ?? "",
+      sub: node?.Image?.sub ?? "",
+    };
     return { name, projectName, image };
   });
 
