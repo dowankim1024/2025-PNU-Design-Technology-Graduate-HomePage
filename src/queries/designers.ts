@@ -24,7 +24,8 @@ export function useDesignerDetail(name: string) {
   >({
     queryKey: ["designer-detail", name],
     queryFn: () => fetchDesignerDetailByName(name),
-    staleTime: 60 * 1000,
+    staleTime: 5 * 60 * 1000, // 5분으로 증가
+    gcTime: 10 * 60 * 1000, // 10분간 메모리에 유지
   });
 }
 

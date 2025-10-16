@@ -25,15 +25,15 @@ const DesignersGridContent = () => {
 
 export const DesignersPage = () => {
   return (
-    <DesignersPageContainer>
-      <Title>DESIGNERS</Title>
-      <ErrorBoundary>
-        <Suspense fallback={<SuspenseFallback />}>
+    <ErrorBoundary>
+      <Suspense fallback={<SuspenseFallback />}>
+        <DesignersPageContainer>
+          <Title>DESIGNERS</Title>
           <DesignersGridContent />
-        </Suspense>
-      </ErrorBoundary>
-      <div style={{ height: "8.33vw" }}></div>
-    </DesignersPageContainer>
+          <div style={{ height: "8.33vw" }}></div>
+        </DesignersPageContainer>
+      </Suspense>
+    </ErrorBoundary>
   );
 };
 const DesignersPageContainer = styled.div`
