@@ -127,6 +127,7 @@ export async function fetchDesignerDetailByName(
 export interface TeamInfoRecord {
   TeamName: string;
   Description: string;
+  Explain: string;
   Concept: string;
   TeamMates: Record<string, string>;
   Initial?: string;

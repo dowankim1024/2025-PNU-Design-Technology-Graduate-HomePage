@@ -5,6 +5,7 @@ import { Suspense, useMemo } from "react";
 import { useDesignerCards } from "@/queries/designers";
 import SuspenseFallback from "@/components/common/SuspenseFallback";
 import ErrorBoundary from "@/components/common/ErrorBoundary";
+import { getLocalPersonImages } from "@/utils/localPersonImages";
 
 const DesignersGridContent = () => {
   const { data } = useDesignerCards();
@@ -16,7 +17,7 @@ const DesignersGridContent = () => {
           key={`${d.name}-${d.projectName}`}
           name={d.name}
           projectName={d.projectName}
-          image={d.image}
+          image={getLocalPersonImages(d.name)}
         />
       ))}
     </DesignerGrid>

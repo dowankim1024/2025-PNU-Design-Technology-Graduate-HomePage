@@ -5,7 +5,7 @@ import Plus from "@/assets/Icons/Plus.png";
 import { MainContainer } from "@/components/MainContainer";
 import { Concept } from "@/components/Concept";
 import { useNavigate } from "react-router-dom";
-import { getPersonImageByName } from "@/utils/personImages";
+import { getLocalPersonImage } from "@/utils/localPersonImages";
 import { useState } from "react";
 
 interface DesignerInfoProps {
@@ -16,11 +16,6 @@ interface DesignerInfoProps {
   intro: string;
   conceptTitle: string;
   conceptDescription: string;
-  image?: {
-    after: string;
-    before: string;
-    sub: string;
-  };
 }
 
 export const DesignerInfo = ({
@@ -31,7 +26,6 @@ export const DesignerInfo = ({
   intro,
   conceptTitle,
   conceptDescription,
-  image,
 }: DesignerInfoProps) => {
   const navigate = useNavigate();
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -47,7 +41,7 @@ export const DesignerInfo = ({
         <ContentSection>
           <LeftSection>
             <DesignerImg
-              src={image?.sub || getPersonImageByName(name)}
+              src={getLocalPersonImage(name)}
               alt="designerImg"
               loading="eager"
               decoding="sync"

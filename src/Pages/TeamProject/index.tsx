@@ -24,8 +24,9 @@ const TeamContent = ({ teamKey }: { teamKey: string }) => {
           teamName={team.TeamName}
           teammates={team.TeamMates}
           description={team.Description}
+          teamKey={teamKey}
         />
-        <Concept title={team.Concept} description={team.Description} />
+        <Concept title={team.Concept} description={team.Explain} />
         <Film
           title={team.TeamFilm?.Title ?? team.TeamVideo?.Title ?? team.TeamName}
           description={

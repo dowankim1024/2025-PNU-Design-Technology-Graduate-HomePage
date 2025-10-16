@@ -1,30 +1,42 @@
 import styled from "styled-components";
-import WebTeam from "@/assets/TeamImage/WebTeam.png";
 import Plus from "@/assets/Icons/Plus.png";
+import { getTeamImage, getThemeTeamImage } from "@/utils/teamImages";
+import { useNavigate } from "react-router-dom";
 
 interface TeamInfoProps {
   teamName: string;
   teammates: { [key: string]: string };
   description: string;
+  teamKey: string;
 }
 
 export const TeamInfo = ({
   teamName,
   teammates,
   description,
+  teamKey,
 }: TeamInfoProps) => {
+  const navigate = useNavigate();
+  const handleGoTeammate = (name: string) => {
+    navigate(`/designer?name=${name}`);
+  };
   return (
     <TeamProjectMain>
       <LeftSection>
-        <TeamImg />
-        <TeamImageSource src={WebTeam} alt="Team Image" />
+        <TeamImg src={getTeamImage(teamKey)} alt={`${teamName} 팀 이미지`} />
+        <TeamImageSource
+          src={getThemeTeamImage(teamKey)}
+          alt={`${teamName} 테마 이미지`}
+        />
         <PlusButton src={Plus} alt="Plus Button" />
       </LeftSection>
       <TeamInfoDescription>
         <TeamName>{teamName}</TeamName>
         <Teammates>
           {Object.entries(teammates).map(([key, value]) => (
-            <Teammate key={key}>{value}</Teammate>
+            <Teammate key={key} onClick={() => handleGoTeammate(value)}>
+              {value}
+            </Teammate>
           ))}
         </Teammates>
         <Description>{description}</Description>
@@ -45,10 +57,11 @@ const LeftSection = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const TeamImg = styled.div`
+const TeamImg = styled.img`
   width: 33.23vw; /* 638px / 1920px * 100 = 33.23% */
   height: 20.73vw; /* 398px / 1920px * 100 = 20.73% */
-  background-color: #f0f0f0;
+  object-fit: cover;
+  object-position: center;
   align-self: flex-start;
   @media (max-width: 768px) {
     width: 212.7px;
@@ -101,6 +114,7 @@ const Teammate = styled.div`
   text-underline-offset: 0.16vw; /* 3px / 1920px * 100 = 0.16% */
   text-decoration-thickness: 0;
   text-decoration-color: #080404;
+  cursor: pointer;
   @media (max-width: 768px) {
     font-size: 1.75vw; /* 6px / 342px * 100 = 1.75% */
   }
