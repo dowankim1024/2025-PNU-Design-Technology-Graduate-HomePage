@@ -1,13 +1,13 @@
 import { Reveal } from "@/components/common/Reveal";
 import styled from "styled-components";
-
+import GroupPhoto from "@/assets/PersonImage/homeAll/단체.webp";
 export const MadeBy = () => {
   return (
     <Container>
       <Title>MADE BY</Title>
       <ContentsContainer>
         <Reveal delayMs={300}>
-          <Image />
+          <Image src={GroupPhoto} alt="졸업전시 팀 단체사진" />
         </Reveal>
         <Reveal delayMs={600}>
           <DescriptionContainer>
@@ -95,10 +95,11 @@ const ContentsContainer = styled.div`
     align-items: center;
   }
 `;
-const Image = styled.div`
+const Image = styled.img`
   width: 59.26vmin; /* 640px */
   height: 37.04vmin; /* 400px */
-  background-color: #080404;
+  object-fit: cover;
+  object-position: center;
   @media (max-width: 768px) {
     margin-top: 8vmin;
   }

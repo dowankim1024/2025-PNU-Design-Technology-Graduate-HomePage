@@ -26,14 +26,10 @@ export const Main = () => {
   return (
     <Container>
       <OtheImage src={Other} alt="other" />
-      <BrandImgWrapper onClick={() => goTo("Brand")}>
-        <BrandImgBase src={Brand} alt="brand" />
-        <BrandImgOverlay
-          src={BrandHover}
-          alt="brand hover"
-          $active={isBrandTextHover}
-        />
-      </BrandImgWrapper>
+      <DPImgWrapper onClick={() => goTo("DP")}>
+        <DPImgBase src={DP} alt="dp" />
+        <DPImgOverlay src={DPHover} alt="dp hover" $active={isDpTextHover} />
+      </DPImgWrapper>
       <AllImg src={All} alt="all"></AllImg>
       <TeamNameContainer>
         <TeamName
@@ -74,10 +70,15 @@ export const Main = () => {
             $active={isVideoTextHover}
           />
         </VideoImgWrapper>
-        <DPImgWrapper onClick={() => goTo("DP")}>
-          <DPImgBase src={DP} alt="dp" />
-          <DPImgOverlay src={DPHover} alt="dp hover" $active={isDpTextHover} />
-        </DPImgWrapper>
+
+        <BrandImgWrapper onClick={() => goTo("Brand")}>
+          <BrandImgBase src={Brand} alt="brand" />
+          <BrandImgOverlay
+            src={BrandHover}
+            alt="brand hover"
+            $active={isBrandTextHover}
+          />
+        </BrandImgWrapper>
       </VideoDP>
       <WebImgWrapper onClick={() => goTo("Web")}>
         <WebImgBase src={Web} alt="web" />
@@ -131,14 +132,14 @@ const Container = styled.div`
     margin-top: -20vmin;
   }
 `;
-const BrandImgWrapper = styled.div`
+const DPImgWrapper = styled.div`
   position: relative;
   width: 24.63vmin; /* 266px */
   height: 32.78vmin; /* 354px */
   object-fit: cover;
   cursor: pointer;
 `;
-const BrandImgBase = styled.img`
+const DPImgBase = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -147,7 +148,7 @@ const BrandImgBase = styled.img`
   }
 `;
 
-const BrandImgOverlay = styled.img<{ $active?: boolean }>`
+const DPImgOverlay = styled.img<{ $active?: boolean }>`
   position: absolute;
   top: 50%;
   left: 44%;
@@ -159,7 +160,7 @@ const BrandImgOverlay = styled.img<{ $active?: boolean }>`
   transition: opacity 400ms ease-in-out;
   pointer-events: none;
   z-index: 10000;
-  ${BrandImgWrapper}:hover & {
+  ${DPImgWrapper}:hover & {
     opacity: 1;
   }
 `;
@@ -237,7 +238,7 @@ const VideoImgOverlay = styled.img<{ $active?: boolean }>`
     opacity: 1;
   }
 `;
-const DPImgWrapper = styled.div`
+const BrandImgWrapper = styled.div`
   position: relative;
   width: 32.78vmin; /* 354px */
   height: 24.63vmin; /* 266px */
@@ -246,13 +247,13 @@ const DPImgWrapper = styled.div`
   object-fit: cover;
   cursor: pointer;
 `;
-const DPImgBase = styled.img`
+const BrandImgBase = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 `;
-const DPImgOverlay = styled.img<{ $active?: boolean }>`
+const BrandImgOverlay = styled.img<{ $active?: boolean }>`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -263,7 +264,7 @@ const DPImgOverlay = styled.img<{ $active?: boolean }>`
   opacity: ${({ $active }) => ($active ? 1 : 0)};
   transition: opacity 400ms ease-in-out;
   z-index: 10000;
-  ${DPImgWrapper}:hover & {
+  ${BrandImgWrapper}:hover & {
     opacity: 1;
   }
 `;

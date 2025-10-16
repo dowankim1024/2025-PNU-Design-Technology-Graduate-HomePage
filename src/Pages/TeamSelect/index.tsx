@@ -6,6 +6,7 @@ import { useTeamInfo } from "@/queries/designers";
 import ErrorBoundary from "@/components/common/ErrorBoundary";
 import SuspenseFallback from "@/components/common/SuspenseFallback";
 import { Suspense, useEffect, useMemo, useState } from "react";
+import { getTeamImage } from "@/utils/teamImages";
 
 export const TeamSelect = () => {
   return (
@@ -37,6 +38,9 @@ const TeamSelectContent = () => {
     const qs = new URLSearchParams({ team: key });
     navigate(`/team-detail?${qs.toString()}`);
   };
+  const handleGoTeammate = (name: string) => {
+    navigate(`/designer?name=${name}`);
+  };
   const selected = selectedKey ? data?.[selectedKey] : undefined;
   const teammates = selected?.TeamMates
     ? Object.values(selected.TeamMates)
@@ -44,13 +48,19 @@ const TeamSelectContent = () => {
   return (
     <MainContainer>
       <TeamSelectContainer>
-        <TeamImage onClick={() => selectedKey && handleGo(selectedKey)} />
+        <TeamImage
+          src={getTeamImage(selectedKey)}
+          alt={`${selected?.TeamName || "Team"} 이미지`}
+          onClick={() => selectedKey && handleGo(selectedKey)}
+        />
         <TeamInfo>
           <TeamNameMateContainer>
             <TeamName>{selected?.TeamName ?? "Team Select"}</TeamName>
             <TeammateContainer>
               {teammates.map(name => (
-                <Teammate key={name}>{name}</Teammate>
+                <Teammate key={name} onClick={() => handleGoTeammate(name)}>
+                  {name}
+                </Teammate>
               ))}
             </TeammateContainer>
           </TeamNameMateContainer>
@@ -114,10 +124,11 @@ const TeamSelectContainer = styled.div`
     align-items: center;
   }
 `;
-const TeamImage = styled.div`
+const TeamImage = styled.img`
   width: 50.83vw; /* 976px / 1920px * 100 = 50.83% */
   height: 31.35vw; /* 602px / 1920px * 100 = 31.35% */
-  background-color: #f0f0f0;
+  object-fit: cover;
+  object-position: center;
   cursor: pointer;
   @media (max-width: 768px) {
     width: 325.3px;
@@ -188,6 +199,7 @@ const Teammate = styled.div`
   letter-spacing: 0;
   color: #080808;
   white-space: nowrap;
+  cursor: pointer;
   @media (max-width: 768px) {
     writing-mode: horizontal-tb;
     font-size: 12px;
