@@ -70,6 +70,11 @@ export interface DesignerDetailData {
     conceptDescription: string;
     team: string;
   };
+  image: {
+    after: string;
+    before: string;
+    sub: string;
+  };
   poster: {
     title: string;
     description: string;
@@ -99,6 +104,11 @@ export async function fetchDesignerDetailByName(
       conceptTitle: node.designerInfo.conceptTitle ?? "",
       conceptDescription: node.designerInfo.conceptDescription ?? "",
       team: node.designerInfo.team ?? "",
+    },
+    image: {
+      after: node?.Image?.after ?? "",
+      before: node?.Image?.before ?? "",
+      sub: node?.Image?.sub ?? "",
     },
     poster: {
       title: node.Poster?.title ?? "",

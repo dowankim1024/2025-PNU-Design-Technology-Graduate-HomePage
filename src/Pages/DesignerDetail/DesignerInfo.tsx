@@ -6,6 +6,7 @@ import { MainContainer } from "@/components/MainContainer";
 import { Concept } from "@/components/Concept";
 import { useNavigate } from "react-router-dom";
 import { getPersonImageByName } from "@/utils/personImages";
+import { useState } from "react";
 
 interface DesignerInfoProps {
   team: string;
@@ -15,6 +16,11 @@ interface DesignerInfoProps {
   intro: string;
   conceptTitle: string;
   conceptDescription: string;
+  image?: {
+    after: string;
+    before: string;
+    sub: string;
+  };
 }
 
 export const DesignerInfo = ({
@@ -25,18 +31,29 @@ export const DesignerInfo = ({
   intro,
   conceptTitle,
   conceptDescription,
+  image,
 }: DesignerInfoProps) => {
   const navigate = useNavigate();
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   const goTo = (team: string) => {
     navigate(`/team-detail?team=${team}`);
   };
+
   return (
     <DesignerInfoContainer>
       <Title>DESIGNER</Title>
       <MainContainer>
         <ContentSection>
           <LeftSection>
-            <DesignerImg src={getPersonImageByName(name)} alt="designerImg" />
+            <DesignerImg
+              src={image?.sub || getPersonImageByName(name)}
+              alt="designerImg"
+              loading="eager"
+              decoding="sync"
+              onLoad={() => setImageLoaded(true)}
+              $loaded={imageLoaded}
+            />
             <TeamProjectButton
               src={TeamProjectWatch}
               alt="Team Project Watch"
@@ -81,13 +98,15 @@ const LeftSection = styled.div`
   flex-direction: column;
 `;
 
-const DesignerImg = styled.img`
+const DesignerImg = styled.img<{ $loaded: boolean }>`
   width: 18.75vw; /* 360px / 1920px * 100 = 18.75% */
   height: 23.44vw; /* 450px / 1920px * 100 = 23.44% */
   background-color: #f5f5f5;
   z-index: 2;
   object-fit: cover;
   object-position: top;
+  opacity: ${({ $loaded }) => ($loaded ? 1 : 0)};
+  transition: opacity 0.3s ease;
   @media (max-width: 768px) {
     width: 180px;
     height: 225px;
