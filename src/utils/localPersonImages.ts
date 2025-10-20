@@ -48,18 +48,38 @@ Object.entries(subModules).forEach(([path, url]) => {
 // 기본 이미지 (첫 번째 이미지를 기본값으로 사용)
 const defaultImage = Object.values(subImageMap)[0] || "";
 
+// 한국어 이름 → 영어 파일명 매핑
+const NAME_TO_FILE: Record<string, string> = {
+  김도완: "kim_dowan",
+  김가빈: "kim_gabin",
+  박세은: "park_seeun",
+  정일후: "jung_ilhoo",
+  고영은: "go_yeongeun",
+  김진혁: "kim_jinhyeok",
+  남현서: "nam_hyeonseo",
+  천후민: "cheon_hoomin",
+  공태우: "gong_taewoo",
+  김예솔: "kim_yesol",
+  김관욱: "kim_gwanuk",
+  최보윤: "choi_boyoon",
+  박정훈: "park_jeonghun",
+  김민채: "kim_minchae",
+};
+
 // 디자이너 이름으로 로컬 이미지 객체를 반환하는 함수
 export function getLocalPersonImages(name: string) {
+  const fileName = NAME_TO_FILE[name] || name;
   return {
-    after: afterImageMap[name] || defaultImage,
-    before: beforeImageMap[name] || defaultImage,
-    sub: subImageMap[name] || defaultImage,
+    after: afterImageMap[fileName] || defaultImage,
+    before: beforeImageMap[fileName] || defaultImage,
+    sub: subImageMap[fileName] || defaultImage,
   };
 }
 
 // 디자이너 이름으로 sub 이미지만 반환하는 함수 (DesignerInfo에서 사용)
 export function getLocalPersonImage(name: string): string {
-  return subImageMap[name] || defaultImage;
+  const fileName = NAME_TO_FILE[name] || name;
+  return subImageMap[fileName] || defaultImage;
 }
 
 // 모든 디자이너의 이미지 데이터를 반환하는 함수

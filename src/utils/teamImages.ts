@@ -23,10 +23,10 @@ Object.entries(teamModules).forEach(([path, url]) => {
 
   // 파일명을 팀 키로 매핑
   let teamKey = "";
-  if (fileName === "디피") teamKey = "DP";
-  else if (fileName === "브랜딩") teamKey = "Brand";
-  else if (fileName === "영상") teamKey = "Video";
-  else if (fileName === "웹") teamKey = "Web";
+  if (fileName === "dp") teamKey = "DP";
+  else if (fileName === "branding") teamKey = "Brand";
+  else if (fileName === "video") teamKey = "Video";
+  else if (fileName === "web") teamKey = "Web";
 
   if (teamKey) {
     teamImageMap[teamKey] = url as string;

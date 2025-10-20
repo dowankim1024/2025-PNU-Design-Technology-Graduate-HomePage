@@ -1,6 +1,6 @@
 import { Reveal } from "@/components/common/Reveal";
 import styled from "styled-components";
-import GroupPhoto from "@/assets/PersonImage/homeAll/단체.webp";
+import GroupPhoto from "@/assets/PersonImage/homeAll/group_photo.webp";
 export const MadeBy = () => {
   return (
     <Container>

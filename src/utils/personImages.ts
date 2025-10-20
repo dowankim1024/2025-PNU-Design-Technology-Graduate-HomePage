@@ -17,20 +17,20 @@ Object.entries(modules).forEach(([path, url]) => {
 
 // 한국어 이름 → 파일 키 별칭 테이블(필요 시 추가)
 const ALIASES: Record<string, string> = {
-  김도완: "kimdowan",
-  김가빈: "kimgabin",
-  박세은: "parkseeun",
-  정일후: "jeongilho",
-  고영은: "goyoungeun",
-  김진혁: "kimjinhyeok",
-  남현서: "namhyeonse",
-  천후민: "cheonhumin",
-  공태우: "gongtaewoo",
-  김예솔: "kimyesol",
-  김관욱: "kimkwanwook",
-  최보윤: "choiboyun",
-  박정훈: "bakjeonghun",
-  김민채: "kimminchae",
+  김도완: "kim_dowan",
+  김가빈: "kim_gabin",
+  박세은: "park_seeun",
+  정일후: "jung_ilhoo",
+  고영은: "go_yeongeun",
+  김진혁: "kim_jinhyeok",
+  남현서: "nam_hyeonseo",
+  천후민: "cheon_hoomin",
+  공태우: "gong_taewoo",
+  김예솔: "kim_yesol",
+  김관욱: "kim_gwanuk",
+  최보윤: "choi_boyoon",
+  박정훈: "park_jeonghun",
+  김민채: "kim_minchae",
 };
 
 function normalize(name: string): string {
