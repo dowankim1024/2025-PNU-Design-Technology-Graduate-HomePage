@@ -5,6 +5,7 @@ interface InterProps {
   description: string;
   levelDescription: string[];
   levelImages: string[];
+  interImage: string;
 }
 
 export const Inter = ({
@@ -12,11 +13,12 @@ export const Inter = ({
   description,
   levelDescription,
   levelImages,
+  interImage,
 }: InterProps) => {
   return (
     <Container>
       <InterContainer>
-        <InterImage />
+        <InterImage src={interImage} alt="Interaction Art" />
         <DescriptionContainer>
           <InterDescription>
             <InteractionArt>INTERACTION ART</InteractionArt>
@@ -81,10 +83,10 @@ const InterContainer = styled.div`
     align-items: flex-end;
   }
 `;
-const InterImage = styled.div`
+const InterImage = styled.img`
   width: 20.05vw; /* 385px / 1920px * 100 = 20.05% */
   height: 28.33vw; /* 544px / 1920px * 100 = 28.33% */
-  background-color: #f0f0f0;
+  object-fit: cover;
   flex-shrink: 0;
   @media (max-width: 768px) {
     width: 180px;

@@ -35,6 +35,7 @@ const TeamContent = ({ teamKey }: { teamKey: string }) => {
             team.TeamVideo?.Description ??
             team.Description
           }
+          teamKey={teamKey}
         />
         <Inter
           title={team.TeamInter?.Title ?? team.TeamName}
@@ -42,6 +43,7 @@ const TeamContent = ({ teamKey }: { teamKey: string }) => {
           levelDescription={(team.TeamInter?.LevelDescription ?? []).filter(
             (v): v is string => !!v
           )}
+          teamKey={teamKey}
         />
       </MainContainer>
       <ListSelectBox

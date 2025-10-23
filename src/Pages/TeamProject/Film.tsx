@@ -1,11 +1,32 @@
 import styled from "styled-components";
+import BrandVideoImage from "../../assets/Video_team/Brand.png";
+import DPVideoImage from "../../assets/Video_team/DP.png";
+import VideoVideoImage from "../../assets/Video_team/Video.png";
+import WebVideoImage from "../../assets/Video_team/Web.png";
 
 interface FilmProps {
   title: string;
   description: string;
+  teamKey: string;
 }
 
-export const Film = ({ title, description }: FilmProps) => {
+export const Film = ({ title, description, teamKey }: FilmProps) => {
+  // teamKey에 따라 해당하는 비디오 이미지 선택
+  const getVideoImage = (teamKey: string) => {
+    switch (teamKey.toLowerCase()) {
+      case "web":
+        return WebVideoImage;
+      case "brand":
+        return BrandVideoImage;
+      case "dp":
+        return DPVideoImage;
+      case "video":
+        return VideoVideoImage;
+      default:
+        return WebVideoImage; // 기본값
+    }
+  };
+
   return (
     <FilmSection>
       <FilmDescription>
@@ -13,7 +34,7 @@ export const Film = ({ title, description }: FilmProps) => {
         <Title>{title}</Title>
         <Description>{description}</Description>
       </FilmDescription>
-      <FilmImage />
+      <FilmImage src={getVideoImage(teamKey)} alt={`${teamKey} Video`} />
     </FilmSection>
   );
 };
@@ -31,11 +52,11 @@ const FilmSection = styled.div`
     margin-bottom: 60px;
   }
 `;
-const FilmImage = styled.div`
+const FilmImage = styled.img`
   width: 33.23vw; /* 638px / 1920px * 100 = 33.23% */
   height: 20.73vw; /* 398px / 1920px * 100 = 20.73% */
   aspect-ratio: 638 / 398; /* 가로:세로 비율 고정 */
-  background-color: #f0f0f0;
+  object-fit: cover;
   @media (max-width: 768px) {
     width: 100%;
     height: auto; /* aspect-ratio가 높이를 계산 */
