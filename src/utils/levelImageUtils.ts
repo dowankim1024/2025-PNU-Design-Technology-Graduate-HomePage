@@ -30,3 +30,13 @@ export function generateLevelImagePaths(designerName: string): string[] {
     `/src/assets/levelImage_personal/${englishName}_3.png`,
   ];
 }
+
+export function generateInterImagePath(designerName: string): string {
+  const englishName = nameToEnglishMap[designerName];
+  if (!englishName) {
+    console.warn(`No English name mapping found for: ${designerName}`);
+    return "";
+  }
+
+  return `/src/assets/InterImage_personal/${englishName}.png`;
+}

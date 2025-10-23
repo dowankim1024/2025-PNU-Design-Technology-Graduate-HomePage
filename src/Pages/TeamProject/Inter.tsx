@@ -1,19 +1,111 @@
 import styled from "styled-components";
+import BrandImage from "../../assets/Inter_Team/Brand.png";
+import DPImage from "../../assets/Inter_Team/DP.png";
+import VideoImage from "../../assets/Inter_Team/Video.png";
+import WebImage from "../../assets/Inter_Team/Web.png";
+
+// Level Images
+import BrandLevel1 from "../../assets/levelImage_team/brand_1.png";
+import BrandLevel2 from "../../assets/levelImage_team/brand_2.png";
+import BrandLevel3 from "../../assets/levelImage_team/brand_3.png";
+import DPLevel1 from "../../assets/levelImage_team/dp_1.png";
+import DPLevel2 from "../../assets/levelImage_team/dp_2.png";
+import DPLevel3 from "../../assets/levelImage_team/dp_3.png";
+import VideoLevel1 from "../../assets/levelImage_team/video_1.png";
+import VideoLevel2 from "../../assets/levelImage_team/video_2.png";
+import VideoLevel3 from "../../assets/levelImage_team/video_3.png";
+import WebLevel1 from "../../assets/levelImage_team/web_1.png";
+import WebLevel2 from "../../assets/levelImage_team/web_2.png";
+import WebLevel3 from "../../assets/levelImage_team/web_3.png";
 
 interface InterProps {
   title: string;
   description: string;
   levelDescription: string[];
+  teamKey: string;
 }
 
-export const Inter = ({ title, description, levelDescription }: InterProps) => {
+export const Inter = ({
+  title,
+  description,
+  levelDescription,
+  teamKey,
+}: InterProps) => {
   // levelDescription이 비어있거나 undefined일 때 기본값 제공
   const safeLevelDescription = levelDescription || [];
+
+  // teamKey에 따라 해당하는 이미지 선택
+  const getTeamImage = (teamKey: string) => {
+    switch (teamKey.toLowerCase()) {
+      case "web":
+        return WebImage;
+      case "brand":
+        return BrandImage;
+      case "dp":
+        return DPImage;
+      case "video":
+        return VideoImage;
+      default:
+        return WebImage; // 기본값
+    }
+  };
+
+  // teamKey와 level에 따라 레벨 이미지 선택
+  const getLevelImage = (teamKey: string, level: number) => {
+    switch (teamKey.toLowerCase()) {
+      case "web":
+        switch (level) {
+          case 1:
+            return WebLevel1;
+          case 2:
+            return WebLevel2;
+          case 3:
+            return WebLevel3;
+          default:
+            return WebLevel1;
+        }
+      case "brand":
+        switch (level) {
+          case 1:
+            return BrandLevel1;
+          case 2:
+            return BrandLevel2;
+          case 3:
+            return BrandLevel3;
+          default:
+            return BrandLevel1;
+        }
+      case "dp":
+        switch (level) {
+          case 1:
+            return DPLevel1;
+          case 2:
+            return DPLevel2;
+          case 3:
+            return DPLevel3;
+          default:
+            return DPLevel1;
+        }
+      case "video":
+        switch (level) {
+          case 1:
+            return VideoLevel1;
+          case 2:
+            return VideoLevel2;
+          case 3:
+            return VideoLevel3;
+          default:
+            return VideoLevel1;
+        }
+      default:
+        return WebLevel1; // 기본값
+    }
+  };
 
   return (
     <Container>
       <InterContainer>
-        <InterImage />
+        <InterImage src={getTeamImage(teamKey)} alt={teamKey} />
         <DescriptionContainer>
           <InterDescription>
             <InteractionArt>INTERACTION ART</InteractionArt>
@@ -22,19 +114,28 @@ export const Inter = ({ title, description, levelDescription }: InterProps) => {
           </InterDescription>
           <LevelSection>
             <LevelContainer>
-              <LevelImage />
+              <LevelImage
+                src={getLevelImage(teamKey, 1)}
+                alt={`${teamKey} Level 1`}
+              />
               <LevelDescription>
                 {safeLevelDescription[0] || ""}
               </LevelDescription>
             </LevelContainer>
             <LevelContainer>
-              <LevelImage />
+              <LevelImage
+                src={getLevelImage(teamKey, 2)}
+                alt={`${teamKey} Level 2`}
+              />
               <LevelDescription>
                 {safeLevelDescription[1] || ""}
               </LevelDescription>
             </LevelContainer>
             <LevelContainer>
-              <LevelImage />
+              <LevelImage
+                src={getLevelImage(teamKey, 3)}
+                alt={`${teamKey} Level 3`}
+              />
               <LevelDescription>
                 {safeLevelDescription[2] || ""}
               </LevelDescription>
@@ -44,15 +145,24 @@ export const Inter = ({ title, description, levelDescription }: InterProps) => {
       </InterContainer>
       <MobileInterContainer>
         <LevelContainer>
-          <LevelImage />
+          <LevelImage
+            src={getLevelImage(teamKey, 1)}
+            alt={`${teamKey} Level 1`}
+          />
           <LevelDescription>{safeLevelDescription[0] || ""}</LevelDescription>
         </LevelContainer>
         <LevelContainer>
-          <LevelImage />
+          <LevelImage
+            src={getLevelImage(teamKey, 2)}
+            alt={`${teamKey} Level 2`}
+          />
           <LevelDescription>{safeLevelDescription[1] || ""}</LevelDescription>
         </LevelContainer>
         <LevelContainer>
-          <LevelImage />
+          <LevelImage
+            src={getLevelImage(teamKey, 3)}
+            alt={`${teamKey} Level 3`}
+          />
           <LevelDescription>{safeLevelDescription[2] || ""}</LevelDescription>
         </LevelContainer>
       </MobileInterContainer>
@@ -84,10 +194,10 @@ const InterContainer = styled.div`
     align-items: flex-end;
   }
 `;
-const InterImage = styled.div`
+const InterImage = styled.img`
   width: 20.05vw; /* 385px / 1920px * 100 = 20.05% */
   height: 28.33vw; /* 544px / 1920px * 100 = 28.33% */
-  background-color: #f0f0f0;
+  object-fit: cover;
   flex-shrink: 0;
   min-width: 20.05vw;
   @media (max-width: 768px) {
@@ -162,10 +272,10 @@ const LevelContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const LevelImage = styled.div`
+const LevelImage = styled.img`
   width: 13.02vw; /* 250px / 1920px * 100 = 13.02% */
   height: 8.13vw; /* 156px / 1920px * 100 = 8.13% */
-  background-color: #f0f0f0;
+  object-fit: cover;
   margin-bottom: 0.42vw; /* 8px / 1920px * 100 = 0.42% */
   flex-shrink: 0;
   min-width: 13.02vw;

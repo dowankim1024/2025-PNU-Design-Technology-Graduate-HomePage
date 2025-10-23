@@ -34,6 +34,7 @@ const DesignerDetailContent = ({ name }: { name: string }) => {
             description={data.inter.description}
             levelDescription={data.inter.levelDescription}
             levelImages={data.inter.levelImages}
+            interImage={data.inter.interImage}
           />
         </>
       )}
