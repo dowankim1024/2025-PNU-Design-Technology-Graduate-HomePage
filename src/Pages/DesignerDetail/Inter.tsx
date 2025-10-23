@@ -4,9 +4,15 @@ interface InterProps {
   title: string;
   description: string;
   levelDescription: string[];
+  levelImages: string[];
 }
 
-export const Inter = ({ title, description, levelDescription }: InterProps) => {
+export const Inter = ({
+  title,
+  description,
+  levelDescription,
+  levelImages,
+}: InterProps) => {
   return (
     <Container>
       <InterContainer>
@@ -19,15 +25,15 @@ export const Inter = ({ title, description, levelDescription }: InterProps) => {
           </InterDescription>
           <LevelSection>
             <LevelContainer>
-              <LevelImage />
+              <LevelImage src={levelImages[0]} alt="Level 1" />
               <LevelDescription>{levelDescription[0]}</LevelDescription>
             </LevelContainer>
             <LevelContainer>
-              <LevelImage />
+              <LevelImage src={levelImages[1]} alt="Level 2" />
               <LevelDescription>{levelDescription[1]}</LevelDescription>
             </LevelContainer>
             <LevelContainer>
-              <LevelImage />
+              <LevelImage src={levelImages[2]} alt="Level 3" />
               <LevelDescription>{levelDescription[2]}</LevelDescription>
             </LevelContainer>
           </LevelSection>
@@ -35,15 +41,15 @@ export const Inter = ({ title, description, levelDescription }: InterProps) => {
       </InterContainer>
       <MobileInterContainer>
         <LevelContainer>
-          <LevelImage />
+          <LevelImage src={levelImages[0]} alt="Level 1" />
           <LevelDescription>{levelDescription[0]}</LevelDescription>
         </LevelContainer>
         <LevelContainer>
-          <LevelImage />
+          <LevelImage src={levelImages[1]} alt="Level 2" />
           <LevelDescription>{levelDescription[1]}</LevelDescription>
         </LevelContainer>
         <LevelContainer>
-          <LevelImage />
+          <LevelImage src={levelImages[2]} alt="Level 3" />
           <LevelDescription>{levelDescription[2]}</LevelDescription>
         </LevelContainer>
       </MobileInterContainer>
@@ -61,25 +67,25 @@ const Container = styled.div`
 `;
 const InterContainer = styled.div`
   width: 100%;
-  height: 28.33vw; /* 544px / 1920px * 100 = 28.33% */
   padding: 0 18.75vw; /* 360px / 1920px * 100 = 18.75% */
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
   margin-bottom: 8.33vw; /* 160px / 1920px * 100 = 8.33% */
   @media (max-width: 768px) {
     padding: 0 24px;
-    height: 100%;
     gap: 12px;
     margin-bottom: 12px;
+    align-items: flex-end;
   }
 `;
 const InterImage = styled.div`
   width: 20.05vw; /* 385px / 1920px * 100 = 20.05% */
   height: 28.33vw; /* 544px / 1920px * 100 = 28.33% */
   background-color: #f0f0f0;
+  flex-shrink: 0;
   @media (max-width: 768px) {
     width: 180px;
     height: 280px;
@@ -89,17 +95,16 @@ const InterImage = styled.div`
 const DescriptionContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 9.2vw;
   @media (max-width: 768px) {
     align-items: flex-end;
   }
 `;
 const InterDescription = styled.div`
   width: 40.78vw; /* 783px / 1920px * 100 = 40.78% */
-  height: 8.02vw; /* 154px / 1920px * 100 = 8.02% */
   margin-bottom: 1.67vw; /* 32px / 1920px * 100 = 1.67% */
   @media (max-width: 768px) {
     width: 100%;
-    height: 100%;
     margin-bottom: 0px;
   }
 `;
@@ -142,7 +147,8 @@ const LevelSection = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
+  margin-top: 0;
   @media (max-width: 768px) {
     display: none; /* 모바일에서는 레벨 섹션 숨김 */
   }
@@ -151,10 +157,10 @@ const LevelContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const LevelImage = styled.div`
+const LevelImage = styled.img`
   width: 13.02vw; /* 250px / 1920px * 100 = 13.02% */
   height: 8.13vw; /* 156px / 1920px * 100 = 8.13% */
-  background-color: #f0f0f0;
+  object-fit: cover;
   margin-bottom: 0.42vw; /* 8px / 1920px * 100 = 0.42% */
   @media (max-width: 768px) {
     width: 27.5vmin;
@@ -162,6 +168,7 @@ const LevelImage = styled.div`
   }
 `;
 const LevelDescription = styled.div`
+  width: 13.02vw;
   font-family: Pretendard;
   font-weight: 700;
   font-size: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
@@ -171,6 +178,7 @@ const LevelDescription = styled.div`
   @media (max-width: 768px) {
     font-size: 8px;
     align-self: center;
+    width: 27.5vmin;
   }
 `;
 const MobileInterContainer = styled.div`

@@ -75,12 +75,13 @@ const InterContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
   margin-bottom: 8.33vw; /* 160px / 1920px * 100 = 8.33% */
   @media (max-width: 768px) {
     height: 100%;
     gap: 12px;
     margin-bottom: 12px;
+    align-items: flex-end;
   }
 `;
 const InterImage = styled.div`
@@ -98,6 +99,7 @@ const InterImage = styled.div`
 const DescriptionContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 9.2vw;
   @media (max-width: 768px) {
     align-items: flex-end;
   }
@@ -151,7 +153,7 @@ const LevelSection = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   @media (max-width: 768px) {
     display: none;
   }
@@ -173,6 +175,7 @@ const LevelImage = styled.div`
   }
 `;
 const LevelDescription = styled.div`
+  width: 13.02vw;
   font-family: Pretendard;
   font-weight: 700;
   font-size: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
@@ -182,6 +185,7 @@ const LevelDescription = styled.div`
   @media (max-width: 768px) {
     font-size: 8px;
     align-self: center;
+    width: 27.5vmin;
   }
 `;
 const MobileInterContainer = styled.div`

@@ -33,6 +33,7 @@ const DesignerDetailContent = ({ name }: { name: string }) => {
             title={data.inter.title}
             description={data.inter.description}
             levelDescription={data.inter.levelDescription}
+            levelImages={data.inter.levelImages}
           />
         </>
       )}

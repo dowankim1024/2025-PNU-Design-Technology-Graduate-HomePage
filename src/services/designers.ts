@@ -1,5 +1,6 @@
 import app from "@/firebase";
 import { getDatabase, ref, get } from "firebase/database";
+import { generateLevelImagePaths } from "@/utils/levelImageUtils";
 
 export interface DesignerCardData {
   name: string;
@@ -34,6 +35,7 @@ type RawDesignerNode = {
     title?: string;
     description?: string;
     levelDescription?: string[];
+    levelImages?: string[];
   };
 };
 
@@ -83,6 +85,7 @@ export interface DesignerDetailData {
     title: string;
     description: string;
     levelDescription: string[];
+    levelImages: string[];
   };
 }
 
@@ -120,6 +123,9 @@ export async function fetchDesignerDetailByName(
       levelDescription: Array.isArray(node.Inter?.levelDescription)
         ? node.Inter!.levelDescription!
         : [],
+      levelImages: Array.isArray(node.Inter?.levelImages)
+        ? node.Inter!.levelImages!
+        : generateLevelImagePaths(node.designerInfo.name ?? name),
     },
   };
 }
