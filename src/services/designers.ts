@@ -1,9 +1,9 @@
 import app from "@/firebase";
 import { getDatabase, ref, get } from "firebase/database";
 import {
-  generateLevelImagePaths,
-  generateInterImagePath,
-} from "@/utils/levelImageUtils";
+  getLocalInterImage,
+  getLocalLevelImages,
+} from "@/utils/localInterImages";
 
 export interface DesignerCardData {
   name: string;
@@ -130,10 +130,10 @@ export async function fetchDesignerDetailByName(
         : [],
       levelImages: Array.isArray(node.Inter?.levelImages)
         ? node.Inter!.levelImages!
-        : generateLevelImagePaths(node.designerInfo.name ?? name),
+        : getLocalLevelImages(node.designerInfo.name ?? name),
       interImage:
         node.Inter?.interImage ??
-        generateInterImagePath(node.designerInfo.name ?? name),
+        getLocalInterImage(node.designerInfo.name ?? name),
     },
   };
 }
