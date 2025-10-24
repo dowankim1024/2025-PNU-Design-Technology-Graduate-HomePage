@@ -54,7 +54,7 @@ export async function fetchDesignerCards(): Promise<DesignerCardData[]> {
   const list: DesignerCardData[] = Object.entries(value).map(([key, node]) => {
     const name = node?.designerInfo?.name ?? key;
     const projectName =
-      node?.Poster?.title ?? node?.designerInfo?.conceptTitle ?? "";
+      node?.designerInfo?.conceptTitle ?? node?.Poster?.title ?? "";
     const image = {
       after: node?.Image?.after ?? "",
       before: node?.Image?.before ?? "",
