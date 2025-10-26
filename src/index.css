@@ -43,10 +43,3 @@ svg {
   display: flex;
   flex-direction: column;
 }
-
-@media (min-width: 1920px) {
-  #root {
-    width: 1920px;
-    margin: 0 auto;
-  }
-}
