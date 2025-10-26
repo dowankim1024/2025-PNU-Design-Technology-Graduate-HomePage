@@ -84,7 +84,7 @@ const Location = () => {
             <MainLocation>DESIGN CENTER BUSAN 1F Exhibition Hall</MainLocation>
             <SubLocation>57, Centum dong-ro, Haeundae-gu, Busan</SubLocation>
             <Line />
-            <MainLocation>2025/11/14 - 2025/11/17</MainLocation>
+            <MainLocation>2025/11/14 - 2025/11/16</MainLocation>
             <FinalLine />
           </DescriptionContainer>
         </Reveal>

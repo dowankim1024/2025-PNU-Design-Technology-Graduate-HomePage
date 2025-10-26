@@ -100,7 +100,8 @@ export const Main = () => {
         <Opening>
           <OpeningText>Opening_오프닝</OpeningText>
           <OpeningText2>
-            2025/11/14 & <br /> 6pm
+            2025/11/14
+            <br /> 6pm
           </OpeningText2>
         </Opening>
       </Reveal>

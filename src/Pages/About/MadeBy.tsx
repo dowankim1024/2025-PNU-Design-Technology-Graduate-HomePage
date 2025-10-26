@@ -30,21 +30,23 @@ export const MadeBy = () => {
               </Names>
             </NameContainer>
             <Line />
-            <NameContainer>
-              <Position>DP</Position>
-              <Names>
-                <Name>박정훈</Name>
-                <Name>남현서</Name>
-                <Name>천후민</Name>
-              </Names>
-            </NameContainer>
-            <Line />
+
             <NameContainer>
               <Position>Video</Position>
               <Names>
                 <Name>공태우</Name>
                 <Name>고영은</Name>
                 <Name>김진혁</Name>
+              </Names>
+            </NameContainer>
+            <Line />
+            <NameContainer>
+              <Position>DP</Position>
+              <Names>
+                <Name>박정훈</Name>
+                <Name>김민채</Name>
+                <Name>남현서</Name>
+                <Name>천후민</Name>
               </Names>
             </NameContainer>
             <Line />
