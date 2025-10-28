@@ -141,6 +141,7 @@ const Description = styled.div`
   line-height: 145%;
   letter-spacing: 0;
   color: #080404;
+  height: 3.59vw;
   @media (max-width: 768px) {
     font-size: 8px;
   }
@@ -164,6 +165,9 @@ const LevelImage = styled.img`
   height: 8.13vw; /* 156px / 1920px * 100 = 8.13% */
   object-fit: cover;
   margin-bottom: 0.42vw; /* 8px / 1920px * 100 = 0.42% */
+  border-color: #868686;
+  border-width: 1px;
+  border-style: solid;
   @media (max-width: 768px) {
     width: 27.5vmin;
     height: 17.16vmin;

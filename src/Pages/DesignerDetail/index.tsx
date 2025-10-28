@@ -28,6 +28,7 @@ const DesignerDetailContent = ({ name }: { name: string }) => {
           <Poster
             title={data.poster.title}
             description={data.poster.description}
+            designerName={data.info.name}
           />
           <Inter
             title={data.inter.title}

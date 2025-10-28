@@ -279,6 +279,9 @@ const LevelImage = styled.img`
   margin-bottom: 0.42vw; /* 8px / 1920px * 100 = 0.42% */
   flex-shrink: 0;
   min-width: 13.02vw;
+  border-color: #868686;
+  border-width: 1px;
+  border-style: solid;
   @media (max-width: 768px) {
     width: 27.5vmin;
     height: 17.16vmin;
