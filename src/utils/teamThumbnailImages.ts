@@ -2,12 +2,12 @@
 
 // team_thumbnail 폴더의 Before/After 이미지들을 로드
 const beforeImageModules = import.meta.glob(
-  "/src/assets/team_thumbnail/*_Before.png",
+  "/src/assets/team_thumbnail/*_Before.webp",
   { eager: true, import: "default" }
 );
 
 const afterImageModules = import.meta.glob(
-  "/src/assets/team_thumbnail/*_After.png",
+  "/src/assets/team_thumbnail/*_After.webp",
   { eager: true, import: "default" }
 );
 
