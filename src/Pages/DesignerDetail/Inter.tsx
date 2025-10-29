@@ -100,6 +100,7 @@ const DescriptionContainer = styled.div`
   margin-top: 9.2vw;
   @media (max-width: 768px) {
     align-items: flex-end;
+    margin-top: 0px;
   }
 `;
 const InterDescription = styled.div`
@@ -144,6 +145,7 @@ const Description = styled.div`
   height: 3.59vw;
   @media (max-width: 768px) {
     font-size: 8px;
+    height: auto;
   }
 `;
 const LevelSection = styled.div`
