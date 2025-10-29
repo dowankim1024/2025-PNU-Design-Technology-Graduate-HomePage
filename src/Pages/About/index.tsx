@@ -229,8 +229,8 @@ const PageNumberWrapper = styled.div`
   }
 `;
 const ScrollWrapper = styled.img`
-  width: 5.83vw; /* 112px */
-  height: 8.52vh; /* 92px */
+  width: 5.83vw; /* 112px / 1920px * 100 = 5.83% */
+  height: 4.79vw; /* 92px / 1920px * 100 = 4.79% */
   position: fixed;
   bottom: 3vw; /* 52px */
   right: 7.65vw;
