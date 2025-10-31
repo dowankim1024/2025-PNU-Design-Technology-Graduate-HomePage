@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Reveal } from "@/components/common/Reveal";
+import OpeningFilmVideo from "../../assets/Home/Video/Opening.mp4";
 import OpeningFilmImage from "../../assets/OpeningFilm.png";
 
 export const OpeningFilm = () => {
@@ -9,7 +10,13 @@ export const OpeningFilm = () => {
 
       <VideoContainer>
         <Reveal delayMs={300}>
-          <Video src={OpeningFilmImage} alt="Opening Film" />
+          <Video
+            src={OpeningFilmVideo}
+            controls
+            poster={OpeningFilmImage}
+            preload="metadata"
+            playsInline
+          />
         </Reveal>
         <Reveal delayMs={300}>
           <VideoInfo>
@@ -50,7 +57,7 @@ const VideoContainer = styled.div`
     margin-top: 8vmin;
   }
 `;
-const Video = styled.img`
+const Video = styled.video`
   width: 103.19vmin; /* 1114.55px */
   height: 54.44vmin; /* 588px */
   margin-top: 5.56vmin; /* 60px */
