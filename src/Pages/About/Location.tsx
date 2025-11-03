@@ -84,7 +84,9 @@ const Location = () => {
             <MainLocation>DESIGN CENTER BUSAN 1F Exhibition Hall</MainLocation>
             <SubLocation>57, Centum dong-ro, Haeundae-gu, Busan</SubLocation>
             <Line />
-            <MainLocation>2025/11/14 - 2025/11/16</MainLocation>
+            <MainLocation>
+              2025/11/15 - 2025/11/16 <Time>10am - 6pm</Time>
+            </MainLocation>
             <FinalLine />
           </DescriptionContainer>
         </Reveal>
@@ -143,6 +145,7 @@ const MainLocation = styled.div`
   font-weight: 700;
   line-height: 1.4;
   letter-spacing: 0;
+  white-space: nowrap;
 `;
 const SubLocation = styled.div`
   font-family: "Pretendard";
@@ -173,4 +176,12 @@ const FinalLine = styled.div`
   height: 1px;
   background-color: #080404;
   margin-top: 1.11vmin; /* 12px */
+`;
+const Time = styled.div`
+  font-family: "Pretendard";
+  font-style: normal;
+  font-size: 1.85vmin; /* 20px */
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0;
 `;
