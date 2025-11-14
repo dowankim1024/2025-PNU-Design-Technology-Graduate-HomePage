@@ -1,0 +1,16 @@
+export const Designer_Inter_Link = {
+  koh_young_eun: "https://www.youtube.com/watch?v=PkvcFEj5ezA",
+  kim_do_wan: "https://www.youtube.com/watch?v=ry47rqcmu_4",
+  kim_ga_bin: "https://www.youtube.com/watch?v=yHsdbbKVq60",
+  park_se_eun: "https://www.youtube.com/watch?v=lDqy3Yoq3K8",
+  jung_il_hoo: "https://www.youtube.com/watch?v=fnIWujOvCZ8",
+  kim_jin_hyeok: "https://www.youtube.com/watch?v=xjjA0clhqxk",
+  nam_hyeon_seo: "https://www.youtube.com/watch?v=d7G1PjPeom8",
+  cheon_humin: "https://www.youtube.com/watch?v=ix__gAtMJEg",
+  gong_taeu: "https://www.youtube.com/watch?v=41jYu7LIaME",
+  kim_ye_sol: "https://www.youtube.com/watch?v=H15UwwRTUMQ",
+  kim_gwan_uk: "https://www.youtube.com/watch?v=_U8RV_9fUgY",
+  choi_bo_yoon: "https://www.youtube.com/watch?v=Fg9Q_4Kxg4o",
+  park_jeong_hun: "https://www.youtube.com/watch?v=3tV4_EJUQYE",
+  kim_min_chae: "https://www.youtube.com/watch?v=JqnM21t9mdU",
+} as const;

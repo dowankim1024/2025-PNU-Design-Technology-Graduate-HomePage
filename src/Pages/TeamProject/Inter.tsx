@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Team_Inter_Link } from "./constants";
 import BrandImage from "../../assets/Inter_Team/Brand.png";
 import DPImage from "../../assets/Inter_Team/DP.png";
 import VideoImage from "../../assets/Inter_Team/Video.png";
@@ -102,10 +103,56 @@ export const Inter = ({
     }
   };
 
+  const normalizedTeamKey = teamKey.toLowerCase();
+  const interLink =
+    Team_Inter_Link[normalizedTeamKey as keyof typeof Team_Inter_Link] ??
+    Team_Inter_Link.web;
+
   return (
     <Container>
       <InterContainer>
-        <InterImage src={getTeamImage(teamKey)} alt={teamKey} />
+        <InterMediaWrapper
+          href={interLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${title} 팀 인터뷰 보러가기`}
+        >
+          <InterImage src={getTeamImage(teamKey)} alt={teamKey} />
+          <InterOverlay>
+            <InterOverlayContent>
+              <InterLinkIcon
+                width="48"
+                height="48"
+                viewBox="0 0 48 48"
+                role="presentation"
+                aria-hidden="true"
+              >
+                <path
+                  d="M27.78 13.22a4.5 4.5 0 016.36 0l.64.64a4.5 4.5 0 010 6.36l-5.66 5.66"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M20.88 34.78a4.5 4.5 0 01-6.36 0l-.64-.64a4.5 4.5 0 010-6.36l5.66-5.66"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M25 27L21 23"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </InterLinkIcon>
+              <InterOverlayText>영상 보러가기</InterOverlayText>
+            </InterOverlayContent>
+          </InterOverlay>
+        </InterMediaWrapper>
         <DescriptionContainer>
           <InterDescription>
             <InteractionArt>INTERACTION ART</InteractionArt>
@@ -194,16 +241,81 @@ const InterContainer = styled.div`
     align-items: flex-end;
   }
 `;
-const InterImage = styled.img`
+const InterMediaWrapper = styled.a`
+  position: relative;
+  display: block;
   width: 20.05vw; /* 385px / 1920px * 100 = 20.05% */
   height: 28.33vw; /* 544px / 1920px * 100 = 28.33% */
-  object-fit: cover;
+  overflow: hidden;
   flex-shrink: 0;
   min-width: 20.05vw;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px);
+  }
+  &:focus-visible {
+    outline: 2px solid rgba(8, 4, 4, 0.4);
+    outline-offset: 4px;
+  }
   @media (max-width: 768px) {
     width: 180px;
     height: 280px;
-    flex-shrink: 0;
+  }
+`;
+const InterImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  @media (max-width: 768px) {
+    margin-top: 12px;
+  }
+`;
+const InterOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 4, 4, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #ffffff;
+  ${InterMediaWrapper}:hover &,
+  ${InterMediaWrapper}:focus-visible & {
+    opacity: 1;
+  }
+`;
+const InterOverlayContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transform: translateY(8px);
+  transition: transform 0.3s ease;
+  ${InterMediaWrapper}:hover &,
+  ${InterMediaWrapper}:focus-visible & {
+    transform: translateY(0);
+  }
+`;
+const InterLinkIcon = styled.svg`
+  color: #ffffff;
+  transition: transform 0.3s ease;
+  ${InterMediaWrapper}:hover &,
+  ${InterMediaWrapper}:focus-visible & {
+    transform: scale(1.05);
+  }
+`;
+const InterOverlayText = styled.span`
+  font-family: Pretendard;
+  font-weight: 600;
+  font-size: 0.83vw;
+  line-height: 140%;
+  letter-spacing: 0;
+  @media (max-width: 768px) {
+    font-size: 14px;
   }
 `;
 const DescriptionContainer = styled.div`
