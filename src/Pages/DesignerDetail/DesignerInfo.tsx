@@ -16,6 +16,11 @@ interface DesignerInfoProps {
   intro: string;
   conceptTitle: string;
   conceptDescription: string;
+  image?: {
+    after: string;
+    before: string;
+    sub: string;
+  };
 }
 
 export const DesignerInfo = ({
@@ -26,6 +31,7 @@ export const DesignerInfo = ({
   intro,
   conceptTitle,
   conceptDescription,
+  image,
 }: DesignerInfoProps) => {
   const navigate = useNavigate();
   const [imageLoaded, setImageLoaded] = useState(false);

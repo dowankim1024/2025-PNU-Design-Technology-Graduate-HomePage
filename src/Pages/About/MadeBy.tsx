@@ -102,6 +102,7 @@ const Image = styled.img`
   height: 37.04vmin; /* 400px */
   object-fit: cover;
   object-position: center;
+  background-color: #080404;
   @media (max-width: 768px) {
     margin-top: 8vmin;
   }
