@@ -1,22 +1,25 @@
 import styled from "styled-components";
 import { Reveal } from "@/components/common/Reveal";
-import OpeningFilmVideo from "../../assets/Home/Video/Opening.mp4";
-import OpeningFilmImage from "../../assets/OpeningFilm.png";
+
+const YOUTUBE_VIDEO_ID = "P1VHgwSs_1s";
 
 export const OpeningFilm = () => {
+  const youtubeEmbedUrl = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=0&controls=1&rel=0`;
+
   return (
     <Container>
       <Title>OPENING FILM</Title>
 
       <VideoContainer>
         <Reveal delayMs={300}>
-          <Video
-            src={OpeningFilmVideo}
-            controls
-            poster={OpeningFilmImage}
-            preload="metadata"
-            playsInline
-          />
+          <VideoWrapper>
+            <YoutubeIframe
+              src={youtubeEmbedUrl}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Opening Film"
+            />
+          </VideoWrapper>
         </Reveal>
         <Reveal delayMs={300}>
           <VideoInfo>
@@ -57,15 +60,25 @@ const VideoContainer = styled.div`
     margin-top: 8vmin;
   }
 `;
-const Video = styled.video`
+const VideoWrapper = styled.div`
   width: 103.19vmin; /* 1114.55px */
   height: 54.44vmin; /* 588px */
   margin-top: 5.56vmin; /* 60px */
-  object-fit: cover;
+  position: relative;
+  overflow: hidden;
   @media (max-width: 768px) {
     width: 80vmin;
     height: 42.16vmin;
   }
+`;
+
+const YoutubeIframe = styled.iframe`
+  width: 100%;
+  height: 100%;
+  border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
 `;
 const VideoInfo = styled.div`
   font-family: "Pretendard";

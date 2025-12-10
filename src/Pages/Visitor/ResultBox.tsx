@@ -40,6 +40,7 @@ const Container = styled.div`
     width: 100%;
     padding: 12px;
     gap: 4px;
+    min-width: 0;
   }
 `;
 const Sender = styled.div`
