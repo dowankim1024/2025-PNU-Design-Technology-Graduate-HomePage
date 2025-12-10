@@ -6,6 +6,10 @@ import { useTeamInfo } from "@/queries/designers";
 import ErrorBoundary from "@/components/common/ErrorBoundary";
 import SuspenseFallback from "@/components/common/SuspenseFallback";
 import { Suspense, useEffect, useMemo, useState } from "react";
+import {
+  getTeamThumbnailImage,
+  getTeamAfterImage,
+} from "@/utils/teamThumbnailImages";
 
 export const TeamSelect = () => {
   return (
@@ -29,6 +33,8 @@ const TeamSelectContent = () => {
     [data, list]
   );
   const [selectedKey, setSelectedKey] = useState<string>(defaultKey);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+
   useEffect(() => {
     setSelectedKey(defaultKey);
   }, [defaultKey]);
@@ -37,20 +43,42 @@ const TeamSelectContent = () => {
     const qs = new URLSearchParams({ team: key });
     navigate(`/team-detail?${qs.toString()}`);
   };
+  const handleGoTeammate = (name: string) => {
+    navigate(`/designer?name=${name}`);
+  };
+
   const selected = selectedKey ? data?.[selectedKey] : undefined;
   const teammates = selected?.TeamMates
     ? Object.values(selected.TeamMates)
     : [];
+
   return (
     <MainContainer>
       <TeamSelectContainer>
-        <TeamImage onClick={() => selectedKey && handleGo(selectedKey)} />
+        <TeamImageContainer
+          onClick={() => selectedKey && handleGo(selectedKey)}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <TeamImage
+            src={getTeamThumbnailImage(selectedKey)}
+            alt={`${selected?.TeamName || "Team"} Before 이미지`}
+            $isVisible={!isHovered}
+          />
+          <TeamImage
+            src={getTeamAfterImage(selectedKey)}
+            alt={`${selected?.TeamName || "Team"} After 이미지`}
+            $isVisible={isHovered}
+          />
+        </TeamImageContainer>
         <TeamInfo>
           <TeamNameMateContainer>
             <TeamName>{selected?.TeamName ?? "Team Select"}</TeamName>
             <TeammateContainer>
               {teammates.map(name => (
-                <Teammate key={name}>{name}</Teammate>
+                <Teammate key={name} onClick={() => handleGoTeammate(name)}>
+                  {name}
+                </Teammate>
               ))}
             </TeammateContainer>
           </TeamNameMateContainer>
@@ -114,15 +142,27 @@ const TeamSelectContainer = styled.div`
     align-items: center;
   }
 `;
-const TeamImage = styled.div`
+const TeamImageContainer = styled.div`
+  position: relative;
   width: 50.83vw; /* 976px / 1920px * 100 = 50.83% */
   height: 31.35vw; /* 602px / 1920px * 100 = 31.35% */
-  background-color: #f0f0f0;
   cursor: pointer;
   @media (max-width: 768px) {
     width: 325.3px;
     height: 201.2px;
   }
+`;
+
+const TeamImage = styled.img<{ $isVisible: boolean }>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+  transition: opacity 0.4s ease-in-out;
 `;
 const TeamInfo = styled.div`
   display: flex;
@@ -188,6 +228,7 @@ const Teammate = styled.div`
   letter-spacing: 0;
   color: #080808;
   white-space: nowrap;
+  cursor: pointer;
   @media (max-width: 768px) {
     writing-mode: horizontal-tb;
     font-size: 12px;

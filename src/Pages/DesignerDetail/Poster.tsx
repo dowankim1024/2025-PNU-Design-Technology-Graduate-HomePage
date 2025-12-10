@@ -1,11 +1,13 @@
 import styled from "styled-components";
+import { getPersonVideoByName } from "@/utils/personVideos";
 
 interface PosterProps {
   title: string;
   description: string;
+  designerName?: string;
 }
 
-export const Poster = ({ title, description }: PosterProps) => {
+export const Poster = ({ title, description, designerName }: PosterProps) => {
   return (
     <PostContainer>
       <PosterDescription>
@@ -13,7 +15,13 @@ export const Poster = ({ title, description }: PosterProps) => {
         <PosterDescriptionTitle>{title}</PosterDescriptionTitle>
         <Description>{description}</Description>
       </PosterDescription>
-      <PosterImage />
+      <PosterVideo
+        src={getPersonVideoByName(designerName)}
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
     </PostContainer>
   );
 };
@@ -34,9 +42,10 @@ const PostContainer = styled.div`
   }
 `;
 
-const PosterImage = styled.div`
+const PosterVideo = styled.video`
   width: 18.75vw; /* 360px / 1920px * 100 = 18.75% */
   height: 33.33vw; /* 640px / 1920px * 100 = 33.33% */
+  object-fit: cover;
   background-color: #f0f0f0;
   @media (max-width: 768px) {
     flex-shrink: 0;
@@ -47,6 +56,7 @@ const PosterImage = styled.div`
 const PosterDescription = styled.div`
   width: 42.08vw; /* 808px / 1920px * 100 = 42.08% */
   height: 8.02vw; /* 154px / 1920px * 100 = 8.02% */
+
   @media (max-width: 768px) {
     width: 100%;
     height: 100%;
@@ -77,6 +87,9 @@ const PosterDescriptionTitle = styled.div`
   }
 `;
 const Description = styled.div`
+  height: 3.59vw;
+  display: flex;
+  align-items: flex-end;
   font-family: Pretendard;
   font-weight: 400;
   font-size: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
@@ -85,5 +98,6 @@ const Description = styled.div`
   color: #080404;
   @media (max-width: 768px) {
     font-size: 8px;
+    height: auto;
   }
 `;

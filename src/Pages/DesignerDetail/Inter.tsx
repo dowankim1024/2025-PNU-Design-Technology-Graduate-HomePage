@@ -1,16 +1,77 @@
 import styled from "styled-components";
+import { Designer_Inter_Link } from "./constants";
 
 interface InterProps {
   title: string;
   description: string;
   levelDescription: string[];
+  levelImages: string[];
+  interImage: string;
+  designerKey: string;
 }
 
-export const Inter = ({ title, description, levelDescription }: InterProps) => {
+export const Inter = ({
+  title,
+  description,
+  levelDescription,
+  levelImages,
+  interImage,
+  designerKey,
+}: InterProps) => {
+  const normalizedKey = designerKey.toLowerCase();
+  const interLink =
+    Designer_Inter_Link[normalizedKey as keyof typeof Designer_Inter_Link] ??
+    "";
+  const hasLink = Boolean(interLink);
+
   return (
     <Container>
       <InterContainer>
-        <InterImage />
+        <InterMediaWrapper
+          href={hasLink ? interLink : undefined}
+          target={hasLink ? "_blank" : undefined}
+          rel={hasLink ? "noopener noreferrer" : undefined}
+          aria-label={hasLink ? `${title} 영상 보러가기` : undefined}
+          tabIndex={hasLink ? undefined : -1}
+        >
+          <InterImage src={interImage} alt="Interaction Art" />
+          <InterOverlay>
+            <InterOverlayContent>
+              <InterLinkIcon
+                width="48"
+                height="48"
+                viewBox="0 0 48 48"
+                role="presentation"
+                aria-hidden="true"
+              >
+                <path
+                  d="M27.78 13.22a4.5 4.5 0 016.36 0l.64.64a4.5 4.5 0 010 6.36l-5.66 5.66"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M20.88 34.78a4.5 4.5 0 01-6.36 0l-.64-.64a4.5 4.5 0 010-6.36l5.66-5.66"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M25 27L21 23"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </InterLinkIcon>
+              <InterOverlayText>
+                {hasLink ? "영상 보러가기" : "준비 중"}
+              </InterOverlayText>
+            </InterOverlayContent>
+          </InterOverlay>
+        </InterMediaWrapper>
         <DescriptionContainer>
           <InterDescription>
             <InteractionArt>INTERACTION ART</InteractionArt>
@@ -19,15 +80,15 @@ export const Inter = ({ title, description, levelDescription }: InterProps) => {
           </InterDescription>
           <LevelSection>
             <LevelContainer>
-              <LevelImage />
+              <LevelImage src={levelImages[0]} alt="Level 1" />
               <LevelDescription>{levelDescription[0]}</LevelDescription>
             </LevelContainer>
             <LevelContainer>
-              <LevelImage />
+              <LevelImage src={levelImages[1]} alt="Level 2" />
               <LevelDescription>{levelDescription[1]}</LevelDescription>
             </LevelContainer>
             <LevelContainer>
-              <LevelImage />
+              <LevelImage src={levelImages[2]} alt="Level 3" />
               <LevelDescription>{levelDescription[2]}</LevelDescription>
             </LevelContainer>
           </LevelSection>
@@ -35,15 +96,15 @@ export const Inter = ({ title, description, levelDescription }: InterProps) => {
       </InterContainer>
       <MobileInterContainer>
         <LevelContainer>
-          <LevelImage />
+          <LevelImage src={levelImages[0]} alt="Level 1" />
           <LevelDescription>{levelDescription[0]}</LevelDescription>
         </LevelContainer>
         <LevelContainer>
-          <LevelImage />
+          <LevelImage src={levelImages[1]} alt="Level 2" />
           <LevelDescription>{levelDescription[1]}</LevelDescription>
         </LevelContainer>
         <LevelContainer>
-          <LevelImage />
+          <LevelImage src={levelImages[2]} alt="Level 3" />
           <LevelDescription>{levelDescription[2]}</LevelDescription>
         </LevelContainer>
       </MobileInterContainer>
@@ -61,45 +122,127 @@ const Container = styled.div`
 `;
 const InterContainer = styled.div`
   width: 100%;
-  height: 28.33vw; /* 544px / 1920px * 100 = 28.33% */
   padding: 0 18.75vw; /* 360px / 1920px * 100 = 18.75% */
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
   margin-bottom: 8.33vw; /* 160px / 1920px * 100 = 8.33% */
   @media (max-width: 768px) {
     padding: 0 24px;
-    height: 100%;
     gap: 12px;
     margin-bottom: 12px;
+    align-items: flex-end;
   }
 `;
-const InterImage = styled.div`
+const InterMediaWrapper = styled.a`
+  position: relative;
+  display: block;
   width: 20.05vw; /* 385px / 1920px * 100 = 20.05% */
   height: 28.33vw; /* 544px / 1920px * 100 = 28.33% */
-  background-color: #f0f0f0;
+  flex-shrink: 0;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px);
+  }
+  &:focus-visible {
+    outline: 2px solid rgba(8, 4, 4, 0.4);
+    outline-offset: 4px;
+  }
+  &[tabindex="-1"] {
+    cursor: default;
+    &:hover,
+    &:focus-visible {
+      transform: none;
+    }
+  }
   @media (max-width: 768px) {
     width: 180px;
     height: 280px;
-    flex-shrink: 0;
+  }
+`;
+const InterImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+`;
+const InterOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 4, 4, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #ffffff;
+  ${InterMediaWrapper}:hover &,
+  ${InterMediaWrapper}:focus-visible & {
+    opacity: 1;
+  }
+  ${InterMediaWrapper}[tabindex="-1"]:hover &,
+  ${InterMediaWrapper}[tabindex="-1"]:focus-visible & {
+    opacity: 0;
+  }
+`;
+const InterOverlayContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transform: translateY(8px);
+  transition: transform 0.3s ease;
+  ${InterMediaWrapper}:hover &,
+  ${InterMediaWrapper}:focus-visible & {
+    transform: translateY(0);
+  }
+  ${InterMediaWrapper}[tabindex="-1"]:hover &,
+  ${InterMediaWrapper}[tabindex="-1"]:focus-visible & {
+    transform: translateY(8px);
+  }
+`;
+const InterLinkIcon = styled.svg`
+  color: #ffffff;
+  transition: transform 0.3s ease;
+  ${InterMediaWrapper}:hover &,
+  ${InterMediaWrapper}:focus-visible & {
+    transform: scale(1.05);
+  }
+  ${InterMediaWrapper}[tabindex="-1"]:hover &,
+  ${InterMediaWrapper}[tabindex="-1"]:focus-visible & {
+    transform: none;
+  }
+`;
+const InterOverlayText = styled.span`
+  font-family: Pretendard;
+  font-weight: 600;
+  font-size: 0.83vw;
+  line-height: 140%;
+  letter-spacing: 0;
+  @media (max-width: 768px) {
+    font-size: 14px;
   }
 `;
 const DescriptionContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 9.2vw;
   @media (max-width: 768px) {
     align-items: flex-end;
+    margin-top: 0px;
   }
 `;
 const InterDescription = styled.div`
   width: 40.78vw; /* 783px / 1920px * 100 = 40.78% */
-  height: 8.02vw; /* 154px / 1920px * 100 = 8.02% */
   margin-bottom: 1.67vw; /* 32px / 1920px * 100 = 1.67% */
   @media (max-width: 768px) {
     width: 100%;
-    height: 100%;
     margin-bottom: 0px;
   }
 `;
@@ -134,15 +277,18 @@ const Description = styled.div`
   line-height: 145%;
   letter-spacing: 0;
   color: #080404;
+  height: 3.59vw;
   @media (max-width: 768px) {
     font-size: 8px;
+    height: auto;
   }
 `;
 const LevelSection = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
+  margin-top: 0;
   @media (max-width: 768px) {
     display: none; /* 모바일에서는 레벨 섹션 숨김 */
   }
@@ -151,17 +297,21 @@ const LevelContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const LevelImage = styled.div`
+const LevelImage = styled.img`
   width: 13.02vw; /* 250px / 1920px * 100 = 13.02% */
   height: 8.13vw; /* 156px / 1920px * 100 = 8.13% */
-  background-color: #f0f0f0;
+  object-fit: cover;
   margin-bottom: 0.42vw; /* 8px / 1920px * 100 = 0.42% */
+  border-color: #868686;
+  border-width: 1px;
+  border-style: solid;
   @media (max-width: 768px) {
     width: 27.5vmin;
     height: 17.16vmin;
   }
 `;
 const LevelDescription = styled.div`
+  width: 13.02vw;
   font-family: Pretendard;
   font-weight: 700;
   font-size: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
@@ -171,6 +321,7 @@ const LevelDescription = styled.div`
   @media (max-width: 768px) {
     font-size: 8px;
     align-self: center;
+    width: 27.5vmin;
   }
 `;
 const MobileInterContainer = styled.div`

@@ -1,13 +1,13 @@
 import { Reveal } from "@/components/common/Reveal";
 import styled from "styled-components";
-
+import GroupPhoto from "@/assets/PersonImage/homeAll/group_photo.webp";
 export const MadeBy = () => {
   return (
     <Container>
       <Title>MADE BY</Title>
       <ContentsContainer>
         <Reveal delayMs={300}>
-          <Image />
+          <Image src={GroupPhoto} alt="졸업전시 팀 단체사진" />
         </Reveal>
         <Reveal delayMs={600}>
           <DescriptionContainer>
@@ -30,21 +30,23 @@ export const MadeBy = () => {
               </Names>
             </NameContainer>
             <Line />
-            <NameContainer>
-              <Position>DP</Position>
-              <Names>
-                <Name>박정훈</Name>
-                <Name>남현서</Name>
-                <Name>천후민</Name>
-              </Names>
-            </NameContainer>
-            <Line />
+
             <NameContainer>
               <Position>Video</Position>
               <Names>
                 <Name>공태우</Name>
                 <Name>고영은</Name>
                 <Name>김진혁</Name>
+              </Names>
+            </NameContainer>
+            <Line />
+            <NameContainer>
+              <Position>DP</Position>
+              <Names>
+                <Name>박정훈</Name>
+                <Name>김민채</Name>
+                <Name>남현서</Name>
+                <Name>천후민</Name>
               </Names>
             </NameContainer>
             <Line />
@@ -95,9 +97,11 @@ const ContentsContainer = styled.div`
     align-items: center;
   }
 `;
-const Image = styled.div`
+const Image = styled.img`
   width: 59.26vmin; /* 640px */
   height: 37.04vmin; /* 400px */
+  object-fit: cover;
+  object-position: center;
   background-color: #080404;
   @media (max-width: 768px) {
     margin-top: 8vmin;

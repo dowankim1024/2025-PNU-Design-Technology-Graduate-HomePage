@@ -1,5 +1,9 @@
 import app from "@/firebase";
 import { getDatabase, ref, get } from "firebase/database";
+import {
+  getLocalInterImage,
+  getLocalLevelImages,
+} from "@/utils/localInterImages";
 
 export interface DesignerCardData {
   name: string;
@@ -34,6 +38,8 @@ type RawDesignerNode = {
     title?: string;
     description?: string;
     levelDescription?: string[];
+    levelImages?: string[];
+    interImage?: string;
   };
 };
 
@@ -48,7 +54,7 @@ export async function fetchDesignerCards(): Promise<DesignerCardData[]> {
   const list: DesignerCardData[] = Object.entries(value).map(([key, node]) => {
     const name = node?.designerInfo?.name ?? key;
     const projectName =
-      node?.Poster?.title ?? node?.designerInfo?.conceptTitle ?? "";
+      node?.designerInfo?.conceptTitle ?? node?.Poster?.title ?? "";
     const image = {
       after: node?.Image?.after ?? "",
       before: node?.Image?.before ?? "",
@@ -83,6 +89,8 @@ export interface DesignerDetailData {
     title: string;
     description: string;
     levelDescription: string[];
+    levelImages: string[];
+    interImage: string;
   };
 }
 
@@ -120,6 +128,12 @@ export async function fetchDesignerDetailByName(
       levelDescription: Array.isArray(node.Inter?.levelDescription)
         ? node.Inter!.levelDescription!
         : [],
+      levelImages: Array.isArray(node.Inter?.levelImages)
+        ? node.Inter!.levelImages!
+        : getLocalLevelImages(node.designerInfo.name ?? name),
+      interImage:
+        node.Inter?.interImage ??
+        getLocalInterImage(node.designerInfo.name ?? name),
     },
   };
 }
@@ -127,6 +141,7 @@ export async function fetchDesignerDetailByName(
 export interface TeamInfoRecord {
   TeamName: string;
   Description: string;
+  Explain: string;
   Concept: string;
   TeamMates: Record<string, string>;
   Initial?: string;

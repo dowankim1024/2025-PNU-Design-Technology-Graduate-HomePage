@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ResultBox } from "./ResultBox";
+import { useRef, useEffect, useState } from "react";
 
 interface Message {
   sender: string;
@@ -12,50 +13,117 @@ interface ResultSectionProps {
 }
 
 export const ResultSection = ({ messages }: ResultSectionProps) => {
-  // 각 컬럼의 메시지들을 분배
-  const columns: Message[][] = [[], [], []];
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [columns, setColumns] = useState<Message[][]>([[], [], []]);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth <= 768 : false
+  );
 
-  messages.forEach((message, messageIndex) => {
-    // 처음 3개 메시지는 순서대로 배치
-    if (messageIndex < 3) {
-      columns[messageIndex].push(message);
-      return;
-    }
+  useEffect(() => {
+    const updateIsMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", updateIsMobile);
+    return () => window.removeEventListener("resize", updateIsMobile);
+  }, []);
 
-    // 4번째 메시지부터는 높이를 고려해서 배치
-    const columnHeights = columns.map(col => {
-      if (col.length === 0) return 0;
+  // 실제 DOM 높이를 측정하여 메시지 배치
+  useEffect(() => {
+    if (!containerRef.current) return;
 
-      // 각 ResultBox의 실제 높이 계산
-      // min-height: 8.33vw + padding: 1.67vw * 2 = 11.67vw (최소)
-      // 하지만 내용에 따라 더 커질 수 있음
-      const gapHeight = 0.83; // vw 단위
+    const cols: Message[][] = [[], [], []];
+    const columnHeights: number[] = [0, 0, 0];
 
-      // 실제로는 각 박스의 내용 길이에 따라 높이가 달라질 수 있음
-      // 일단 최소 높이로 계산하고, 나중에 실제 높이를 측정하는 방식으로 개선
-      let totalHeight = 0;
-      col.forEach((msg, index) => {
-        // 메시지 길이에 따른 높이 추정
-        const messageLines = Math.max(1, Math.ceil(msg.message.length / 30)); // 한 줄당 약 30자
-        const estimatedHeight = Math.max(
-          11.67,
-          11.67 + (messageLines - 1) * 1.5
-        ); // 줄당 약 1.5vw 추가
-        totalHeight += estimatedHeight;
-        if (index > 0) totalHeight += gapHeight;
-      });
+    // 임시로 모든 메시지를 렌더링하여 높이 측정
+    const tempContainer = document.createElement("div");
+    tempContainer.style.position = "absolute";
+    tempContainer.style.visibility = "hidden";
+    tempContainer.style.width = isMobile
+      ? `${(containerRef.current.offsetWidth - 8) / 3}px`
+      : `${containerRef.current.offsetWidth * 0.2}px`;
+    document.body.appendChild(tempContainer);
 
-      return totalHeight;
+    const messageHeights: number[] = [];
+
+    messages.forEach(message => {
+      const tempBox = document.createElement("div");
+      tempBox.style.width = "100%";
+      tempBox.style.padding = isMobile
+        ? "12px"
+        : `${containerRef.current!.offsetWidth * 0.0167}px`;
+      tempBox.style.boxSizing = "border-box";
+      tempBox.style.backgroundColor = "#ededed";
+      tempBox.style.display = "flex";
+      tempBox.style.flexDirection = "column";
+      tempBox.style.gap = isMobile
+        ? "4px"
+        : `${containerRef.current!.offsetWidth * 0.0083}px`;
+
+      const receiver = document.createElement("div");
+      receiver.textContent = `To. ${message.receiver}`;
+      receiver.style.fontSize = isMobile
+        ? "8px"
+        : `${containerRef.current!.offsetWidth * 0.0104}px`;
+      receiver.style.fontWeight = "700";
+      receiver.style.lineHeight = "140%";
+
+      const messageText = document.createElement("div");
+      messageText.textContent = message.message;
+      messageText.style.fontSize = isMobile
+        ? "9px"
+        : `${containerRef.current!.offsetWidth * 0.0083}px`;
+      messageText.style.fontWeight = "400";
+      messageText.style.lineHeight = "145%";
+      messageText.style.wordWrap = "break-word";
+      messageText.style.whiteSpace = "pre-wrap";
+      messageText.style.flex = "1";
+
+      const sender = document.createElement("div");
+      sender.textContent = `From. ${message.sender}`;
+      sender.style.fontSize = isMobile
+        ? "8px"
+        : `${containerRef.current!.offsetWidth * 0.0104}px`;
+      sender.style.fontWeight = "700";
+      sender.style.lineHeight = "140%";
+      sender.style.alignSelf = "flex-end";
+
+      tempBox.appendChild(receiver);
+      tempBox.appendChild(messageText);
+      tempBox.appendChild(sender);
+      tempContainer.appendChild(tempBox);
+
+      // 높이 측정
+      const height = tempBox.offsetHeight;
+      messageHeights.push(height);
     });
 
-    console.log("Column heights:", columnHeights);
-    const lowestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
-    console.log("Adding message to column:", lowestColumnIndex);
-    columns[lowestColumnIndex].push(message);
-  });
+    document.body.removeChild(tempContainer);
+
+    // 높이를 기반으로 메시지 배치
+    messages.forEach((message, messageIndex) => {
+      if (messageIndex < 3) {
+        // 처음 3개는 순서대로
+        cols[messageIndex].push(message);
+        columnHeights[messageIndex] = messageHeights[messageIndex];
+      } else {
+        // 나머지는 가장 낮은 컬럼에 배치
+        const lowestColumnIndex = columnHeights.indexOf(
+          Math.min(...columnHeights)
+        );
+        cols[lowestColumnIndex].push(message);
+
+        const gap = isMobile ? 4 : containerRef.current!.offsetWidth * 0.0083;
+        columnHeights[lowestColumnIndex] +=
+          messageHeights[messageIndex] +
+          (cols[lowestColumnIndex].length > 1 ? gap : 0);
+      }
+    });
+
+    setColumns(cols);
+  }, [messages, isMobile]);
 
   return (
-    <Container>
+    <Container ref={containerRef}>
       <ResultColumn>
         {columns[0].map((msg, index) => (
           <ResultBox
@@ -104,6 +172,7 @@ const Container = styled.div`
     margin-bottom: 40px;
     width: 100%;
     gap: 4px;
+    flex: 1;
   }
 `;
 const ResultColumn = styled.div`
@@ -111,8 +180,10 @@ const ResultColumn = styled.div`
   flex-direction: column;
   gap: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
   width: 20vw; /* ResultBox와 같은 너비 */
+  flex: 0 0 20vw;
   @media (max-width: 768px) {
-    width: 100%;
+    flex: 1 1 0;
+    min-width: 0;
     gap: 4px;
   }
 `;

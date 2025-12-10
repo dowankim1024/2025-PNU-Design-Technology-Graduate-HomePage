@@ -9,11 +9,12 @@ import { Suspense } from "react";
 import ErrorBoundary from "@/components/common/ErrorBoundary";
 import SuspenseFallback from "@/components/common/SuspenseFallback";
 import { useTeamInfo } from "@/queries/designers";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const TeamContent = ({ teamKey }: { teamKey: string }) => {
   const { data } = useTeamInfo();
+  const navigate = useNavigate();
   const team = data?.[teamKey];
   const list = data ? Object.keys(data) : [];
   if (!team) return null;
@@ -24,8 +25,9 @@ const TeamContent = ({ teamKey }: { teamKey: string }) => {
           teamName={team.TeamName}
           teammates={team.TeamMates}
           description={team.Description}
+          teamKey={teamKey}
         />
-        <Concept title={team.Concept} description={team.Description} />
+        <Concept title={team.Concept} description={team.Explain} />
         <Film
           title={team.TeamFilm?.Title ?? team.TeamVideo?.Title ?? team.TeamName}
           description={
@@ -33,6 +35,7 @@ const TeamContent = ({ teamKey }: { teamKey: string }) => {
             team.TeamVideo?.Description ??
             team.Description
           }
+          teamKey={teamKey}
         />
         <Inter
           title={team.TeamInter?.Title ?? team.TeamName}
@@ -40,15 +43,14 @@ const TeamContent = ({ teamKey }: { teamKey: string }) => {
           levelDescription={(team.TeamInter?.LevelDescription ?? []).filter(
             (v): v is string => !!v
           )}
+          teamKey={teamKey}
         />
       </MainContainer>
       <ListSelectBox
         list={list}
         currentName={teamKey}
         onNavigate={nextKey => {
-          const qs = new URLSearchParams({ team: nextKey });
-          window.history.pushState(null, "", `/team-detail?${qs.toString()}`);
-          window.dispatchEvent(new PopStateEvent("popstate"));
+          navigate(`/team-detail?team=${nextKey}`);
         }}
       />
     </>

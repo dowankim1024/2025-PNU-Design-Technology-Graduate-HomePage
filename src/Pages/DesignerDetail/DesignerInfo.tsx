@@ -5,7 +5,7 @@ import Plus from "@/assets/Icons/Plus.png";
 import { MainContainer } from "@/components/MainContainer";
 import { Concept } from "@/components/Concept";
 import { useNavigate } from "react-router-dom";
-import { getPersonImageByName } from "@/utils/personImages";
+import { getLocalPersonImage } from "@/utils/localPersonImages";
 import { useState } from "react";
 
 interface DesignerInfoProps {
@@ -47,7 +47,7 @@ export const DesignerInfo = ({
         <ContentSection>
           <LeftSection>
             <DesignerImg
-              src={image?.sub || getPersonImageByName(name)}
+              src={getLocalPersonImage(name)}
               alt="designerImg"
               loading="eager"
               decoding="sync"

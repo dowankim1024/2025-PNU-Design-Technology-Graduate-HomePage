@@ -29,11 +29,15 @@ const DesignerDetailContent = ({ name }: { name: string }) => {
           <Poster
             title={data.poster.title}
             description={data.poster.description}
+            designerName={data.info.name}
           />
           <Inter
             title={data.inter.title}
             description={data.inter.description}
             levelDescription={data.inter.levelDescription}
+            levelImages={data.inter.levelImages}
+            interImage={data.inter.interImage}
+            designerKey={normalizeDesignerKey(data.info.nameEnglish)}
           />
         </>
       )}
@@ -56,3 +60,10 @@ export const DesignerDetailPage = () => {
     </>
   );
 };
+
+const normalizeDesignerKey = (nameEnglish: string) =>
+  nameEnglish
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");

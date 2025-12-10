@@ -1,19 +1,158 @@
 import styled from "styled-components";
+import { Team_Inter_Link } from "./constants";
+import BrandImage from "../../assets/Inter_Team/Brand.png";
+import DPImage from "../../assets/Inter_Team/DP.png";
+import VideoImage from "../../assets/Inter_Team/Video.png";
+import WebImage from "../../assets/Inter_Team/Web.png";
+
+// Level Images
+import BrandLevel1 from "../../assets/levelImage_team/brand_1.png";
+import BrandLevel2 from "../../assets/levelImage_team/brand_2.png";
+import BrandLevel3 from "../../assets/levelImage_team/brand_3.png";
+import DPLevel1 from "../../assets/levelImage_team/dp_1.png";
+import DPLevel2 from "../../assets/levelImage_team/dp_2.png";
+import DPLevel3 from "../../assets/levelImage_team/dp_3.png";
+import VideoLevel1 from "../../assets/levelImage_team/video_1.png";
+import VideoLevel2 from "../../assets/levelImage_team/video_2.png";
+import VideoLevel3 from "../../assets/levelImage_team/video_3.png";
+import WebLevel1 from "../../assets/levelImage_team/web_1.png";
+import WebLevel2 from "../../assets/levelImage_team/web_2.png";
+import WebLevel3 from "../../assets/levelImage_team/web_3.png";
 
 interface InterProps {
   title: string;
   description: string;
   levelDescription: string[];
+  teamKey: string;
 }
 
-export const Inter = ({ title, description, levelDescription }: InterProps) => {
+export const Inter = ({
+  title,
+  description,
+  levelDescription,
+  teamKey,
+}: InterProps) => {
   // levelDescription이 비어있거나 undefined일 때 기본값 제공
   const safeLevelDescription = levelDescription || [];
+
+  // teamKey에 따라 해당하는 이미지 선택
+  const getTeamImage = (teamKey: string) => {
+    switch (teamKey.toLowerCase()) {
+      case "web":
+        return WebImage;
+      case "brand":
+        return BrandImage;
+      case "dp":
+        return DPImage;
+      case "video":
+        return VideoImage;
+      default:
+        return WebImage; // 기본값
+    }
+  };
+
+  // teamKey와 level에 따라 레벨 이미지 선택
+  const getLevelImage = (teamKey: string, level: number) => {
+    switch (teamKey.toLowerCase()) {
+      case "web":
+        switch (level) {
+          case 1:
+            return WebLevel1;
+          case 2:
+            return WebLevel2;
+          case 3:
+            return WebLevel3;
+          default:
+            return WebLevel1;
+        }
+      case "brand":
+        switch (level) {
+          case 1:
+            return BrandLevel1;
+          case 2:
+            return BrandLevel2;
+          case 3:
+            return BrandLevel3;
+          default:
+            return BrandLevel1;
+        }
+      case "dp":
+        switch (level) {
+          case 1:
+            return DPLevel1;
+          case 2:
+            return DPLevel2;
+          case 3:
+            return DPLevel3;
+          default:
+            return DPLevel1;
+        }
+      case "video":
+        switch (level) {
+          case 1:
+            return VideoLevel1;
+          case 2:
+            return VideoLevel2;
+          case 3:
+            return VideoLevel3;
+          default:
+            return VideoLevel1;
+        }
+      default:
+        return WebLevel1; // 기본값
+    }
+  };
+
+  const normalizedTeamKey = teamKey.toLowerCase();
+  const interLink =
+    Team_Inter_Link[normalizedTeamKey as keyof typeof Team_Inter_Link] ??
+    Team_Inter_Link.web;
 
   return (
     <Container>
       <InterContainer>
-        <InterImage />
+        <InterMediaWrapper
+          href={interLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${title} 팀 인터뷰 보러가기`}
+        >
+          <InterImage src={getTeamImage(teamKey)} alt={teamKey} />
+          <InterOverlay>
+            <InterOverlayContent>
+              <InterLinkIcon
+                width="48"
+                height="48"
+                viewBox="0 0 48 48"
+                role="presentation"
+                aria-hidden="true"
+              >
+                <path
+                  d="M27.78 13.22a4.5 4.5 0 016.36 0l.64.64a4.5 4.5 0 010 6.36l-5.66 5.66"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M20.88 34.78a4.5 4.5 0 01-6.36 0l-.64-.64a4.5 4.5 0 010-6.36l5.66-5.66"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M25 27L21 23"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </InterLinkIcon>
+              <InterOverlayText>영상 보러가기</InterOverlayText>
+            </InterOverlayContent>
+          </InterOverlay>
+        </InterMediaWrapper>
         <DescriptionContainer>
           <InterDescription>
             <InteractionArt>INTERACTION ART</InteractionArt>
@@ -22,19 +161,28 @@ export const Inter = ({ title, description, levelDescription }: InterProps) => {
           </InterDescription>
           <LevelSection>
             <LevelContainer>
-              <LevelImage />
+              <LevelImage
+                src={getLevelImage(teamKey, 1)}
+                alt={`${teamKey} Level 1`}
+              />
               <LevelDescription>
                 {safeLevelDescription[0] || ""}
               </LevelDescription>
             </LevelContainer>
             <LevelContainer>
-              <LevelImage />
+              <LevelImage
+                src={getLevelImage(teamKey, 2)}
+                alt={`${teamKey} Level 2`}
+              />
               <LevelDescription>
                 {safeLevelDescription[1] || ""}
               </LevelDescription>
             </LevelContainer>
             <LevelContainer>
-              <LevelImage />
+              <LevelImage
+                src={getLevelImage(teamKey, 3)}
+                alt={`${teamKey} Level 3`}
+              />
               <LevelDescription>
                 {safeLevelDescription[2] || ""}
               </LevelDescription>
@@ -44,15 +192,24 @@ export const Inter = ({ title, description, levelDescription }: InterProps) => {
       </InterContainer>
       <MobileInterContainer>
         <LevelContainer>
-          <LevelImage />
+          <LevelImage
+            src={getLevelImage(teamKey, 1)}
+            alt={`${teamKey} Level 1`}
+          />
           <LevelDescription>{safeLevelDescription[0] || ""}</LevelDescription>
         </LevelContainer>
         <LevelContainer>
-          <LevelImage />
+          <LevelImage
+            src={getLevelImage(teamKey, 2)}
+            alt={`${teamKey} Level 2`}
+          />
           <LevelDescription>{safeLevelDescription[1] || ""}</LevelDescription>
         </LevelContainer>
         <LevelContainer>
-          <LevelImage />
+          <LevelImage
+            src={getLevelImage(teamKey, 3)}
+            alt={`${teamKey} Level 3`}
+          />
           <LevelDescription>{safeLevelDescription[2] || ""}</LevelDescription>
         </LevelContainer>
       </MobileInterContainer>
@@ -75,29 +232,96 @@ const InterContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
   margin-bottom: 8.33vw; /* 160px / 1920px * 100 = 8.33% */
   @media (max-width: 768px) {
     height: 100%;
     gap: 12px;
     margin-bottom: 12px;
+    align-items: flex-end;
   }
 `;
-const InterImage = styled.div`
+const InterMediaWrapper = styled.a`
+  position: relative;
+  display: block;
   width: 20.05vw; /* 385px / 1920px * 100 = 20.05% */
   height: 28.33vw; /* 544px / 1920px * 100 = 28.33% */
-  background-color: #f0f0f0;
+  overflow: hidden;
   flex-shrink: 0;
   min-width: 20.05vw;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px);
+  }
+  &:focus-visible {
+    outline: 2px solid rgba(8, 4, 4, 0.4);
+    outline-offset: 4px;
+  }
   @media (max-width: 768px) {
     width: 180px;
     height: 280px;
-    flex-shrink: 0;
+  }
+`;
+const InterImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  @media (max-width: 768px) {
+    margin-top: 12px;
+  }
+`;
+const InterOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 4, 4, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #ffffff;
+  ${InterMediaWrapper}:hover &,
+  ${InterMediaWrapper}:focus-visible & {
+    opacity: 1;
+  }
+`;
+const InterOverlayContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transform: translateY(8px);
+  transition: transform 0.3s ease;
+  ${InterMediaWrapper}:hover &,
+  ${InterMediaWrapper}:focus-visible & {
+    transform: translateY(0);
+  }
+`;
+const InterLinkIcon = styled.svg`
+  color: #ffffff;
+  transition: transform 0.3s ease;
+  ${InterMediaWrapper}:hover &,
+  ${InterMediaWrapper}:focus-visible & {
+    transform: scale(1.05);
+  }
+`;
+const InterOverlayText = styled.span`
+  font-family: Pretendard;
+  font-weight: 600;
+  font-size: 0.83vw;
+  line-height: 140%;
+  letter-spacing: 0;
+  @media (max-width: 768px) {
+    font-size: 14px;
   }
 `;
 const DescriptionContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 9.2vw;
   @media (max-width: 768px) {
     align-items: flex-end;
   }
@@ -151,7 +375,7 @@ const LevelSection = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   @media (max-width: 768px) {
     display: none;
   }
@@ -160,19 +384,23 @@ const LevelContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const LevelImage = styled.div`
+const LevelImage = styled.img`
   width: 13.02vw; /* 250px / 1920px * 100 = 13.02% */
   height: 8.13vw; /* 156px / 1920px * 100 = 8.13% */
-  background-color: #f0f0f0;
+  object-fit: cover;
   margin-bottom: 0.42vw; /* 8px / 1920px * 100 = 0.42% */
   flex-shrink: 0;
   min-width: 13.02vw;
+  border-color: #868686;
+  border-width: 1px;
+  border-style: solid;
   @media (max-width: 768px) {
     width: 27.5vmin;
     height: 17.16vmin;
   }
 `;
 const LevelDescription = styled.div`
+  width: 13.02vw;
   font-family: Pretendard;
   font-weight: 700;
   font-size: 0.83vw; /* 16px / 1920px * 100 = 0.83% */
@@ -182,6 +410,7 @@ const LevelDescription = styled.div`
   @media (max-width: 768px) {
     font-size: 8px;
     align-self: center;
+    width: 27.5vmin;
   }
 `;
 const MobileInterContainer = styled.div`
