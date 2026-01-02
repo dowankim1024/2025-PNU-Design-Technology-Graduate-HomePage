@@ -147,7 +147,7 @@ const AboutPage = () => {
           <PageNumber containerRef={containerRef} />
         </PageNumberWrapper>
         <ScrollWrapper src={Scroll} />
-        <SnapWrapper ref={containerRef}>
+        <SnapWrapper ref={containerRef} data-scroll-container>
           {" "}
           {/* 스크롤 컨테이너(헤더 제외 높이 영역) */}
           <Section>

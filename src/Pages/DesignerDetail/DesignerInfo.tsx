@@ -31,7 +31,6 @@ export const DesignerInfo = ({
   intro,
   conceptTitle,
   conceptDescription,
-  image,
 }: DesignerInfoProps) => {
   const navigate = useNavigate();
   const [imageLoaded, setImageLoaded] = useState(false);
